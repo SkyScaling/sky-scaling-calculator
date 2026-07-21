@@ -181,34 +181,43 @@
   @keyframes pop{0%{transform:scale(1)}28%{transform:scale(1.07)}100%{transform:scale(1)}}
   .pop{animation:pop .34s cubic-bezier(.3,.7,.3,1)}
 
+  .cfg-note{color:var(--text-3);font-size:12px;margin:-4px 0 14px 0}
+  .cfg-note b{color:#c3ccff;font-weight:600}
+
   @media (max-width:1000px){
     .builder{grid-template-columns:1fr}
     .hdr-tag{display:none}
   }
   @media (max-width:640px){
-    .wrap{padding-left:13px;padding-right:13px}
-    .hero{padding-top:34px;text-align:center}
-    .hero h1{font-size:clamp(30px,8vw,40px)}
-    .hero p{margin-left:auto;margin-right:auto}
+    .wrap{padding-left:20px;padding-right:20px}
+    .hero{padding-top:46px;text-align:center}
+    .hero h1{font-size:clamp(31px,8.4vw,42px)}
+    .hero p{margin-left:auto;margin-right:auto;font-size:15px}
     .choices{grid-template-columns:1fr}
     .totals{grid-template-columns:1fr}
+    .choice{padding:16px}
+    .choice p{font-size:13px}
+    .mod{padding:15px 16px;gap:12px}
+    .mod .ic{width:34px;height:34px}
+    .mod p{font-size:13px}
+    .slider-note{font-size:13px}
     /* stack the roadmap header so the big number doesn't cram to the edge */
-    .rnode{grid-template-columns:28px 1fr;gap:13px}
+    .rnode{grid-template-columns:28px 1fr;gap:14px}
     .rmark{width:28px;height:28px;font-size:10px;margin-top:5px}
     .rail::before{top:38px}
-    .rcard{padding:17px 17px}
+    .rcard{padding:18px 18px}
     .rhead{flex-direction:column;align-items:flex-start;gap:7px}
-    .big{font-size:31px}
-    .rrows{gap:14px 22px}
-    .rr .v{font-size:14px}
-    .mod{padding:14px 15px;gap:12px}
-    .mod .ic{width:34px;height:34px}
-    .mod p{font-size:12px}
-    .choice{padding:15px 15px 14px}
+    .big{font-size:32px}
+    .rrows{gap:15px 24px}
+    .rr .k{font-size:12.5px}
+    .rr .v{font-size:14.5px}
+    .pn{font-size:12.5px}
+    .guar{padding:16px 18px}
+    .guar p{font-size:13.5px}
     .total{padding:16px 18px}
-    .total .tv{font-size:28px}
-    .fine{gap:10px}
-    .guar{padding:15px 17px}
+    .total .tv{font-size:29px}
+    .real{text-align:center}
+    .fine{gap:12px;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:13px}
   }
 </style>
 </head>
@@ -260,6 +269,7 @@
       </div>
 
       <div class="cfg-lab"><span class="n">3</span> Your Monthly Stack · starts at launch</div>
+      <div class="cfg-note"><b>Most advisors run all four</b> — that's the Full Stack.</div>
       <div class="mods">
         <div class="mod req-row" data-mod="engine">
           <span class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></span>
