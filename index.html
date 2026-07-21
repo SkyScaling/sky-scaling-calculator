@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Stack | Sky Scaling</title>
+<meta name="description" content="Pick your stack and see every dollar. The Advisor Authority System, priced live.">
+<meta name="theme-color" content="#06080F">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="https://assets.cdn.msgsndr.com/cIEiGPHzRWPAUucJJ6QA/media/63b8dfe3b7386074555ef2bb.png">
+<link rel="apple-touch-icon" href="https://assets.cdn.msgsndr.com/cIEiGPHzRWPAUucJJ6QA/media/63b8dfe3b7386074555ef2bb.png">
+
+<script>
+  window.SS_CONFIG = {
+    LOGO_URL: "https://www.skyscaling.com/assets/sky-scaling-logo-vBi7C5xv.svg",
+    HEADER_TAG: "The Advisor Authority System · Build Your Stack",
+    REAL_BOOKING_URL: "https://financebridges-bc-tf.netlify.app/",
+    REAL_THANKYOU_URL: "https://financebridges-bc-tf.netlify.app/thank-you"
+  };
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#06080F;--panel:#0D111E;--panel-2:#121728;--panel-3:#1a2136;
+    --border:rgba(148,160,196,0.13);--border-2:rgba(148,160,196,0.22);--border-strong:rgba(148,160,196,0.34);
+    --accent:#5271ff;--accent-2:#8f6bff;--accent-d:#3f5ae6;
+    --accent-glow:rgba(82,113,255,0.55);--accent-tint:rgba(82,113,255,0.13);
+    --grad:linear-gradient(135deg,#6b86ff 0%,#a583ff 100%);
+    --ok:#3ddc97;--ok-tint:rgba(61,220,151,0.12);--ok-border:rgba(61,220,151,0.34);
+    --text:#F6F8FE;--text-2:#AEB7D0;--text-3:#6f7896;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif}
+  .bg-grid,.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:0}
+  .bg-grid{background-image:linear-gradient(rgba(148,160,196,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(148,160,196,0.045) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 95% 55% at 50% 0%,#000 20%,transparent 76%);mask-image:radial-gradient(ellipse 95% 55% at 50% 0%,#000 20%,transparent 76%)}
+  .bg-glow{background:radial-gradient(720px 480px at 12% 0%,rgba(82,113,255,0.22),transparent 64%),radial-gradient(720px 540px at 90% 96%,rgba(143,107,255,0.15),transparent 70%)}
+
+  header{position:relative;z-index:2;width:100%;border-bottom:1px solid var(--border)}
+  .hdr-inner{max-width:1280px;margin:0 auto;padding:18px clamp(20px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .logo img{height:30px;width:auto;display:block}
+  .logo .fb{display:none;font-family:'Space Grotesk';font-weight:700;font-size:18px}
+  .hdr-tag{font-family:'Space Grotesk';font-weight:700;font-size:11.5px;letter-spacing:0.17em;text-transform:uppercase;color:var(--text-3);text-align:right}
+  .hdr-tag b{color:#c3ccff;font-weight:700}
+
+  .wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px) 84px}
+  .hero{padding:clamp(40px,5vw,62px) 0 clamp(26px,3vw,36px)}
+  .hero h1{font-weight:700;font-size:clamp(36px,4.8vw,56px);line-height:1.03;letter-spacing:-0.035em}
+  .hero h1 .a{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-style:italic;letter-spacing:0;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--text-2);font-size:clamp(15px,1.5vw,17.5px);line-height:1.6;max-width:660px;margin-top:16px}
+  .hero p b{color:var(--text);font-weight:600}
+
+  .builder{display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr);gap:30px;align-items:start}
+
+  /* ===== labels ===== */
+  .cfg-lab{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk';font-weight:700;font-size:11.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-2);margin:30px 0 14px}
+  .cfg-lab:first-child{margin-top:0}
+  .cfg-lab .n{width:24px;height:24px;flex:none;border-radius:7px;background:var(--accent-tint);border:1px solid rgba(82,113,255,0.3);color:#c3ccff;display:flex;align-items:center;justify-content:center;font-size:11px}
+
+  /* ===== icon chip ===== */
+  .ic{flex:none;width:40px;height:40px;border-radius:12px;background:linear-gradient(180deg,rgba(82,113,255,0.16),rgba(82,113,255,0.05));border:1px solid rgba(82,113,255,0.26);color:#b9c4ff;display:flex;align-items:center;justify-content:center;transition:all .18s}
+  .ic svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+  /* ===== check badge ===== */
+  .chk{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--border-strong);position:relative;transition:all .18s}
+  .chk svg{position:absolute;inset:0;margin:auto;width:12px;height:12px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .15s}
+
+  /* ===== choice cards (lane + build) ===== */
+  .choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .choice{display:flex;gap:14px;align-items:flex-start;text-align:left;color:var(--text);background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:17px 17px 16px;cursor:pointer;position:relative;transition:border-color .18s,transform .14s,box-shadow .18s,background .18s}
+  .choice:hover{border-color:var(--border-2);transform:translateY(-2px)}
+  .choice .chk{position:absolute;top:15px;right:15px}
+  .choice.sel{border-color:transparent;background:linear-gradient(180deg,rgba(82,113,255,0.15),rgba(82,113,255,0.02));box-shadow:0 0 0 1.5px var(--accent),0 20px 44px -24px var(--accent-glow)}
+  .choice.sel .ic{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 10px 24px -10px var(--accent-glow)}
+  .choice.sel .chk{border-color:transparent;background:var(--grad)}
+  .choice.sel .chk svg{opacity:1}
+  .choice .cbody{flex:1;min-width:0;padding-right:24px}
+  .choice .ct{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .choice h3{font-family:'Space Grotesk';font-weight:700;font-size:16px}
+  .choice .price{font-family:'Space Grotesk';font-weight:700;font-size:15px;color:#c3ccff}
+  .choice p{color:var(--text-2);font-size:12.5px;line-height:1.5;margin-top:6px}
+  .choice p b{color:var(--text);font-weight:600}
+
+  /* ===== module rows ===== */
+  .mods{display:flex;flex-direction:column;gap:12px}
+  .mod{display:flex;align-items:flex-start;gap:14px;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px 18px;transition:border-color .18s,opacity .18s,background .18s,transform .14s}
+  .mod .ic{width:38px;height:38px}
+  .mod .mt{flex:1;min-width:0}
+  .mod .mt-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .mod h3{font-family:'Space Grotesk';font-weight:700;font-size:15px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .mod .req{font-family:'Space Grotesk';font-weight:700;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#c3ccff;background:var(--accent-tint);border:1px solid rgba(82,113,255,0.28);padding:3px 8px;border-radius:99px}
+  .mod .mprice{font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--text);white-space:nowrap}
+  .mod .mprice small{color:var(--text-3);font-weight:600;font-size:11px}
+  .mod p{color:var(--text-2);font-size:12.5px;line-height:1.5;margin-top:6px}
+  .mod .chk{margin-top:9px;order:3}
+  /* optional, interactive */
+  .mod.opt{cursor:pointer}
+  .mod.opt:hover{border-color:var(--border-2);transform:translateY(-1px)}
+  .mod.opt.on{border-color:rgba(82,113,255,0.45);background:linear-gradient(180deg,rgba(82,113,255,0.07),transparent)}
+  .mod.opt.on .ic{background:var(--grad);border-color:transparent;color:#fff}
+  .mod.opt.on .chk{border-color:transparent;background:var(--grad)}
+  .mod.opt.on .chk svg{opacity:1}
+  .mod.opt.off{opacity:0.5}
+  /* required, locked-on */
+  .mod.req-row{border-color:rgba(82,113,255,0.30)}
+  .mod.req-row .ic{background:var(--grad);border-color:transparent;color:#fff}
+  .mod.req-row .chk{border-color:transparent;background:var(--grad)}
+  .mod.req-row .chk svg{opacity:1}
+
+  /* ===== slider ===== */
+  .slider-card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px 20px}
+  .slider-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .slider-top h3{font-family:'Space Grotesk';font-weight:700;font-size:15px}
+  .slider-val{font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--text)}
+  .slider-val .sep{color:var(--text-3);margin:0 7px}
+  .slider-val #ad-day{color:#c3ccff}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:7px;border-radius:99px;background:var(--panel-3);margin:18px 0 0;cursor:pointer}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--grad);border:3px solid #0b0f1c;box-shadow:0 6px 16px -3px var(--accent-glow);cursor:pointer}
+  input[type=range]::-moz-range-thumb{width:19px;height:19px;border:3px solid #0b0f1c;border-radius:50%;background:#7a90ff;cursor:pointer}
+  .slider-note{color:var(--text-2);font-size:12.5px;line-height:1.55;margin-top:13px}
+  .slider-note b{color:var(--text);font-weight:600}
+
+  .real{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px 19px;margin-top:24px}
+  .real .rl{font-family:'Space Grotesk';font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px}
+  .real p{color:var(--text-2);font-size:13px;line-height:1.6}
+  .real a{color:#8fa2ff;text-decoration:none;font-weight:600}
+  .real a:hover{text-decoration:underline}
+
+  /* ===== timeline ===== */
+  .tl{display:flex;flex-direction:column;gap:18px}
+  .tl-head{display:flex;align-items:center;justify-content:space-between}
+  .tl-head .h{font-family:'Space Grotesk';font-weight:700;font-size:14px;letter-spacing:0.02em;color:var(--text)}
+  .tl-head .live{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ok)}
+  .tl-head .live .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 var(--ok);animation:blip 2s infinite}
+  @keyframes blip{0%{box-shadow:0 0 0 0 rgba(61,220,151,0.5)}70%{box-shadow:0 0 0 7px rgba(61,220,151,0)}100%{box-shadow:0 0 0 0 rgba(61,220,151,0)}}
+
+  .roadmap{display:flex;flex-direction:column;gap:16px}
+  .rnode{display:grid;grid-template-columns:38px 1fr;gap:18px;align-items:stretch}
+  .rail{position:relative;display:flex;justify-content:center}
+  .rail::before{content:"";position:absolute;left:50%;transform:translateX(-50%);top:44px;bottom:-16px;width:2px;background:var(--border-2)}
+  .rnode:last-child .rail::before{display:none}
+  .rmark{position:relative;z-index:1;width:34px;height:34px;border-radius:50%;background:var(--panel-2);border:2px solid rgba(82,113,255,0.5);color:#c3ccff;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:11px;margin-top:6px;align-self:flex-start}
+  .rnode.mid .rmark{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 8px 22px -6px var(--accent-glow)}
+  .rcard{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;box-shadow:0 24px 60px -42px rgba(0,0,0,0.9)}
+  .rnode.mid .rcard{border-color:transparent;background:linear-gradient(180deg,rgba(82,113,255,0.11),rgba(13,17,30,0.4));box-shadow:0 0 0 1.5px rgba(82,113,255,0.5),0 28px 66px -34px var(--accent-glow)}
+  .rhead{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .rhead .pl{font-family:'Space Grotesk';font-weight:700;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3)}
+  .rnode.mid .rhead .pl{color:#a9b7ff}
+  .rhead h3{font-family:'Space Grotesk';font-weight:700;font-size:19px;margin-top:7px}
+  .rhead h3 .a{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-style:italic;font-size:1.14em;color:#a9b7ff;letter-spacing:0}
+  .big{font-family:'Space Grotesk';font-weight:700;font-size:clamp(27px,2.6vw,35px);letter-spacing:-0.03em;line-height:1;color:var(--text);display:inline-block;transform-origin:right;white-space:nowrap}
+  .big small{font-size:12.5px;font-weight:600;letter-spacing:0;margin-left:5px;color:var(--text-3)}
+  .rrows{display:flex;gap:26px;flex-wrap:wrap;margin-top:17px;padding-top:16px;border-top:1px solid var(--border)}
+  .rr{display:flex;flex-direction:column;gap:4px}
+  .rr .k{color:var(--text-2);font-size:12px}
+  .rr .v{font-family:'Space Grotesk';font-weight:700;font-size:14.5px;color:var(--text)}
+  .rr .v.muted{color:var(--text-3);font-weight:600}
+  .pn{color:var(--text-2);font-size:12px;line-height:1.55;margin-top:16px}
+  .pn b{color:var(--text);font-weight:600}
+
+  .guar{background:linear-gradient(180deg,rgba(61,220,151,0.11),rgba(13,17,30,0.3));border:1px solid var(--ok-border);border-radius:var(--radius);padding:17px 20px;display:flex;align-items:center;gap:14px}
+  .guar .gi{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ok-tint);border:1px solid var(--ok-border);display:flex;align-items:center;justify-content:center}
+  .guar .gi svg{width:16px;height:16px;stroke:var(--ok);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+  .guar p{font-size:13.5px;line-height:1.5;color:var(--text)}
+  .guar p b.gt{color:var(--ok)}
+
+  .totals{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .total{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 24px 60px -44px rgba(0,0,0,0.9)}
+  .total .tl2{font-family:'Space Grotesk';font-weight:700;font-size:10.5px;letter-spacing:0.11em;text-transform:uppercase;color:var(--text-3);line-height:1.55}
+  .total .tl2 b{display:block;color:var(--text-2);font-weight:700}
+  .total .tv{font-family:'Space Grotesk';font-weight:700;font-size:clamp(25px,2.4vw,33px);letter-spacing:-0.03em;white-space:nowrap;color:var(--text);display:inline-block;transform-origin:right}
+  .total .tv small{font-size:13px;color:var(--text-3);font-weight:600}
+
+  .fine{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap;color:var(--text-3);font-size:12.5px;line-height:1.6;padding-top:4px}
+  .fine b{color:var(--text-2);font-weight:600}
+
+  @keyframes pop{0%{transform:scale(1)}28%{transform:scale(1.07)}100%{transform:scale(1)}}
+  .pop{animation:pop .34s cubic-bezier(.3,.7,.3,1)}
+
+  @media (max-width:1000px){
+    .builder{grid-template-columns:1fr}
+    .hdr-tag{display:none}
+  }
+  @media (max-width:640px){
+    .wrap{padding-left:18px;padding-right:18px}
+    .hero{padding-top:34px}
+    .hero h1{font-size:clamp(30px,8vw,40px)}
+    .choices{grid-template-columns:1fr}
+    .totals{grid-template-columns:1fr}
+    /* stack the roadmap header so the big number doesn't cram to the edge */
+    .rnode{grid-template-columns:28px 1fr;gap:13px}
+    .rmark{width:28px;height:28px;font-size:10px;margin-top:5px}
+    .rail::before{top:38px}
+    .rcard{padding:17px 17px}
+    .rhead{flex-direction:column;align-items:flex-start;gap:7px}
+    .big{font-size:31px}
+    .rrows{gap:14px 22px}
+    .rr .v{font-size:14px}
+    .mod{padding:14px 15px;gap:12px}
+    .mod .ic{width:34px;height:34px}
+    .mod p{font-size:12px}
+    .choice{padding:15px 15px 14px}
+    .total{padding:16px 18px}
+    .total .tv{font-size:28px}
+    .fine{gap:10px}
+    .guar{padding:15px 17px}
+  }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div><div class="bg-glow"></div>
+
+<header><div class="hdr-inner">
+  <div class="logo"><img id="logo" alt="Sky Scaling" src=""><span class="fb">Sky Scaling</span></div>
+  <div class="hdr-tag" id="hdr-tag"></div>
+</div></header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>Pick Your Stack. <span class="a">See Every Dollar.</span></h1>
+    <p>Choose what you want us to run. The timeline updates live, every fee, every month, <b>including your ad spend</b>. Nothing else, ever.</p>
+  </div>
+
+  <div class="builder">
+
+    <!-- ===== CONFIG ===== -->
+    <div class="config">
+
+      <div class="cfg-lab"><span class="n">1</span> Your Lane</div>
+      <div class="choices" id="lane">
+        <button class="choice sel" data-v="client" type="button">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div class="cbody"><div class="ct"><h3>Client acquisition</h3></div><p>Life, IFA, income protection, living benefits. <b>40 leads guaranteed.</b></p></div>
+        </button>
+        <button class="choice" data-v="recruiting" type="button">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></span>
+          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div class="cbody"><div class="ct"><h3>Recruiting</h3></div><p>Build your team, licensed or unlicensed. <b>30 leads guaranteed.</b></p></div>
+        </button>
+      </div>
+
+      <div class="cfg-lab"><span class="n">2</span> The Build · paid once</div>
+      <div class="choices" id="build">
+        <button class="choice sel" data-v="full" type="button">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg></span>
+          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div class="cbody"><div class="ct"><h3>Full build</h3><span class="price">$5,000</span></div><p>From zero: brand, socials, AI assistant, booking pages, ad account. Ads live month 3.</p></div>
+        </button>
+        <button class="choice" data-v="fast" type="button">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
+          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <div class="cbody"><div class="ct"><h3>Fast-track</h3><span class="price">$2,500</span></div><p>Already posting real video weekly? We install the machine behind it. Ads live weeks 2 to 4.</p></div>
+        </button>
+      </div>
+
+      <div class="cfg-lab"><span class="n">3</span> Your Monthly Stack · starts at launch</div>
+      <div class="mods">
+        <div class="mod req-row" data-mod="engine">
+          <span class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></span>
+          <div class="mt">
+            <div class="mt-top"><h3>The engine · CRM + AI <span class="req">Required</span></h3><div class="mprice">$250<small>/mo</small></div></div>
+            <p>Calendar, follow-up, and the AI answering every lead in minutes. Licensed from us.</p>
+          </div>
+          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+        </div>
+        <div class="mod req-row" data-mod="ads">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
+          <div class="mt">
+            <div class="mt-top"><h3>Ad management <span class="req">Required</span></h3><div class="mprice">$500<small>/mo</small></div></div>
+            <p>Campaigns, optimization, creative rotation, and reporting.</p>
+          </div>
+          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+        </div>
+        <div class="mod opt on" data-mod="content" role="checkbox" aria-checked="true" tabindex="0">
+          <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></span>
+          <div class="mt">
+            <div class="mt-top"><h3>Content posting</h3><div class="mprice">$500<small>/mo</small></div></div>
+            <p>Around 3 posts a week, plus your recorded videos published for you.</p>
+          </div>
+          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+        </div>
+        <div class="mod opt on" data-mod="scripts" role="checkbox" aria-checked="true" tabindex="0">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>
+          <div class="mt">
+            <div class="mt-top"><h3>Video scripts</h3><div class="mprice">$250<small>/mo</small></div></div>
+            <p>Up to 3 scripts a week, written in your voice.</p>
+          </div>
+          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+        </div>
+      </div>
+
+      <div class="cfg-lab"><span class="n">4</span> Ad Spend · your card → Facebook</div>
+      <div class="slider-card">
+        <div class="slider-top"><h3>Daily budget</h3><div class="slider-val"><span id="ad-day">$40/day</span><span class="sep">·</span><span id="ad-month">$1,200/mo</span></div></div>
+        <input type="range" id="ad-slider" min="40" max="100" step="5" value="40">
+        <div class="slider-note">Paid straight to Facebook from your ad account. <b>We never touch it, never mark it up.</b> Minimum <span id="ad-min">$40/day</span> for the lead guarantee.</div>
+      </div>
+
+      <div class="real">
+        <div class="rl">See a real build</div>
+        <p>Booking pages we've built and run for clients: <a id="lnk-booking" href="#" target="_blank" rel="noopener">a live booking page</a> · <a id="lnk-ty" href="#" target="_blank" rel="noopener">the thank-you page</a> your leads land on. Yours is built like this, under your name.</p>
+      </div>
+    </div>
+
+    <!-- ===== TIMELINE ===== -->
+    <div class="tl">
+      <div class="tl-head"><span class="h">Your plan</span><span class="live"><span class="dot"></span>Updates live</span></div>
+
+      <div class="roadmap">
+        <div class="rnode">
+          <div class="rail"><div class="rmark">1–2</div></div>
+          <div class="rcard">
+            <div class="rhead">
+              <div><div class="pl" id="p1-lab">Months 1-2</div><h3>The <span class="a">Build</span></h3></div>
+              <div class="big" id="p1-big">$5,000<small>once</small></div>
+            </div>
+            <div class="rrows">
+              <div class="rr"><span class="k" id="p1-r1k">Full build install</span><span class="v" id="p1-r1v">$5,000</span></div>
+              <div class="rr"><span class="k">Monthly fees</span><span class="v muted">$0</span></div>
+              <div class="rr"><span class="k">Ad spend</span><span class="v muted">$0</span></div>
+            </div>
+            <div class="pn"><b>No monthly fee during the build.</b> Weekly training calls, scripts and posting free while we build.</div>
+          </div>
+        </div>
+
+        <div class="rnode mid">
+          <div class="rail"><div class="rmark">3–4</div></div>
+          <div class="rcard">
+            <div class="rhead">
+              <div><div class="pl" id="p2-lab">Months 3-4 · Ads live</div><h3>The <span class="a">Dial-In</span></h3></div>
+              <div class="big" id="p2-big">$2,900<small>/mo all-in</small></div>
+            </div>
+            <div class="rrows">
+              <div class="rr"><span class="k">Your stack</span><span class="v" id="p2-stack">$1,500/mo</span></div>
+              <div class="rr"><span class="k">Weekly dial-in calls</span><span class="v">$500/mo</span></div>
+              <div class="rr"><span class="k">Ad spend → Facebook</span><span class="v" id="p2-ad">$900/mo</span></div>
+            </div>
+            <div class="pn"><b>Weekly call every week</b> while we lock your campaigns in. That's the $500 dial-in fee, first two ad months only.</div>
+          </div>
+        </div>
+
+        <div class="rnode">
+          <div class="rail"><div class="rmark">5+</div></div>
+          <div class="rcard">
+            <div class="rhead">
+              <div><div class="pl">Month 5 +</div><h3>Steady <span class="a">State</span></h3></div>
+              <div class="big" id="p3-big">$2,400<small>/mo all-in</small></div>
+            </div>
+            <div class="rrows">
+              <div class="rr"><span class="k">Your stack</span><span class="v" id="p3-stack">$1,500/mo</span></div>
+              <div class="rr"><span class="k">Dial-in calls</span><span class="v muted">$0 · done</span></div>
+              <div class="rr"><span class="k">Ad spend → Facebook</span><span class="v" id="p3-ad">$900/mo</span></div>
+            </div>
+            <div class="pn">Month-to-month, cancel with 15 days notice. <b>Need a break? Keep just the engine: $250/mo.</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guar">
+        <span class="gi"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <p><b class="gt">The guarantee:</b> <span id="guar-leads">40</span> leads minimum in your first two ad months, <b>or both months' service fees refunded in full.</b></p>
+      </div>
+
+      <div class="totals">
+        <div class="total">
+          <div class="tl2">All-in through month 4<b>Build + fees + ad spend</b></div>
+          <div class="tv" id="t-allin">$10,800</div>
+        </div>
+        <div class="total">
+          <div class="tl2">Steady monthly from month 5<b>Fees + ad spend</b></div>
+          <div class="tv" id="t-steady">$2,400<small>/mo</small></div>
+        </div>
+      </div>
+
+      <div class="fine">
+        <div><b>Everything is on this screen.</b> No markup on ad spend, no long-term contract, no surprise fees.</div>
+        <div>Video editing optional: $20 simple · $75 pro, per video.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var C = window.SS_CONFIG || {};
+
+  var logo=document.getElementById('logo');
+  if(C.LOGO_URL){ logo.src=C.LOGO_URL; }
+  logo.onerror=function(){ logo.style.display='none'; document.querySelector('.logo .fb').style.display='inline-block'; };
+  if(!C.LOGO_URL){ logo.onerror(); }
+  if(C.HEADER_TAG){ document.getElementById('hdr-tag').innerHTML = C.HEADER_TAG.replace(/·\s*([^·]+)$/, '· <b>$1</b>'); }
+  if(C.REAL_BOOKING_URL){ document.getElementById('lnk-booking').href=C.REAL_BOOKING_URL; }
+  if(C.REAL_THANKYOU_URL){ document.getElementById('lnk-ty').href=C.REAL_THANKYOU_URL; }
+
+  var S = { lane:'client', build:'full', content:true, scripts:true, adDay:40 };
+  var DIAL = 500;
+  function money(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+
+  function setHTML(el, html){
+    if(el.innerHTML!==html){ el.innerHTML=html; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
+  }
+  function setText(el, txt){
+    if(el.textContent!==txt){ el.textContent=txt; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
+  }
+
+  function recompute(){
+    var stack = 250 + 500 + (S.content?500:0) + (S.scripts?250:0);
+    var install = S.build==='full' ? 5000 : 2500;
+    var adMonth = S.adDay*30;
+    var dialAllIn = stack + DIAL + adMonth;
+    var steadyAllIn = stack + adMonth;
+    var allInM4 = install + 2*(stack+DIAL) + 2*adMonth;
+    var leads = S.lane==='client' ? 40 : 30;
+
+    document.getElementById('p1-r1k').textContent = (S.build==='full'?'Full build install':'Fast-track install');
+    document.getElementById('p1-lab').textContent = (S.build==='full'?'Months 1-2':'Weeks 1 to 4');
+    setHTML(document.getElementById('p1-big'), money(install)+'<small>once</small>');
+    document.getElementById('p1-r1v').textContent = money(install);
+
+    document.getElementById('p2-lab').textContent = (S.build==='full'?'Months 3-4 · Ads live':'Ads live · first 2 months');
+    setHTML(document.getElementById('p2-big'), money(dialAllIn)+'<small>/mo all-in</small>');
+    setText(document.getElementById('p2-stack'), money(stack)+'/mo');
+    setText(document.getElementById('p2-ad'), money(adMonth)+'/mo');
+
+    setHTML(document.getElementById('p3-big'), money(steadyAllIn)+'<small>/mo all-in</small>');
+    setText(document.getElementById('p3-stack'), money(stack)+'/mo');
+    setText(document.getElementById('p3-ad'), money(adMonth)+'/mo');
+
+    document.getElementById('guar-leads').textContent = leads;
+    setText(document.getElementById('t-allin'), money(allInM4));
+    setHTML(document.getElementById('t-steady'), money(steadyAllIn)+'<small>/mo</small>');
+
+    document.getElementById('ad-day').textContent = money(S.adDay)+'/day';
+    document.getElementById('ad-month').textContent = money(adMonth)+'/mo';
+  }
+
+  function laneMin(){ return S.lane==='client' ? 40 : 30; }
+
+  function bindChoices(id, key, after){
+    var group=document.getElementById(id);
+    group.querySelectorAll('.choice').forEach(function(b){
+      b.addEventListener('click', function(){
+        group.querySelectorAll('.choice').forEach(function(x){ x.classList.remove('sel'); });
+        b.classList.add('sel'); S[key]=b.getAttribute('data-v');
+        if(after) after();
+        recompute();
+      });
+    });
+  }
+  bindChoices('lane','lane', function(){ applyLaneMin(true); });
+  bindChoices('build','build');
+
+  document.querySelectorAll('.mod.opt').forEach(function(mod){
+    var key=mod.getAttribute('data-mod');
+    function toggle(){
+      S[key]=!S[key];
+      mod.classList.toggle('on', S[key]); mod.classList.toggle('off', !S[key]);
+      mod.setAttribute('aria-checked', S[key]?'true':'false');
+      recompute();
+    }
+    mod.addEventListener('click', toggle);
+    mod.addEventListener('keydown', function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); } });
+  });
+
+  var sl=document.getElementById('ad-slider');
+  function paintTrack(){
+    var pct=(sl.value-sl.min)/(sl.max-sl.min)*100;
+    sl.style.background='linear-gradient(90deg,#5271ff '+pct+'%,var(--panel-3) '+pct+'%)';
+  }
+  function applyLaneMin(snap){
+    var min=laneMin(); sl.min=min;
+    if(snap || S.adDay<min){ S.adDay=min; }
+    sl.value=S.adDay;
+    document.getElementById('ad-min').textContent=money(min)+'/day';
+    paintTrack();
+  }
+  sl.addEventListener('input', function(){ S.adDay=parseInt(sl.value,10)||laneMin(); paintTrack(); recompute(); });
+
+  applyLaneMin();
+  recompute();
+})();
+</script>
+</body>
+</html>
