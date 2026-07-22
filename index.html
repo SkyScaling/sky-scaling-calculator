@@ -291,7 +291,7 @@
           <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></span>
           <div class="mt">
             <div class="mt-top"><h3>Content posting</h3><div class="mprice">$500<small>/mo</small></div></div>
-            <p>Around 3 posts a week, plus your recorded videos published for you.</p>
+            <p>About 3 static posts a week (carousels and graphics) on a content calendar. You post your own videos.</p>
           </div>
           <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
         </div>
@@ -322,55 +322,7 @@
     <div class="tl">
       <div class="tl-head"><span class="h">Your plan</span><span class="live"><span class="dot"></span>Updates live</span></div>
 
-      <div class="roadmap">
-        <div class="rnode">
-          <div class="rail"><div class="rmark">1–2</div></div>
-          <div class="rcard">
-            <div class="rhead">
-              <div><div class="pl" id="p1-lab">Months 1-2</div><h3>The <span class="a">Build</span></h3></div>
-              <div class="big" id="p1-big">$5,000<small>once</small></div>
-            </div>
-            <div class="rrows">
-              <div class="rr"><span class="k" id="p1-r1k">Full build install</span><span class="v" id="p1-r1v">$5,000</span></div>
-              <div class="rr"><span class="k">Monthly fees</span><span class="v muted">$0</span></div>
-              <div class="rr"><span class="k">Ad spend</span><span class="v muted">$0</span></div>
-            </div>
-            <div class="pn"><b>No monthly fee during the build.</b> Weekly training calls, scripts and posting free while we build.</div>
-          </div>
-        </div>
-
-        <div class="rnode mid">
-          <div class="rail"><div class="rmark">3–4</div></div>
-          <div class="rcard">
-            <div class="rhead">
-              <div><div class="pl" id="p2-lab">Months 3-4 · Ads live</div><h3>The <span class="a">Dial-In</span></h3></div>
-              <div class="big" id="p2-big">$2,900<small>/mo all-in</small></div>
-            </div>
-            <div class="rrows">
-              <div class="rr"><span class="k">Your stack</span><span class="v" id="p2-stack">$1,500/mo</span></div>
-              <div class="rr"><span class="k">Weekly dial-in calls</span><span class="v">$500/mo</span></div>
-              <div class="rr"><span class="k">Ad spend → Facebook</span><span class="v" id="p2-ad">$900/mo</span></div>
-            </div>
-            <div class="pn"><b>Weekly call every week</b> while we lock your campaigns in. That's the $500 dial-in fee, first two ad months only.</div>
-          </div>
-        </div>
-
-        <div class="rnode">
-          <div class="rail"><div class="rmark">5+</div></div>
-          <div class="rcard">
-            <div class="rhead">
-              <div><div class="pl">Month 5 +</div><h3>Steady <span class="a">State</span></h3></div>
-              <div class="big" id="p3-big">$2,400<small>/mo all-in</small></div>
-            </div>
-            <div class="rrows">
-              <div class="rr"><span class="k">Your stack</span><span class="v" id="p3-stack">$1,500/mo</span></div>
-              <div class="rr"><span class="k">Dial-in calls</span><span class="v muted">$0 · done</span></div>
-              <div class="rr"><span class="k">Ad spend → Facebook</span><span class="v" id="p3-ad">$900/mo</span></div>
-            </div>
-            <div class="pn">Month-to-month, cancel with 15 days notice. <b>Need a break? Keep just the engine: $250/mo.</b></div>
-          </div>
-        </div>
-      </div>
+      <div class="roadmap" id="roadmap"></div>
 
       <div class="guar">
         <span class="gi"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
@@ -379,11 +331,11 @@
 
       <div class="totals">
         <div class="total">
-          <div class="tl2">All-in through month 4<b>Build + fees + ad spend</b></div>
+          <div class="tl2">All-in through your 2 ad months<b>Build + fees + ad spend</b></div>
           <div class="tv" id="t-allin">$10,800</div>
         </div>
         <div class="total">
-          <div class="tl2">Steady monthly from month 5<b>Fees + ad spend</b></div>
+          <div class="tl2">Steady monthly after that<b>Fees + ad spend</b></div>
           <div class="tv" id="t-steady">$2,400<small>/mo</small></div>
         </div>
       </div>
@@ -421,31 +373,67 @@
     if(el.textContent!==txt){ el.textContent=txt; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
   }
 
+  function rowsHTML(rows){
+    return rows.map(function(r){
+      return '<div class="rr"><span class="k">'+r[0]+'</span><span class="v'+(r[2]?' '+r[2]:'')+'">'+r[1]+'</span></div>';
+    }).join('');
+  }
+  function nodeHTML(m){
+    return '<div class="rnode'+(m.mid?' mid':'')+'">'
+      + '<div class="rail"><div class="rmark">'+m.mark+'</div></div>'
+      + '<div class="rcard"><div class="rhead">'
+      + '<div><div class="pl">'+m.lab+'</div><h3>'+m.title+'</h3></div>'
+      + '<div class="big">'+m.big+'</div></div>'
+      + '<div class="rrows">'+rowsHTML(m.rows)+'</div>'
+      + '<div class="pn">'+m.note+'</div></div></div>';
+  }
+
   function recompute(){
     var stack = 250 + 500 + (S.content?500:0) + (S.scripts?250:0);
     var install = S.build==='full' ? 5000 : 2500;
     var adMonth = S.adDay*30;
     var dialAllIn = stack + DIAL + adMonth;
     var steadyAllIn = stack + adMonth;
-    var allInM4 = install + 2*(stack+DIAL) + 2*adMonth;
+    var allInWindow = install + 2*(stack+DIAL) + 2*adMonth;
     var leads = S.lane==='client' ? 40 : 30;
+    var installLab = S.build==='full' ? 'Full build install' : 'Fast-track install';
 
-    document.getElementById('p1-r1k').textContent = (S.build==='full'?'Full build install':'Fast-track install');
-    document.getElementById('p1-lab').textContent = (S.build==='full'?'Months 1-2':'Weeks 1 to 4');
-    setHTML(document.getElementById('p1-big'), money(install)+'<small>once</small>');
-    document.getElementById('p1-r1v').textContent = money(install);
+    var dialRows = [['Your stack', money(stack)+'/mo',''],['Weekly dial-in call','$500/mo',''],['Ad spend → Facebook', money(adMonth)+'/mo','']];
+    var steadyRows = [['Your stack', money(stack)+'/mo',''],['Dial-in calls','$0 · done','muted'],['Ad spend → Facebook', money(adMonth)+'/mo','']];
 
-    document.getElementById('p2-lab').textContent = (S.build==='full'?'Months 3-4 · Ads live':'Ads live · first 2 months');
-    setHTML(document.getElementById('p2-big'), money(dialAllIn)+'<small>/mo all-in</small>');
-    setText(document.getElementById('p2-stack'), money(stack)+'/mo');
-    setText(document.getElementById('p2-ad'), money(adMonth)+'/mo');
-
-    setHTML(document.getElementById('p3-big'), money(steadyAllIn)+'<small>/mo all-in</small>');
-    setText(document.getElementById('p3-stack'), money(stack)+'/mo');
-    setText(document.getElementById('p3-ad'), money(adMonth)+'/mo');
+    var months;
+    if(S.build==='full'){
+      months = [
+        {mark:'1', lab:'Month 1', title:'The <span class="a">Build</span>', big: money(install)+'<small>once</small>',
+         rows:[[installLab, money(install),''],['Monthly fees','$0','muted'],['Ad spend','$0','muted']],
+         note:'<b>No monthly fee during the build.</b> Weekly training calls, scripts and posting are free while we build.'},
+        {mark:'2', lab:'Month 2', title:'The <span class="a">Build</span>', big:'$0<small>this month</small>',
+         rows:[['Install','paid','muted'],['Monthly fees','$0','muted'],['Ad spend','$0','muted']],
+         note:'Still building. No fees and no ad spend yet.'},
+        {mark:'3', lab:'Month 3 · Ads live', title:'The <span class="a">Dial-In</span>', big: money(dialAllIn)+'<small>/mo all-in</small>', mid:true,
+         rows:dialRows, note:'<b>Weekly call every week</b> while we lock your campaigns in. That\'s the $500 dial-in fee.'},
+        {mark:'4', lab:'Month 4 · Ads live', title:'The <span class="a">Dial-In</span>', big: money(dialAllIn)+'<small>/mo all-in</small>',
+         rows:dialRows, note:'Second and final dial-in month. This is your guarantee window.'},
+        {mark:'5+', lab:'Month 5 and on', title:'Steady <span class="a">State</span>', big: money(steadyAllIn)+'<small>/mo all-in</small>',
+         rows:steadyRows, note:'Month-to-month, cancel with 15 days notice. <b>Need a break? Keep just the engine: $250/mo.</b>'}
+      ];
+    } else {
+      months = [
+        {mark:'1', lab:'Weeks 1 to 4', title:'Build + <span class="a">Launch</span>', big: money(install)+'<small>once</small>',
+         rows:[[installLab, money(install),''],['Monthly fees','$0','muted'],['Ad spend','$0','muted']],
+         note:'<b>Fast-track build.</b> Your ads go live in weeks 2 to 4.'},
+        {mark:'2', lab:'Ad month 1', title:'The <span class="a">Dial-In</span>', big: money(dialAllIn)+'<small>/mo all-in</small>', mid:true,
+         rows:dialRows, note:'<b>Weekly call every week</b> while we lock your campaigns in. That\'s the $500 dial-in fee.'},
+        {mark:'3', lab:'Ad month 2', title:'The <span class="a">Dial-In</span>', big: money(dialAllIn)+'<small>/mo all-in</small>',
+         rows:dialRows, note:'Second and final dial-in month. This is your guarantee window.'},
+        {mark:'4+', lab:'From ad month 3', title:'Steady <span class="a">State</span>', big: money(steadyAllIn)+'<small>/mo all-in</small>',
+         rows:steadyRows, note:'Month-to-month, cancel with 15 days notice. <b>Need a break? Keep just the engine: $250/mo.</b>'}
+      ];
+    }
+    document.getElementById('roadmap').innerHTML = months.map(nodeHTML).join('');
 
     document.getElementById('guar-leads').textContent = leads;
-    setText(document.getElementById('t-allin'), money(allInM4));
+    setText(document.getElementById('t-allin'), money(allInWindow));
     setHTML(document.getElementById('t-steady'), money(steadyAllIn)+'<small>/mo</small>');
 
     document.getElementById('ad-day').textContent = money(S.adDay)+'/day';
