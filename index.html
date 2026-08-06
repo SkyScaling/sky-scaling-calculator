@@ -15,7 +15,12 @@
     LOGO_URL: "https://www.skyscaling.com/assets/sky-scaling-logo-vBi7C5xv.svg",
     HEADER_TAG: "The Advisor Authority System · Build Your Stack",
     REAL_BOOKING_URL: "https://financebridges-calendar.netlify.app/",
-    REAL_THANKYOU_URL: "https://financebridges-calendar.netlify.app/thank-you"
+    REAL_THANKYOU_URL: "https://financebridges-calendar.netlify.app/thank-you",
+
+    /* Instagram accounts our team builds, writes and posts. Instagram only, no Facebook. */
+    IG_FINANCEBRIDGES: "https://instagram.com/financebridges",
+    IG_SKYSCALING: "https://instagram.com/skyscaling.ca",
+    IG_GABRIEL: "https://instagram.com/gabrieltremblay.ca"
   };
 </script>
 
@@ -124,9 +129,15 @@
   .slider-note{color:var(--text-2);font-size:12.5px;line-height:1.55;margin-top:13px}
   .slider-note b{color:var(--text);font-weight:600}
 
-  .real{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px 19px;margin-top:24px}
+  .dialbox{background:linear-gradient(180deg,rgba(82,113,255,0.10),rgba(82,113,255,0.03));border:1px solid rgba(82,113,255,0.30);border-radius:16px;padding:17px 19px;margin-top:16px}
+  .dialbox .rl{font-family:'Space Grotesk';font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#8fa2ff;margin-bottom:9px}
+  .dialbox p{color:var(--text-2);font-size:13px;line-height:1.6}
+  .dialbox p+p{margin-top:9px}
+  .dialbox b{color:var(--text)}
+  .real{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px 19px;margin-top:0}
   .real .rl{font-family:'Space Grotesk';font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px}
   .real p{color:var(--text-2);font-size:13px;line-height:1.6}
+  .real p.rsub{margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
   .real a{color:#8fa2ff;text-decoration:none;font-weight:600}
   .real a:hover{text-decoration:underline}
 
@@ -159,6 +170,8 @@
   .rr .k{color:var(--text-2);font-size:12px}
   .rr .v{font-family:'Space Grotesk';font-weight:700;font-size:14.5px;color:var(--text)}
   .rr .v.muted{color:var(--text-3);font-weight:600}
+  .rr.dial .k{color:#a98bff}
+  .rr.dial .v,.rr.dial .v.muted{color:#a98bff;font-weight:700}
   .pn{color:var(--text-2);font-size:12px;line-height:1.55;margin-top:16px}
   .pn b{color:var(--text);font-weight:600}
 
@@ -312,9 +325,19 @@
         <div class="slider-note">Paid straight to Facebook from your ad account. <b>We never touch it, never mark it up.</b> Minimum <span id="ad-min">$40/day</span> for the lead guarantee.</div>
       </div>
 
+      <div class="cfg-lab"><span class="n">5</span> Proof &amp; details</div>
+
       <div class="real">
         <div class="rl">See a real build</div>
         <p>Booking pages we've built and run for clients: <a id="lnk-booking" href="#" target="_blank" rel="noopener">a live booking page</a> · <a id="lnk-ty" href="#" target="_blank" rel="noopener">the thank-you page</a> your leads land on. Yours is built like this, under your name.</p>
+        <p class="rsub">Our own brands, built and posted with the exact system we install under your name: <a id="lnk-ig1" href="#" target="_blank" rel="noopener">@financebridges</a> · <a id="lnk-ig2" href="#" target="_blank" rel="noopener">@skyscaling.ca</a> · <a id="lnk-ig3" href="#" target="_blank" rel="noopener">@gabrieltremblay.ca</a></p>
+      </div>
+
+      <div class="dialbox">
+        <div class="rl">What's a dial-in call?</div>
+        <p>Most agencies email you a report and leave you to work it out on your own.</p>
+        <p>Every week during your two ad months you're on Zoom with us going through <b>everything</b>: your numbers, your closing ratio, what's actually happening on your calls, the words you're using, and which ads to kill or keep.</p>
+        <p><b>These are the same two months your leads are guaranteed. That is not a coincidence.</b> These calls are how we hit it.</p>
       </div>
     </div>
 
@@ -331,18 +354,17 @@
 
       <div class="totals">
         <div class="total">
-          <div class="tl2">All-in through your 2 ad months<b>Build + fees + ad spend</b></div>
+          <div class="tl2">All-in, months 1 to 4<b>Build + fees + ad spend</b></div>
           <div class="tv" id="t-allin">$10,800</div>
         </div>
         <div class="total">
-          <div class="tl2">Steady monthly after that<b>Fees + ad spend</b></div>
+          <div class="tl2">Then month 5 and on<b>Fees + ad spend, every month</b></div>
           <div class="tv" id="t-steady">$2,400<small>/mo</small></div>
         </div>
       </div>
 
       <div class="fine">
         <div><b>Everything is on this screen.</b> No markup on ad spend, no long-term contract, no surprise fees.</div>
-        <div>Video editing optional: $20 simple · $75 pro, per video.</div>
       </div>
     </div>
 
@@ -361,6 +383,9 @@
   if(C.HEADER_TAG){ document.getElementById('hdr-tag').innerHTML = C.HEADER_TAG.replace(/·\s*([^·]+)$/, '· <b>$1</b>'); }
   if(C.REAL_BOOKING_URL){ document.getElementById('lnk-booking').href=C.REAL_BOOKING_URL; }
   if(C.REAL_THANKYOU_URL){ document.getElementById('lnk-ty').href=C.REAL_THANKYOU_URL; }
+  [['lnk-ig1','IG_FINANCEBRIDGES'],['lnk-ig2','IG_SKYSCALING'],['lnk-ig3','IG_GABRIEL']].forEach(function(p){
+    var el=document.getElementById(p[0]); if(el && C[p[1]]) el.href=C[p[1]];
+  });
 
   var S = { lane:'client', build:'full', content:true, scripts:true, adDay:40 };
   var DIAL = 500;
@@ -375,7 +400,8 @@
 
   function rowsHTML(rows){
     return rows.map(function(r){
-      return '<div class="rr"><span class="k">'+r[0]+'</span><span class="v'+(r[2]?' '+r[2]:'')+'">'+r[1]+'</span></div>';
+      var mod = r[2]||'';
+      return '<div class="rr'+(mod.indexOf('dial')>-1?' dial':'')+'"><span class="k">'+r[0]+'</span><span class="v'+(mod?' '+mod:'')+'">'+r[1]+'</span></div>';
     }).join('');
   }
   function nodeHTML(m){
@@ -398,8 +424,8 @@
     var leads = S.lane==='client' ? 40 : 30;
     var installLab = S.build==='full' ? 'Full build install' : 'Fast-track install';
 
-    var dialRows = [['Your stack', money(stack)+'/mo',''],['Weekly dial-in call','$500/mo',''],['Ad spend → Facebook', money(adMonth)+'/mo','']];
-    var steadyRows = [['Your stack', money(stack)+'/mo',''],['Dial-in calls','$0 · done','muted'],['Ad spend → Facebook', money(adMonth)+'/mo','']];
+    var dialRows = [['Your stack', money(stack+DIAL)+'/mo',''],['Weekly dial-in calls','included','muted dial'],['Ad spend → Facebook', money(adMonth)+'/mo','']];
+    var steadyRows = [['Your stack', money(stack)+'/mo',''],['Weekly dial-in calls','done','muted dial'],['Ad spend → Facebook', money(adMonth)+'/mo','']];
 
     var months;
     if(S.build==='full'){
@@ -411,9 +437,9 @@
          rows:[['Install','paid','muted'],['Monthly fees','$0','muted'],['Ad spend','$0','muted']],
          note:'Still building. No fees and no ad spend yet.'},
         {mark:'3', lab:'Month 3 · Ads live', title:'The <span class="a">Dial-In</span>', big: money(dialAllIn)+'<small>/mo all-in</small>', mid:true,
-         rows:dialRows, note:'<b>Weekly call every week</b> while we lock your campaigns in. That\'s the $500 dial-in fee.'},
+         rows:dialRows, note:'<b>We are on Zoom with you every single week</b> while we lock your campaigns in. That is why these two months cost more.'},
         {mark:'4', lab:'Month 4 · Ads live', title:'The <span class="a">Dial-In</span>', big: money(dialAllIn)+'<small>/mo all-in</small>',
-         rows:dialRows, note:'Second and final dial-in month. This is your guarantee window.'},
+         rows:dialRows, note:'Second and final month at this price. This is your guarantee window. From next month it drops.'},
         {mark:'5+', lab:'Month 5 and on', title:'Steady <span class="a">State</span>', big: money(steadyAllIn)+'<small>/mo all-in</small>',
          rows:steadyRows, note:'Month-to-month, cancel with 15 days notice. <b>Need a break? Keep just the engine: $250/mo.</b>'}
       ];
@@ -423,9 +449,9 @@
          rows:[[installLab, money(install),''],['Monthly fees','$0','muted'],['Ad spend','$0','muted']],
          note:'<b>Fast-track build.</b> Your ads go live in weeks 2 to 4.'},
         {mark:'2', lab:'Ad month 1', title:'The <span class="a">Dial-In</span>', big: money(dialAllIn)+'<small>/mo all-in</small>', mid:true,
-         rows:dialRows, note:'<b>Weekly call every week</b> while we lock your campaigns in. That\'s the $500 dial-in fee.'},
+         rows:dialRows, note:'<b>We are on Zoom with you every single week</b> while we lock your campaigns in. That is why these two months cost more.'},
         {mark:'3', lab:'Ad month 2', title:'The <span class="a">Dial-In</span>', big: money(dialAllIn)+'<small>/mo all-in</small>',
-         rows:dialRows, note:'Second and final dial-in month. This is your guarantee window.'},
+         rows:dialRows, note:'Second and final month at this price. This is your guarantee window. From next month it drops.'},
         {mark:'4+', lab:'From ad month 3', title:'Steady <span class="a">State</span>', big: money(steadyAllIn)+'<small>/mo all-in</small>',
          rows:steadyRows, note:'Month-to-month, cancel with 15 days notice. <b>Need a break? Keep just the engine: $250/mo.</b>'}
       ];
