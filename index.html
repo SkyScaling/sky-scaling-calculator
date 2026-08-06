@@ -424,8 +424,8 @@
     var leads = S.lane==='client' ? 40 : 30;
     var installLab = S.build==='full' ? 'Full build install' : 'Fast-track install';
 
-    var dialRows = [['Your stack', money(stack+DIAL)+'/mo',''],['Weekly dial-in calls','included','muted dial'],['Ad spend → Facebook', money(adMonth)+'/mo','']];
-    var steadyRows = [['Your stack', money(stack)+'/mo',''],['Weekly dial-in calls','done','muted dial'],['Ad spend → Facebook', money(adMonth)+'/mo','']];
+    var dialRows = [['Your stack', money(stack)+'/mo',''],['Weekly dial-in calls', money(DIAL)+'/mo','dial'],['Ad spend → Facebook', money(adMonth)+'/mo','']];
+    var steadyRows = [['Your stack', money(stack)+'/mo',''],['Weekly dial-in calls','$0 · done','muted'],['Ad spend → Facebook', money(adMonth)+'/mo','']];
 
     var months;
     if(S.build==='full'){
@@ -437,9 +437,9 @@
          rows:[['Install','paid','muted'],['Monthly fees','$0','muted'],['Ad spend','$0','muted']],
          note:'Still building. No fees and no ad spend yet.'},
         {mark:'3', lab:'Month 3 · Ads live', title:'The <span class="a">Dial-In</span>', big: money(dialAllIn)+'<small>/mo all-in</small>', mid:true,
-         rows:dialRows, note:'<b>We are on Zoom with you every single week</b> while we lock your campaigns in. That is why these two months cost more.'},
+         rows:dialRows, note:'<b>That $500 is the weekly dial-in calls</b>, and it only applies to these two months. See what happens on them, bottom left.'},
         {mark:'4', lab:'Month 4 · Ads live', title:'The <span class="a">Dial-In</span>', big: money(dialAllIn)+'<small>/mo all-in</small>',
-         rows:dialRows, note:'Second and final month at this price. This is your guarantee window. From next month it drops.'},
+         rows:dialRows, note:'Second and final month with the dial-in calls. This is your guarantee window. Next month the $500 comes off and you drop to '+money(stack+adMonth)+'/mo.'},
         {mark:'5+', lab:'Month 5 and on', title:'Steady <span class="a">State</span>', big: money(steadyAllIn)+'<small>/mo all-in</small>',
          rows:steadyRows, note:'Month-to-month, cancel with 15 days notice. <b>Need a break? Keep just the engine: $250/mo.</b>'}
       ];
@@ -449,9 +449,9 @@
          rows:[[installLab, money(install),''],['Monthly fees','$0','muted'],['Ad spend','$0','muted']],
          note:'<b>Fast-track build.</b> Your ads go live in weeks 2 to 4.'},
         {mark:'2', lab:'Ad month 1', title:'The <span class="a">Dial-In</span>', big: money(dialAllIn)+'<small>/mo all-in</small>', mid:true,
-         rows:dialRows, note:'<b>We are on Zoom with you every single week</b> while we lock your campaigns in. That is why these two months cost more.'},
+         rows:dialRows, note:'<b>That $500 is the weekly dial-in calls</b>, and it only applies to these two months. See what happens on them, bottom left.'},
         {mark:'3', lab:'Ad month 2', title:'The <span class="a">Dial-In</span>', big: money(dialAllIn)+'<small>/mo all-in</small>',
-         rows:dialRows, note:'Second and final month at this price. This is your guarantee window. From next month it drops.'},
+         rows:dialRows, note:'Second and final month with the dial-in calls. This is your guarantee window. Next month the $500 comes off and you drop to '+money(stack+adMonth)+'/mo.'},
         {mark:'4+', lab:'From ad month 3', title:'Steady <span class="a">State</span>', big: money(steadyAllIn)+'<small>/mo all-in</small>',
          rows:steadyRows, note:'Month-to-month, cancel with 15 days notice. <b>Need a break? Keep just the engine: $250/mo.</b>'}
       ];
