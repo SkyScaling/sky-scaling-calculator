@@ -272,12 +272,12 @@
         <button class="choice sel" data-v="full" type="button">
           <span class="ic"><svg viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg></span>
           <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <div class="cbody"><div class="ct"><h3>Full build</h3><span class="price">$5,000</span></div><p>From zero: brand, socials, AI assistant, booking pages, ad account. Ads live month 3.</p></div>
+          <div class="cbody"><div class="ct"><h3>Full build</h3><span class="price">$3,500</span></div><p>From zero: brand, socials, AI assistant, booking pages, ad account. Ads live month 3.</p></div>
         </button>
         <button class="choice" data-v="fast" type="button">
           <span class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
           <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <div class="cbody"><div class="ct"><h3>Fast-track</h3><span class="price">$2,500</span></div><p>Already posting real video weekly? We install the machine behind it. Ads live weeks 2 to 4.</p></div>
+          <div class="cbody"><div class="ct"><h3>Fast-track</h3><span class="price">$1,750</span></div><p>Already posting real video weekly? We install the machine behind it. Ads live weeks 2 to 4.</p></div>
         </button>
       </div>
 
@@ -417,7 +417,7 @@
 
   function recompute(){
     var stack = 150 + 500 + (S.content?500:0) + (S.scripts?250:0);
-    var install = S.build==='full' ? 5000 : 2500;
+    var install = S.build==='full' ? 3500 : 1750;
     var adMonth = S.adDay*30;
     var dialAllIn = stack + DIAL + adMonth;
     var steadyAllIn = stack + adMonth;
