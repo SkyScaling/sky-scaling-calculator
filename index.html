@@ -336,7 +336,7 @@
           <span class="ic"><svg viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
           <div class="mt">
             <div class="mt-top"><h3>Ad management <span class="req">20 leads/mo guaranteed</span></h3><div class="mprice">$500<small>/mo</small></div></div>
-            <p>Built, tested and rotated weekly. New scripts free whenever the creative fatigues. <b>From month 5, 20 qualified leads a month or this fee comes back.</b></p>
+            <p>Built, tested and rotated weekly. New scripts free whenever the creative fatigues. <b>From your third ad month, 20 qualified leads a month or this fee comes back.</b></p>
           </div>
           <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
         </div>
@@ -424,7 +424,7 @@
 
       <div class="totals">
         <div class="total">
-          <div class="tl2" id="t-fees-lab">Your monthly fees<b>From month 5</b></div>
+          <div class="tl2" id="t-fees-lab">Your monthly fees<b>From ad month 3</b></div>
           <div class="tv" id="t-fees">$650<small>/mo</small></div>
         </div>
         <div class="total">
@@ -609,8 +609,8 @@
     } else {
       gbox.classList.remove('off');
       setHTML(gtext, '<b class="gt">The guarantee:</b> <span id="guar-leads">'+leads+'</span> leads minimum in your first two ad months, <b>or both months\' service fees come back, weekly working session included.</b>'
-      + (S.ads ? ' <b class="gt">Then from month 5:</b> 20 qualified leads every month we run your ads, <b>or that month\'s $500 comes back.</b>' : ''));
-      feeLab.innerHTML = 'Your monthly fees<b>From month 5</b>';
+      + (S.ads ? ' <b class="gt">Then from your third ad month:</b> 20 qualified leads every month we run your ads, <b>or that month\'s $500 comes back.</b>' : ''));
+      feeLab.innerHTML = 'Your monthly fees<b>From ad month 3</b>';
       adLab.innerHTML  = 'Your ad budget<b>Straight to Facebook, your card</b>';
       fineNote.innerHTML = '<b>Your first two ad months add ' + money(DIAL) + '/mo</b> for the working session. No markup on ad spend, no long-term contract.';
       setHTML(document.getElementById('t-fees'), money(stack)+'<small>/mo</small>');
