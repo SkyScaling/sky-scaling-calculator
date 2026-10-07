@@ -180,6 +180,9 @@
   .guar .gi svg{width:16px;height:16px;stroke:var(--ok);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
   .guar p{font-size:13.5px;line-height:1.5;color:var(--text)}
   .guar p b.gt{color:var(--ok)}
+  .rnode.gnode .rmark{background:var(--ok-tint);border-color:var(--ok-border);color:var(--ok)}
+  .rnode.gnode .rmark svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+  .rnode.gnode.off .rmark{background:rgba(255,176,82,0.14);border-color:rgba(255,176,82,0.4);color:#ffb052}
 
   .totals{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .total{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 24px 60px -44px rgba(0,0,0,0.9)}
@@ -225,6 +228,12 @@
   .roi-lev{margin-top:13px;color:var(--text-2);font-size:12.5px;line-height:1.55}
   .roi-lev b{color:var(--text);font-weight:600}
   .roi-note{color:var(--text-3);font-size:11.5px;line-height:1.5;margin-top:11px}
+  .roi-in + .roi-in{margin-top:16px}
+  #roi-case[style*="none"] + .roi-in{margin-top:0}
+  .seg{display:flex;gap:8px;margin-top:10px}
+  .seg button{flex:1;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--text-2);background:var(--panel-2);border:1px solid var(--border-2);border-radius:10px;padding:9px 0;cursor:pointer;transition:all .15s}
+  .seg button:hover{border-color:rgba(61,220,151,0.4);color:var(--text)}
+  .seg button.on{color:#6fe3ae;background:rgba(61,220,151,0.14);border-color:rgba(61,220,151,0.55)}
   .paused .roi{opacity:.38;pointer-events:none}
   @media(max-width:900px){.roi-inputs{grid-template-columns:1fr;gap:14px}}
   @media(max-width:640px){.roi-inputs{grid-template-columns:1fr;gap:14px}.ro.net{margin-left:0;text-align:left;width:100%}}
@@ -332,11 +341,11 @@
           </div>
           <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
         </div>
-        <div class="mod opt on" data-mod="ads" role="checkbox" aria-checked="true" tabindex="0">
+        <div class="mod opt off" data-mod="ads" role="checkbox" aria-checked="false" tabindex="0">
           <span class="ic"><svg viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
           <div class="mt">
             <div class="mt-top"><h3>Ad management <span class="req">20 leads/mo guaranteed</span></h3><div class="mprice">$500<small>/mo</small></div></div>
-            <p>Built, tested and rotated weekly. New scripts free whenever the creative fatigues. <b>From your third ad month, 20 qualified leads a month or this fee comes back.</b></p>
+            <p>Always included in your first two ad months. <b>After that it's your call, any month.</b> Built, tested and rotated weekly, new scripts free whenever the creative fatigues. <b>20 qualified leads that month at $40/day or more, or the $500 comes back.</b></p>
           </div>
           <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
         </div>
@@ -362,7 +371,7 @@
       <div class="slider-card">
         <div class="slider-top"><h3>Daily budget</h3><div class="slider-val"><span id="ad-day">$40/day</span><span class="sep">·</span><span id="ad-month">$1,200/mo</span></div></div>
         <input type="range" id="ad-slider" min="40" max="100" step="5" value="40">
-        <div class="slider-note">Straight to Facebook from your own account. <b>We never touch it.</b> <span id="ad-min">$40/day</span> minimum for the guarantee.</div>
+        <div class="slider-note">Straight to Facebook from your own account. <b>We never touch it.</b> <span id="ad-min">$40/day</span> minimum for the guarantee. After your first two ad months, the budget is your call.</div>
       </div>
 
       <div class="cfg-lab"><span class="n">5</span> Pause any time</div>
@@ -394,24 +403,27 @@
 
       <div class="roadmap" id="roadmap"></div>
 
-      <div class="guar" id="guarbox">
-        <span class="gi" id="guar-icon"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-        <p id="guar-text"><b class="gt">The guarantee:</b> <span id="guar-leads">40</span> leads minimum in your first two ad months, <b>or both months' service fees come back, weekly working session included.</b></p>
-      </div>
-
       <div class="roi" id="roi">
         <div class="rl" id="roi-title">What it pays back</div>
         <div class="roi-inputs" id="roi-inputs">
-          <div class="roi-in">
+          <div class="roi-in" id="roi-case">
             <div class="roi-lab"><span id="roi-q1">What does a case pay you?</span><b id="roi-v1">$1,750</b></div>
             <input type="range" id="roi-value" min="500" max="6000" step="250" value="1750">
           </div>
+          <div class="roi-in">
+            <div class="roi-lab"><span id="roi-q2">Your close rate</span></div>
+            <div class="seg" id="roi-rate">
+              <button type="button" data-v="0.05" aria-pressed="false">5%</button>
+              <button type="button" data-v="0.10" class="on" aria-pressed="true">10%</button>
+              <button type="button" data-v="0.15" aria-pressed="false">15%</button>
+            </div>
+          </div>
         </div>
-        <div class="roi-assume" id="roi-assume">Our numbers: a lead runs about <b>$35</b>, advisors close <b>1 to 2 in 10.</b> Figured below at <b>1 in 10, the low end.</b></div>
+        <div class="roi-assume" id="roi-assume">Average cost per lead about <b>$35</b>. Average close rate <b>5 to 15%</b>.</div>
         <div class="roi-out" id="roi-out"></div>
         <div class="roi-hero" id="roi-hero"></div>
         <div class="roi-lev" id="roi-lev"></div>
-        <p class="roi-note">An estimate from campaigns we've run, not a promise. <b>The only number in writing is 40 leads in your first two ad months.</b></p>
+        <p class="roi-note">An estimate from campaigns we've run, not a promise. <b>The only numbers we put in writing are the lead guarantees.</b></p>
       </div>
 
       <div class="own">
@@ -424,8 +436,8 @@
 
       <div class="totals">
         <div class="total">
-          <div class="tl2" id="t-fees-lab">Your monthly fees<b>From ad month 3</b></div>
-          <div class="tv" id="t-fees">$650<small>/mo</small></div>
+          <div class="tl2" id="t-fees-lab">Your monthly fees<b>After your first two ad months</b></div>
+          <div class="tv" id="t-fees">$150<small>/mo</small></div>
         </div>
         <div class="total">
           <div class="tl2" id="t-ads-lab">Your ad budget<b>Straight to Facebook, your card</b></div>
@@ -434,7 +446,7 @@
       </div>
 
       <div class="fine">
-        <div id="fine-note"><b>Your first two ad months add $500/mo</b> for the working session. No markup on ad spend, no long-term contract.</div>
+        <div id="fine-note"><b>Your first two ad months add $1,000/mo</b>: ad management and the weekly working session. No markup on ad spend, no long-term contract.</div>
       </div>
     </div>
 
@@ -457,7 +469,7 @@
     var el=document.getElementById(p[0]); if(el && C[p[1]]) el.href=C[p[1]];
   });
 
-  var S = { lane:'client', build:'full', ads:true, content:false, scripts:false, adDay:40, paused:false, roiValue:1750 };
+  var S = { lane:'client', build:'full', ads:false, content:false, scripts:false, adDay:40, paused:false, roiValue:1750, rate:0.10 };
   var DIAL = 500;
   function money(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
 
@@ -475,6 +487,11 @@
     }).join('');
   }
   function nodeHTML(m){
+    if(m.guar){
+      return '<div class="rnode gnode'+(m.off?' off':'')+'">'
+        + '<div class="rail"><div class="rmark">'+(m.off?'!':'<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>')+'</div></div>'
+        + '<div class="guar'+(m.off?' off':'')+'"><p>'+m.html+'</p></div></div>';
+    }
     return '<div class="rnode'+(m.mid?' mid':'')+'">'
       + '<div class="rail"><div class="rmark">'+m.mark+'</div></div>'
       + '<div class="rcard"><div class="rhead">'
@@ -497,20 +514,21 @@
   }
 
   var CPL = { client: 35, recruiting: 30 };   /* our campaign averages, by lane */
-  var RATE = 0.10;   /* 1 close per 10 leads, deliberately the low end */
 
   function renderROI(stack, adMonth){
     var L = LANE[S.lane];
     var cpl   = CPL[S.lane];
     var leads = Math.round(adMonth / cpl);
-    var wins  = Math.floor(leads * RATE);
+    var wins  = Math.round(leads * S.rate);
     var cost  = stack + adMonth;
     var isClient = S.lane === 'client';
+    var payLab = S.build === 'full' ? 'What you pay from month 5' : 'What you pay from ad month 3';
 
     setHTML(document.getElementById('roi-assume'),
-      'Our numbers: a lead runs about <b>'+money(cpl)+'</b>, advisors close <b>1 to 2 in 10.</b> Figured below at <b>1 in 10, the low end.</b>');
+      'Average cost per lead about <b>'+money(cpl)+'</b>, so <b>'+money(adMonth)+'</b> of ads a month is about <b>'+leads+' leads</b>. ' + (isClient ? 'Average close rate <b>5 to 15%</b>.' : 'Usually <b>5 to 15%</b> of leads join.'));
 
-    document.getElementById('roi-inputs').style.display = isClient ? '' : 'none';
+    document.getElementById('roi-case').style.display = isClient ? '' : 'none';
+    document.getElementById('roi-q2').textContent = isClient ? 'Your close rate' : 'How many leads join you';
     if (isClient) {
       document.getElementById('roi-q1').textContent = L.q1;
       document.getElementById('roi-v1').textContent = money(S.roiValue);
@@ -522,10 +540,10 @@
     if (isClient) {
       var rev = wins * S.roiValue;
       rows.push(['Commission a month', money(rev)]);
-      rows.push(['What you pay', money(cost)+'/mo']);
+      rows.push([payLab, money(cost)+'/mo']);
       heroK = 'Net a month'; heroV = (rev-cost<0?'-':'')+money(Math.abs(rev-cost));
     } else {
-      rows.push(['What you pay', money(cost)+'/mo']);
+      rows.push([payLab, money(cost)+'/mo']);
       heroK = 'Cost per recruit'; heroV = wins > 0 ? money(cost/wins) : '--';
     }
 
@@ -535,8 +553,8 @@
       '<span class="k">'+heroK+'</span><span class="v">'+heroV+'</span>');
 
     setHTML(document.getElementById('roi-lev'), isClient
-      ? 'Our fee stays at <b>'+money(stack)+'</b> no matter what you spend. <b>Close 2 in 10 instead of 1 and this doubles.</b>'
-      : 'What a recruit is worth to you is your math, not ours. We can tell you what one costs. <b>Close 2 in 10 instead of 1 and that cost halves.</b>');
+      ? 'Our fee stays at <b>'+money(stack)+'/mo</b> no matter what you spend. <b>More ad budget means more leads, not a bigger bill from us.</b>'
+      : 'What a recruit is worth to you is your math, not ours. <b>We can tell you what one costs.</b>');
   }
 
   function recompute(){
@@ -551,11 +569,17 @@
     var leads = 40;
     var installLab = S.build==='full' ? 'Full build install' : 'Fast-track install';
 
-    var dialRows = [['Your stack', money(winStack)+'/mo',''],['Weekly working session', money(DIAL)+'/mo','dial'],['Ad spend → Facebook', money(adMonth)+'/mo','']];
-    var steadyRows = [['Your stack', money(stack)+'/mo',''],['Weekly working session','$0 · done','muted'],['Ad spend → Facebook', money(adMonth)+'/mo','']];
+    var addOns = (S.content?500:0) + (S.scripts?250:0);
+    var dialRows = [[addOns ? 'Engine, ads managed + add-ons' : 'Engine + ad management', money(winStack)+'/mo',''],['Weekly working session', money(DIAL)+'/mo','dial'],['Ad spend → Facebook', money(adMonth)+'/mo','']];
+    var steadyRows = [['The engine · required', '$150/mo',''],['Ad management', S.ads ? '$500/mo' : 'off', S.ads ? '' : 'muted']];
+    if(addOns){ steadyRows.push(['Add-ons', money(addOns)+'/mo','']); }
+    steadyRows.push(['Ad spend → Facebook', money(adMonth)+'/mo','']);
+    steadyRows.push(['All in at '+money(S.adDay)+'/day', money(steadyAllIn)+'/mo','']);
+    var steadyBig = money(stack)+'<small>/mo + your ads</small>';
     var floorNote = S.ads
-      ? 'Month to month from here. <b>20 qualified leads a month while we run your ads, or that month\'s $500 comes back.</b>'
-      : 'Month to month from here. <b>Running your own ads, so the floor is just the engine at $150/mo.</b> Add ad management back any month and the 20 lead guarantee comes with it.';
+      ? '<b>The only required fee is $150/mo.</b> Month to month from here. <b>20 qualified leads a month while we run your ads at $40/day or more, or that month\'s $500 comes back.</b> Drop ad management or pause ads any month.'
+      : '<b>The only required fee is $150/mo.</b> Month to month from here. Keep your ads running, lower the budget or pause them, <b>it\'s your call.</b> Add ad management back any month and the 20 lead guarantee comes with it.';
+    var lastWinNote = 'Last month with the working sessions. <b>After this, the only required fee is $150/mo.</b>';
 
     var months;
     if(S.build==='full'){
@@ -567,10 +591,10 @@
          rows:[['Install','paid','muted'],['Monthly fees','$0','muted'],['Ad spend','$0','muted']],
          note:'Still building. No fees, no ad spend.'},
         {mark:'3', lab:'Month 3 · Ads live', title:'The <span class="a">Guarantee Window</span>', big: money(dialAllIn)+'<small>/mo all-in</small>', mid:true,
-         rows:dialRows, note:'<b>The $500 is the weekly working session.</b> It only applies to these two months.'},
+         rows:dialRows, note:'<b>The $500 weekly working session only runs these two months.</b>'},
         {mark:'4', lab:'Month 4 · Ads live', title:'The <span class="a">Guarantee Window</span>', big: money(dialAllIn)+'<small>/mo all-in</small>',
-         rows:dialRows, note:'Last month with the working sessions. Next month you drop to '+money(stack+adMonth)+'/mo.'},
-        {mark:'5+', lab:'Month 5 and on', title:'Steady <span class="a">State</span>', big: money(steadyAllIn)+'<small>/mo all-in</small>',
+         rows:dialRows, note:lastWinNote},
+        {mark:'5+', lab:'Month 5 and on', title:'Your <span class="a">Call</span>', big: steadyBig,
          rows:steadyRows, note:floorNote}
       ];
     } else {
@@ -579,40 +603,37 @@
          rows:[[installLab, money(install),''],['Monthly fees','$0','muted'],['Ad spend','$0','muted']],
          note:'<b>Fast-track.</b> Ads live in weeks 2 to 4.'},
         {mark:'2', lab:'Ad month 1', title:'The <span class="a">Guarantee Window</span>', big: money(dialAllIn)+'<small>/mo all-in</small>', mid:true,
-         rows:dialRows, note:'<b>The $500 is the weekly working session.</b> It only applies to these two months.'},
+         rows:dialRows, note:'<b>The $500 weekly working session only runs these two months.</b>'},
         {mark:'3', lab:'Ad month 2', title:'The <span class="a">Guarantee Window</span>', big: money(dialAllIn)+'<small>/mo all-in</small>',
-         rows:dialRows, note:'Last month with the working sessions. Next month you drop to '+money(stack+adMonth)+'/mo.'},
-        {mark:'4+', lab:'From ad month 3', title:'Steady <span class="a">State</span>', big: money(steadyAllIn)+'<small>/mo all-in</small>',
+         rows:dialRows, note:lastWinNote},
+        {mark:'4+', lab:'From ad month 3', title:'Your <span class="a">Call</span>', big: steadyBig,
          rows:steadyRows, note:floorNote}
       ];
     }
+    months.splice(months.length-1, 0, {guar:true, html:'<b class="gt">The guarantee:</b> '+leads+' leads minimum in your first two ad months, <b>or both months\' service fees come back, weekly working session included.</b>'});
     if(S.paused){
       months = [{mark:'||', lab:'Paused', title:'The <span class="a">Engine</span> Only', big:'$150<small>/mo</small>',
         rows:[['Ads','off','muted'],['Monthly stack','$0 · paused','muted'],['Ad spend','$0','muted']],
-        note:'Your brand, pages and socials stay live and stay yours. <b>Nothing is deleted, nothing gets rebuilt when you come back.</b>'}];
+        note:'Your brand, pages and socials stay live and stay yours. <b>Nothing is deleted, nothing gets rebuilt when you come back.</b>'},
+        {guar:true, off:true, html:'<b class="gt">Paused:</b> no ads running, so no leads and no guarantee. <b>You keep everything you own and pay $150/mo for the engine.</b> Turn it back on any time.'}];
     }
 
     document.getElementById('roadmap').innerHTML = months.map(nodeHTML).join('');
 
-    var gbox=document.getElementById('guarbox'), gtext=document.getElementById('guar-text');
     var feeLab=document.getElementById('t-fees-lab'), adLab=document.getElementById('t-ads-lab');
     var fineNote=document.getElementById('fine-note');
 
     if(S.paused){
-      gbox.classList.add('off');
-      setHTML(gtext, '<b class="gt">Paused:</b> no ads running, so no leads and no guarantee. <b>You keep everything you own and pay $150/mo for the engine.</b> Turn it back on any time.');
       feeLab.innerHTML = 'Your monthly fees<b>Paused · the engine only</b>';
       adLab.innerHTML  = 'Your ad budget<b>Nothing running</b>';
       fineNote.innerHTML = '<b>Restarting costs nothing.</b> No new build, no setup fee, no re-signing.';
       setHTML(document.getElementById('t-fees'), '$150<small>/mo</small>');
       setHTML(document.getElementById('t-ads'), '$0<small>/mo</small>');
     } else {
-      gbox.classList.remove('off');
-      setHTML(gtext, '<b class="gt">The guarantee:</b> <span id="guar-leads">'+leads+'</span> leads minimum in your first two ad months, <b>or both months\' service fees come back, weekly working session included.</b>'
-      + (S.ads ? ' <b class="gt">Then from your third ad month:</b> 20 qualified leads every month we run your ads, <b>or that month\'s $500 comes back.</b>' : ''));
-      feeLab.innerHTML = 'Your monthly fees<b>From ad month 3</b>';
+      feeLab.innerHTML = 'Your monthly fees<b>After your first two ad months</b>';
       adLab.innerHTML  = 'Your ad budget<b>Straight to Facebook, your card</b>';
-      fineNote.innerHTML = '<b>Your first two ad months add ' + money(DIAL) + '/mo</b> for the working session. No markup on ad spend, no long-term contract.';
+      var winExtra = (winStack + DIAL) - stack;
+      fineNote.innerHTML = '<b>Your first two ad months add ' + money(winExtra) + '/mo</b>: ' + (S.ads ? 'the weekly working session' : 'ad management and the weekly working session') + '. No markup on ad spend, no long-term contract.';
       setHTML(document.getElementById('t-fees'), money(stack)+'<small>/mo</small>');
       setHTML(document.getElementById('t-ads'), money(adMonth)+'<small>/mo</small>');
     }
@@ -649,6 +670,14 @@
     el.style.background='linear-gradient(90deg,#5271ff '+pct+'%,var(--panel-3) '+pct+'%)';
   }
   rv.addEventListener('input', function(){ S.roiValue=parseInt(rv.value,10); paintRange(rv); recompute(); });
+  document.querySelectorAll('#roi-rate button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('#roi-rate button').forEach(function(x){ x.classList.remove('on'); });
+      document.querySelectorAll('#roi-rate button').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+      btn.classList.add('on'); btn.setAttribute('aria-pressed','true'); S.rate = parseFloat(btn.getAttribute('data-v'));
+      recompute();
+    });
+  });
 
 
   bindChoices('lane','lane', function(){ applyLaneMin(true); applyLaneROI(); });
