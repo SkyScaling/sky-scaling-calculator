@@ -69,7 +69,7 @@ window.SS = {
   .bg-glow{background:radial-gradient(620px 440px at 16% 4%,rgba(82,113,255,0.20),transparent 68%),radial-gradient(620px 520px at 86% 98%,rgba(143,107,255,0.15),transparent 72%)}
 
   /* header: same as the calendar page */
-  header{position:relative;z-index:2;width:100%;border-bottom:1px solid var(--border)}
+  header{position:relative;z-index:2;width:100%;border-bottom:1px solid var(--border);font-size:16px;line-height:normal}
   .hdr-inner{max-width:1080px;margin:0 auto;padding:18px clamp(20px,4vw,40px);display:flex;align-items:center;justify-content:space-between}
   .logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;font-size:18px;letter-spacing:-0.02em}
   .logo img{height:33px;width:auto;display:block}
@@ -157,29 +157,53 @@ window.SS = {
   .paused .dim{opacity:.4;pointer-events:none}
   .sw.warn.on{background:#e8913a;border-color:#e8913a}
 
-  /* summary: same box as the calendar on the booking page */
-  .sum{position:sticky;top:20px;background:var(--accent-tint);border:1px solid var(--border-strong);border-radius:24px;padding:28px 26px}
-  .sum .k{font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent)}
+  /* right column: leads + detailed timeline */
+  .builder{grid-template-columns:minmax(0,1fr) 470px}
+  .side{display:flex;flex-direction:column;gap:16px}
+  .lcard{background:var(--accent-tint);border:1px solid var(--border-strong);border-radius:24px;padding:24px 26px}
+  .lcard .k{font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent)}
   .leads{display:flex;align-items:baseline;gap:10px;margin-top:8px}
   .leads .big{font-family:'Space Grotesk';font-weight:700;font-size:68px;line-height:0.95;letter-spacing:-0.04em}
   .leads .u{font-family:'Space Grotesk';font-weight:600;font-size:22px;color:var(--text-2)}
   .leads-s{margin-top:8px;font-size:15px;color:var(--text-2)}
-  .rows{margin-top:22px}
-  .row{padding:16px 0;border-top:1px solid var(--border-strong)}
-  .row .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-  .row .lab{font-weight:600;font-size:16px}
-  .row .lab span{display:block;font-weight:500;font-size:13px;color:var(--text-3);margin-top:1px}
-  .row .v{font-family:'Space Grotesk';font-weight:700;font-size:28px;letter-spacing:-0.02em;white-space:nowrap;line-height:1.1}
-  .row .v small{font-size:14px;color:var(--text-2);font-weight:600;letter-spacing:0;margin-left:2px}
-  .row .d{margin-top:6px;font-size:14px;color:var(--text-2);line-height:1.5}
-  .row.hl .v{color:#fff}
-  .guar{display:flex;gap:12px;align-items:flex-start;margin-top:6px;background:var(--panel);border:1px solid rgba(82,113,255,0.45);border-radius:16px;padding:16px;font-size:15px;line-height:1.5;color:var(--text-2)}
-  .guar b{color:var(--text)}
-  .guar .gi{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;margin-top:1px}
-  .guar .gi svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-  .guar.off{border-color:rgba(232,145,58,0.55)}
-  .guar.off .gi{background:#e8913a}
-  .sum .fine{margin-top:14px;font-size:13px;color:var(--text-3);line-height:1.5}
+  .tl-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:10px}
+  .tl-h h2{font-weight:700;font-size:24px;letter-spacing:-0.01em}
+  .tl-h h2 .a{color:var(--accent)}
+  .tl-h > span{font-size:14px;color:var(--text-3)}
+  .tl{display:flex;flex-direction:column}
+  .nd{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px}
+  .nd .rail{position:relative;display:flex;justify-content:center}
+  .nd .rail::before{content:"";position:absolute;left:50%;transform:translateX(-50%);top:46px;bottom:0;width:2px;background:var(--border-strong)}
+  .nd:last-child .rail::before{display:none}
+  .nd .dot{position:relative;z-index:1;width:38px;height:38px;margin-top:14px;border-radius:50%;background:var(--panel-2);border:2px solid rgba(82,113,255,0.55);color:#c3ccff;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:13px}
+  .nd .dot svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+  .nd.live .dot{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:var(--glow)}
+  .nd.g .dot{background:var(--accent);border-color:var(--accent);color:#fff}
+  .nd.off .dot{background:#e8913a;border-color:#e8913a;color:#fff}
+  .nc{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:18px 20px;margin-bottom:14px}
+  .nd.live .nc{background:var(--accent-tint);border-color:rgba(82,113,255,0.55)}
+  .nh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .nh .when{font-family:'Space Grotesk';font-weight:700;font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+  .nh h3{font-weight:700;font-size:20px;line-height:1.25;margin-top:4px}
+  .nh .pay{text-align:right;flex:none}
+  .nh .pay .pl{font-size:12px;color:var(--text-3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase}
+  .nh .pay .amt{font-family:'Space Grotesk';font-weight:700;font-size:26px;letter-spacing:-0.02em;line-height:1.1;white-space:nowrap}
+  .nh .pay .amt small{font-size:13px;color:var(--text-2);font-weight:600;letter-spacing:0;margin-left:2px}
+  .nh .pay .amt.zero{color:var(--text-2)}
+  .brk{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .brk span{font-size:13px;color:var(--text-2);background:rgba(148,160,196,0.08);border:1px solid var(--border);border-radius:999px;padding:4px 10px;white-space:nowrap}
+  .brk span b{color:var(--text);font-weight:600}
+  .brk span.off{color:var(--text-3);text-decoration:line-through}
+  .get{list-style:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+  .get li{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.5;color:var(--text-2);padding:3px 0}
+  .get li::before{content:"";flex:none;width:16px;height:16px;margin-top:4px;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat}
+  .get li b{color:var(--text);font-weight:600}
+  .nnote{margin-top:10px;font-size:14px;color:var(--text-3);line-height:1.5}
+  .nnote b{color:var(--text-2)}
+  .nd.g .nc{border-color:rgba(82,113,255,0.55);background:linear-gradient(135deg,rgba(82,113,255,0.18),rgba(143,107,255,0.10));font-size:16px;line-height:1.5;color:var(--text-2)}
+  .nd.g .nc b{color:var(--text)}
+  .nd.off .nc{border-color:rgba(232,145,58,0.55);background:rgba(232,145,58,0.08)}
+  .side .fine{font-size:13px;color:var(--text-3);line-height:1.5;margin-top:-4px;padding-left:54px}
   @keyframes pop{0%{transform:scale(1)}30%{transform:scale(1.06)}100%{transform:scale(1)}}
   .pop{display:inline-block;animation:pop .3s ease}
 
@@ -223,7 +247,6 @@ window.SS = {
   .mbar{display:none}
   @media(max-width:980px){
     .builder{grid-template-columns:1fr}
-    .sum{position:static}
     .mbar{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:20;align-items:center;justify-content:space-between;gap:10px;background:rgba(19,24,41,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--border-strong);border-radius:16px;padding:12px 16px;box-shadow:0 20px 40px -20px rgba(0,0,0,.9)}
     .mbar .a{font-family:'Space Grotesk';font-weight:700;font-size:19px;color:var(--accent)}
     .mbar .b{font-size:14px;color:var(--text-2);text-align:right;line-height:1.3}
@@ -237,7 +260,14 @@ window.SS = {
     .opts,.pb{grid-template-columns:1fr}
     .chip{padding:13px 14px}
     .chip .nm{font-size:15px}
-    .sum{padding:24px 20px}
+    .lcard{padding:22px 20px}
+    .nd{grid-template-columns:30px minmax(0,1fr);gap:10px}
+    .nd .dot{width:30px;height:30px;font-size:11px;margin-top:16px}
+    .nd .rail::before{top:46px}
+    .nc{padding:16px}
+    .nh{flex-direction:column;gap:8px}
+    .nh .pay{text-align:left}
+    .side .fine{padding-left:40px}
     .leads .big{font-size:58px}
     section{padding:40px 0 0;margin-top:40px}
     .tg .tx .t{font-size:16px}
@@ -315,12 +345,14 @@ window.SS = {
       </div>
     </div>
 
-    <aside class="sum" id="sum">
-      <div class="k" id="l-k">About this many leads a month</div>
-      <div class="leads"><span class="big" id="s-leads">55</span><span class="u" id="s-leads-u">leads</span></div>
-      <div class="leads-s" id="s-leads-s">Life insurance at about $22 a lead</div>
-      <div class="rows" id="rows"></div>
-      <div class="guar" id="guar"></div>
+    <aside class="side" id="side">
+      <div class="lcard">
+        <div class="k" id="l-k">About this many leads a month</div>
+        <div class="leads"><span class="big" id="s-leads">55</span><span class="u" id="s-leads-u">leads</span></div>
+        <div class="leads-s" id="s-leads-s">Life insurance at about $22 a lead</div>
+      </div>
+      <div class="tl-h"><h2>Your <span class="a">Timeline</span></h2><span>Updates as you pick</span></div>
+      <div class="tl" id="tl"></div>
       <p class="fine" id="s-fine">Prices in CAD, plus tax. No markup on ad spend, no long-term contract.</p>
     </aside>
   </div>
@@ -447,19 +479,62 @@ window.SS = {
       : '<b>Pay in full</b> or finance it.';
     $('s-fine').textContent='Prices in '+cur+', plus tax. No markup on ad spend, no long-term contract.';
 
-    var html='';
-    if(S.paused){
-      html+=row('While paused','Ads off, nothing running', money(C.ENGINE)+'<small>/mo</small>', 'Your brand, pages and socials stay live and stay yours. Nothing gets deleted or rebuilt when you come back.', true);
-      $('guar').className='guar off';
-      $('guar').innerHTML='<span class="gi">'+PAUSE+'</span><span><b>Paused:</b> no ads, so no leads and no guarantee. Turn it back on any time. Restarting costs nothing.</span>';
-    } else {
-      html+=row(S.build==='full'?'The build':'The build (Fast-Track)', S.build==='full'?'Months 1 and 2':'Weeks 1 to 4', money(build)+'<small> once</small>', S.build==='full'?'No monthly fee while we build.':'Ads go live in weeks 2 to 4.');
-      html+=row('First 2 months of ads','All in', money(winFee+adMo)+'<small>/mo</small>', money(winFee)+' to us + '+money(adMo)+' in ads. Includes ad management and a working session with us every week.', true);
-      html+=row('After that','Month to month', money(afterFee+adMo)+'<small>/mo</small>', money(afterFee)+' to us + '+money(adMo)+' in ads. '+(S.ads?C.MONTHLY_GUARANTEE+' leads a month guaranteed while we run your ads.':'Only $'+C.ENGINE+' a month is required.'));
-      $('guar').className='guar';
-      $('guar').innerHTML='<span class="gi">'+CHECK+'</span><span><b>Guaranteed:</b> '+C.GUARANTEE_LEADS+' qualified leads in your first 2 months of ads, or both months of fees come back ('+money(2*winFee)+').</span>';
+    var payNote = S.c==='US'
+      ? (S.build==='full' ? 'Pay in full, or half now and half within 30 days.' : 'Paid in full.')
+      : 'Pay in full or finance it.';
+    function brk(items){ return '<div class="brk">'+items.map(function(x){ return '<span'+(x[2]?' class="off"':'')+'>'+x[0]+' <b>'+x[1]+'</b></span>'; }).join('')+'</div>'; }
+    function node(o){
+      if(o.g) return '<div class="nd g'+(o.off?' off':'')+'"><div class="rail"><span class="dot">'+(o.off?PAUSE:CHECK)+'</span></div><div class="nc">'+o.html+'</div></div>';
+      return '<div class="nd'+(o.live?' live':'')+'"><div class="rail"><span class="dot">'+o.mark+'</span></div><div class="nc">'+
+        '<div class="nh"><div><div class="when">'+o.when+'</div><h3>'+o.title+'</h3></div><div class="pay"><div class="pl">You pay</div><div class="amt'+(o.zero?' zero':'')+'">'+o.amt+'</div></div></div>'+
+        (o.brk?brk(o.brk):'')+
+        '<ul class="get">'+o.get.map(function(x){return '<li><span>'+x+'</span></li>';}).join('')+'</ul>'+
+        (o.note?'<p class="nnote">'+o.note+'</p>':'')+'</div></div>';
     }
-    $('rows').innerHTML=html;
+    var winBrk=[['Engine',money(C.ENGINE)],['Ad management',money(C.ADMGMT)],['Working session',money(C.SESSION)]];
+    if(S.content) winBrk.push(['Content',money(C.CONTENT)]);
+    if(S.videos) winBrk.push(['Videos',money(C.VIDEOS)]);
+    winBrk.push(['Ads to Meta',money(adMo)]);
+    var aftBrk=[['Engine',money(C.ENGINE)],['Ad management',S.ads?money(C.ADMGMT):'off',!S.ads]];
+    if(S.content) aftBrk.push(['Content',money(C.CONTENT)]);
+    if(S.videos) aftBrk.push(['Videos',money(C.VIDEOS)]);
+    aftBrk.push(['Ads to Meta',money(adMo)]);
+    var winGet=['Ads built, tested and changed <b>every week</b>','Every new lead texted by your AI assistant and <b>booked on your calendar</b>','A <b>working session</b> with us every week: the leads, what to say, which ads to cut'];
+    if(S.content) winGet.push('About 3 posts a week, designed and posted for you');
+    if(S.videos) winGet.push('Up to 3 organic videos a week, edited and posted');
+    var aftGet=['Your CRM, calendar and AI assistant keep running (the only required fee)',
+      S.ads ? 'We keep running your ads: <b>'+C.MONTHLY_GUARANTEE+' qualified leads that month, or the $500 comes back</b>' : 'You run your ads, or add us back any month and the '+C.MONTHLY_GUARANTEE+'-lead guarantee comes with it',
+      'Raise, lower or pause your budget any month'];
+    if(S.content) aftGet.push('About 3 posts a week, designed and posted for you');
+    if(S.videos) aftGet.push('Up to 3 organic videos a week, edited and posted');
+    var start={mark:'0', when:'Day 0', title:'You sign up', amt:money(build)+'<small>once</small>', note:payNote,
+      get:['Your account set up: CRM, calendar and your private channel with us','Onboarding course: 16 short videos','Setup call with us']};
+    var guar={g:true, html:'<b>Guaranteed:</b> '+C.GUARANTEE_LEADS+' qualified leads in your first 2 months of ads, or <b>both months of fees come back ('+money(2*winFee)+')</b>.'};
+    var nodes;
+    if(S.paused){
+      nodes=[{mark:PAUSE, when:'Paused', title:'Only the engine runs', amt:money(C.ENGINE)+'<small>/mo</small>', brk:[['Engine',money(C.ENGINE)],['Ads','off',true]],
+        get:['Your brand, pages and socials stay live and stay yours','Nothing gets deleted, nothing gets rebuilt when you come back']},
+        {g:true, off:true, html:'<b>Paused:</b> no ads, so no leads and no guarantee. Turn it back on any time. <b>Restarting costs nothing.</b>'}];
+    } else if(S.build==='full'){
+      nodes=[start,
+        {mark:'1', when:'Month 1', title:'We build your brand', amt:'$0', zero:true,
+          get:['Your Instagram and Facebook cleaned up and branded','A content plan and <b>scripts every week</b>','You film, <b>we edit and post 3 videos a week</b>','Posts designed for you between your videos']},
+        {mark:'2', when:'Month 2', title:'We build your system', amt:'$0', zero:true,
+          get:['Your booking page and pages, <b>under your name</b>','Your AI assistant that texts every new lead','Your ad account and pixel, <b>owned by you</b>','Ad scripts: you film, we edit','Walkthrough call and a live test lead before launch']},
+        {mark:'3', live:true, when:'Month 3 · Ads live', title:'Guarantee window, month 1', amt:money(winFee+adMo)+'<small>/mo</small>', brk:winBrk, get:winGet},
+        {mark:'4', live:true, when:'Month 4 · Ads live', title:'Guarantee window, month 2', amt:money(winFee+adMo)+'<small>/mo</small>', brk:winBrk, get:['Same as month 3','Last month of the weekly working session']},
+        guar,
+        {mark:'5+', when:'Month 5 and on', title:'Your call', amt:money(afterFee)+'<small>/mo + ads</small>', brk:aftBrk, get:aftGet, note:'Month to month. All in: <b>'+money(afterFee+adMo)+'/mo</b> at '+money(S.day)+' a day.'}];
+    } else {
+      nodes=[start,
+        {mark:'1', when:'Weeks 1 to 4', title:'We build the system behind your socials', amt:'$0', zero:true,
+          get:['Your booking page, under your name','Your AI assistant that texts every new lead','Your ad account and pixel, owned by you','Ad scripts: you film, we edit','<b>Ads live in weeks 2 to 4</b>']},
+        {mark:'2', live:true, when:'Ad month 1', title:'Guarantee window, month 1', amt:money(winFee+adMo)+'<small>/mo</small>', brk:winBrk, get:winGet},
+        {mark:'3', live:true, when:'Ad month 2', title:'Guarantee window, month 2', amt:money(winFee+adMo)+'<small>/mo</small>', brk:winBrk, get:['Same as ad month 1','Last month of the weekly working session']},
+        guar,
+        {mark:'4+', when:'After that', title:'Your call', amt:money(afterFee)+'<small>/mo + ads</small>', brk:aftBrk, get:aftGet, note:'Month to month. All in: <b>'+money(afterFee+adMo)+'/mo</b> at '+money(S.day)+' a day.'}];
+    }
+    $('tl').innerHTML=nodes.map(node).join('');
 
     /* payback */
     var cost=afterFee+adMo, rows=[];
