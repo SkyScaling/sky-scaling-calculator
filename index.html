@@ -4,284 +4,272 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Build Your Plan | Sky Scaling</title>
-<meta name="description" content="Pick your plan and see every dollar.">
+<meta name="description" content="Pick your campaign and your budget. See every dollar, month by month.">
 <meta name="theme-color" content="#06080F">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="https://assets.cdn.msgsndr.com/cIEiGPHzRWPAUucJJ6QA/media/63b8dfe3b7386074555ef2bb.png">
 <link rel="apple-touch-icon" href="https://assets.cdn.msgsndr.com/cIEiGPHzRWPAUucJJ6QA/media/63b8dfe3b7386074555ef2bb.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script>
-  window.SS_CONFIG = {
-    LOGO_URL: "https://www.skyscaling.com/assets/sky-scaling-logo-vBi7C5xv.svg",
-    HEADER_TAG: "Sky Scaling · Build Your Plan",
-    REAL_BOOKING_URL: "https://skyscaling-calendar.netlify.app/",
-    REAL_THANKYOU_URL: "https://skyscaling-calendar.netlify.app/thank-you",
-
-    /* Instagram accounts our team builds, writes and posts. Instagram only, no Facebook. */
-    IG_FINANCEBRIDGES: "https://instagram.com/financebridges",
-    IG_SKYSCALING: "https://instagram.com/skyscaling.co",
-    IG_GABRIEL: "https://instagram.com/gabrieltremblay.co"
-  };
+/* ================= EDIT THESE =================
+   Cost per lead by campaign: same numbers as the pitch deck ("What a lead costs", Nov 4 2026).
+   Prices are the same numbers in both countries, CAD in Canada and USD in the US. */
+window.SS = {
+  LOGO_URL: "https://www.skyscaling.com/assets/sky-scaling-logo-vBi7C5xv.svg",
+  CAMPAIGNS: {
+    US: [
+      { id:"fe",   name:"Final expense",        cpl:12, kind:"client" },
+      { id:"term", name:"Term life",            cpl:15, kind:"client" },
+      { id:"mp",   name:"Mortgage protection",  cpl:15, kind:"client" },
+      { id:"ib",   name:"Infinite banking",     cpl:20, kind:"client" },
+      { id:"iul",  name:"IUL",                  cpl:22, kind:"client" },
+      { id:"unl",  name:"Unlicensed recruits",  cpl:12, kind:"recruit" },
+      { id:"lic",  name:"Licensed recruits",    cpl:15, kind:"recruit" }
+    ],
+    CA: [
+      { id:"life", name:"Life insurance",       cpl:22, kind:"client" },
+      { id:"ip",   name:"Income protection",    cpl:20, kind:"client" },
+      { id:"mp",   name:"Mortgage protection",  cpl:26, kind:"client" },
+      { id:"bo",   name:"Business owners",      cpl:26, kind:"client" },
+      { id:"unl",  name:"Unlicensed recruits",  cpl:13, kind:"recruit" },
+      { id:"lic",  name:"Licensed recruits",    cpl:10, kind:"recruit" }
+    ]
+  },
+  BUILD:   { full:3500, fast:1750 },
+  ENGINE:  150,   /* CRM + AI, required every month once ads are live (also the price while paused) */
+  ADMGMT:  500,   /* ad management, always on in the first two ad months, optional after */
+  SESSION: 500,   /* weekly working session, first two ad months only */
+  CONTENT: 500,   /* content posting, about 3 posts a week */
+  VIDEOS:  500,   /* organic videos, up to 3 a week */
+  GUARANTEE_LEADS: 50,   /* first two ad months, at $40/day or more */
+  MONTHLY_GUARANTEE: 20, /* every month after, while we run the ads */
+  MIN_DAY: 40, MAX_DAY: 200
+};
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#06080F;--panel:#0D111E;--panel-2:#121728;--panel-3:#1a2136;
-    --border:rgba(148,160,196,0.13);--border-2:rgba(148,160,196,0.22);--border-strong:rgba(148,160,196,0.34);
+    --bg:#06080F;--panel:#0E1220;--panel-2:#131829;--panel-3:#1b2134;
+    --border:rgba(148,160,196,0.14);--border-strong:rgba(148,160,196,0.30);
     --accent:#5271ff;--accent-2:#8f6bff;--accent-d:#3f5ae6;
-    --accent-glow:rgba(82,113,255,0.55);--accent-tint:rgba(82,113,255,0.13);
-    --grad:linear-gradient(135deg,#6b86ff 0%,#a583ff 100%);
-    --ok:#3ddc97;--ok-tint:rgba(61,220,151,0.12);--ok-border:rgba(61,220,151,0.34);
-    --text:#F6F8FE;--text-2:#AEB7D0;--text-3:#6f7896;
-    --radius:18px;
+    --accent-glow:rgba(82,113,255,0.50);--accent-tint:rgba(82,113,255,0.13);
+    --grad:linear-gradient(135deg,#5271ff 0%,#8f6bff 100%);
+    --text:#F5F7FE;--text-2:#AEB7D0;--text-3:#727C99;
+    --radius:16px;--glow:0 22px 60px -20px var(--accent-glow);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;overflow-x:hidden}
-  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
+  html{scroll-behavior:smooth;overflow-x:hidden;-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
   h1,h2,h3{font-family:'Space Grotesk',sans-serif}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left}
   .bg-grid,.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:0}
-  .bg-grid{background-image:linear-gradient(rgba(148,160,196,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(148,160,196,0.045) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 95% 55% at 50% 0%,#000 20%,transparent 76%);mask-image:radial-gradient(ellipse 95% 55% at 50% 0%,#000 20%,transparent 76%)}
-  .bg-glow{background:radial-gradient(720px 480px at 12% 0%,rgba(82,113,255,0.22),transparent 64%),radial-gradient(720px 540px at 90% 96%,rgba(143,107,255,0.15),transparent 70%)}
+  .bg-grid{background-image:linear-gradient(rgba(148,160,196,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(148,160,196,0.05) 1px,transparent 1px);background-size:54px 54px;-webkit-mask-image:radial-gradient(ellipse 95% 60% at 50% 0%,#000 25%,transparent 78%);mask-image:radial-gradient(ellipse 95% 60% at 50% 0%,#000 25%,transparent 78%)}
+  .bg-glow{background:radial-gradient(620px 440px at 16% 4%,rgba(82,113,255,0.20),transparent 68%),radial-gradient(620px 520px at 86% 98%,rgba(143,107,255,0.15),transparent 72%)}
 
-  header{position:relative;z-index:2;width:100%;border-bottom:1px solid var(--border)}
-  .hdr-inner{max-width:1280px;margin:0 auto;padding:18px clamp(20px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:16px}
-  .logo img{height:30px;width:auto;display:block}
-  .logo .fb{display:none;font-family:'Space Grotesk';font-weight:700;font-size:18px}
-  .hdr-tag{font-family:'Space Grotesk';font-weight:700;font-size:11.5px;letter-spacing:0.17em;text-transform:uppercase;color:var(--text-3);text-align:right}
-  .hdr-tag b{color:#c3ccff;font-weight:700}
+  /* header: same as the calendar page */
+  header{position:relative;z-index:2;width:100%;border-bottom:1px solid var(--border);font-size:16px;line-height:normal}
+  .hdr-inner{max-width:1080px;margin:0 auto;padding:18px clamp(20px,4vw,40px);display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;font-size:18px;letter-spacing:-0.02em}
+  .logo img{height:33px;width:auto;display:block}
+  .logo .fb{display:none;color:var(--text)}
+  .pill{font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#c3ccff;border:1px solid var(--border);background:var(--accent-tint);padding:8px 15px;border-radius:999px}
 
-  .wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px) 84px}
-  .hero{padding:clamp(40px,5vw,62px) 0 clamp(26px,3vw,36px)}
-  .hero h1{font-weight:700;font-size:clamp(36px,4.8vw,56px);line-height:1.03;letter-spacing:-0.035em}
-  .hero h1 .a{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-style:italic;letter-spacing:0;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero p{color:var(--text-2);font-size:clamp(15px,1.5vw,17.5px);line-height:1.6;max-width:660px;margin-top:16px}
-  .hero p b{color:var(--text);font-weight:600}
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 22px 110px}
 
-  .builder{display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr);gap:30px;align-items:start}
+  .eyebrow{text-align:center;color:var(--accent);font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:0.22em;text-transform:uppercase;margin:58px 0 18px}
+  h1.hero{text-align:center;font-weight:700;font-size:clamp(36px,5.6vw,52px);line-height:1.06;letter-spacing:-0.03em;max-width:900px;margin:0 auto}
+  h1.hero .a{color:var(--accent)}
+  .lead{text-align:center;color:var(--text-2);font-size:clamp(16px,2.2vw,18px);line-height:1.7;max-width:620px;margin:22px auto 0}
+  .lead b{color:var(--text);font-weight:600}
 
-  /* ===== labels ===== */
-  .cfg-lab{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk';font-weight:700;font-size:11.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-2);margin:30px 0 14px}
-  .cfg-lab:first-child{margin-top:0}
-  .cfg-lab .n{width:24px;height:24px;flex:none;border-radius:7px;background:var(--accent-tint);border:1px solid rgba(82,113,255,0.3);color:#c3ccff;display:flex;align-items:center;justify-content:center;font-size:11px}
+  /* builder */
+  .builder{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:26px;align-items:start;margin-top:46px}
+  .steps{display:flex;flex-direction:column;gap:18px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:26px 26px 28px}
+  .card h2{font-weight:700;font-size:22px;letter-spacing:-0.01em;line-height:1.25;display:flex;align-items:baseline;gap:12px}
+  .card h2 .n{color:var(--accent)}
+  .card h2 .hint{margin-left:auto;font-family:'Inter';font-weight:500;font-size:14px;color:var(--text-3);letter-spacing:0}
+  .card .sub{color:var(--text-2);font-size:15px;margin-top:6px}
+  .body{margin-top:18px}
 
-  /* ===== icon chip ===== */
-  .ic{flex:none;width:40px;height:40px;border-radius:12px;background:linear-gradient(180deg,rgba(82,113,255,0.16),rgba(82,113,255,0.05));border:1px solid rgba(82,113,255,0.26);color:#b9c4ff;display:flex;align-items:center;justify-content:center;transition:all .18s}
-  .ic svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  /* country switch */
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .seg button{text-align:center;border:1px solid var(--border-strong);background:var(--panel-2);border-radius:14px;padding:15px 12px;font-family:'Space Grotesk';font-weight:700;font-size:18px;color:var(--text-2);transition:all .16s}
+  .seg button small{display:block;font-family:'Inter';font-weight:500;font-size:13px;color:var(--text-3);margin-top:2px}
+  .seg button:hover{border-color:rgba(82,113,255,0.5);color:var(--text)}
+  .seg button.on{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:var(--glow)}
+  .seg button.on small{color:rgba(255,255,255,0.8)}
 
-  /* ===== check badge ===== */
-  .chk{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--border-strong);position:relative;transition:all .18s}
-  .chk svg{position:absolute;inset:0;margin:auto;width:12px;height:12px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .15s}
+  /* campaigns */
+  .grp{font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-3);margin:0 0 10px}
+  .chips + .grp{margin-top:20px}
+  .chips{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .chip{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;border:1px solid var(--border-strong);background:var(--panel-2);border-radius:14px;padding:14px 16px;transition:all .16s}
+  .chip:hover{border-color:rgba(82,113,255,0.5)}
+  .chip .nm{font-weight:600;font-size:16px;line-height:1.3}
+  .chip .cp{font-size:14px;color:var(--text-3);white-space:nowrap}
+  .chip.on{border-color:var(--accent);background:var(--accent-tint);box-shadow:0 0 0 1px var(--accent) inset}
+  .chip.on .cp{color:#c3ccff}
 
-  /* ===== choice cards (lane + build) ===== */
-  .choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .choice{display:flex;gap:14px;align-items:flex-start;text-align:left;color:var(--text);background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:17px 17px 16px;cursor:pointer;position:relative;transition:border-color .18s,transform .14s,box-shadow .18s,background .18s}
-  .choice:hover{border-color:var(--border-2);transform:translateY(-2px)}
-  .choice .chk{position:absolute;top:15px;right:15px}
-  .choice.sel{border-color:transparent;background:linear-gradient(180deg,rgba(82,113,255,0.15),rgba(82,113,255,0.02));box-shadow:0 0 0 1.5px var(--accent),0 20px 44px -24px var(--accent-glow)}
-  .choice.sel .ic{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 10px 24px -10px var(--accent-glow)}
-  .choice.sel .chk{border-color:transparent;background:var(--grad)}
-  .choice.sel .chk svg{opacity:1}
-  .choice .cbody{flex:1;min-width:0;padding-right:24px}
-  .choice .ct{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-  .choice h3{font-family:'Space Grotesk';font-weight:700;font-size:16px}
-  .choice .price{font-family:'Space Grotesk';font-weight:700;font-size:15px;color:#c3ccff}
-  .choice p{color:var(--text-2);font-size:12.5px;line-height:1.5;margin-top:6px}
-  .choice p b{color:var(--text);font-weight:600}
+  /* budget */
+  .bud{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .bud .day{font-family:'Space Grotesk';font-weight:700;font-size:42px;letter-spacing:-0.03em;line-height:1}
+  .bud .day small{font-size:18px;color:var(--text-2);font-weight:600;margin-left:4px;letter-spacing:0}
+  .bud .mo{font-family:'Space Grotesk';font-weight:600;font-size:18px;color:var(--text-2)}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:999px;background:linear-gradient(to right,var(--accent) 0%,var(--accent) var(--p,0%),var(--panel-3) var(--p,0%));margin:22px 0 10px;outline:none;cursor:pointer}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;border:5px solid var(--accent);box-shadow:var(--glow);cursor:pointer}
+  input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:5px solid var(--accent);cursor:pointer}
+  .ticks{display:flex;justify-content:space-between;font-size:14px;color:var(--text-3)}
+  .note{margin-top:16px;font-size:15px;color:var(--text-2);line-height:1.6}
+  .note b{color:var(--text);font-weight:600}
 
-  /* ===== module rows ===== */
-  .mods{display:flex;flex-direction:column;gap:12px}
-  .mod{display:flex;align-items:flex-start;gap:14px;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px 18px;transition:border-color .18s,opacity .18s,background .18s,transform .14s}
-  .mod .ic{width:38px;height:38px}
-  .mod .mt{flex:1;min-width:0}
-  .mod .mt-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-  .mod h3{font-family:'Space Grotesk';font-weight:700;font-size:15px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-  .mod .req{font-family:'Space Grotesk';font-weight:700;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#c3ccff;background:var(--accent-tint);border:1px solid rgba(82,113,255,0.28);padding:3px 8px;border-radius:99px}
-  .mod .mprice{font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--text);white-space:nowrap}
-  .mod .mprice small{color:var(--text-3);font-weight:600;font-size:11px}
-  .mod p{color:var(--text-2);font-size:12.5px;line-height:1.5;margin-top:6px}
-  .mod .chk{margin-top:9px;order:3}
-  /* optional, interactive */
-  .mod.opt{cursor:pointer}
-  .mod.opt:hover{border-color:var(--border-2);transform:translateY(-1px)}
-  .mod.opt.on{border-color:rgba(82,113,255,0.45);background:linear-gradient(180deg,rgba(82,113,255,0.07),transparent)}
-  .mod.opt.on .ic{background:var(--grad);border-color:transparent;color:#fff}
-  .mod.opt.on .chk{border-color:transparent;background:var(--grad)}
-  .mod.opt.on .chk svg{opacity:1}
-  .mod.opt.off{opacity:0.5}
-  /* required, locked-on */
-  .mod.req-row{border-color:rgba(82,113,255,0.30)}
-  .mod.req-row .ic{background:var(--grad);border-color:transparent;color:#fff}
-  .mod.req-row .chk{border-color:transparent;background:var(--grad)}
-  .mod.req-row .chk svg{opacity:1}
+  /* build options */
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .opt{border:1px solid var(--border-strong);background:var(--panel-2);border-radius:16px;padding:18px;transition:all .16s}
+  .opt:hover{border-color:rgba(82,113,255,0.5)}
+  .opt .t{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .opt .t .nm{font-family:'Space Grotesk';font-weight:700;font-size:19px}
+  .opt .t .pr{font-family:'Space Grotesk';font-weight:700;font-size:21px;color:var(--accent)}
+  .opt p{margin-top:8px;font-size:15px;color:var(--text-2);line-height:1.55}
+  .opt.on{border-color:var(--accent);background:var(--accent-tint);box-shadow:0 0 0 1px var(--accent) inset,var(--glow)}
+  .opt.on .t .pr{color:#c3ccff}
+  .pay{margin-top:14px;font-size:15px;color:var(--text-2)}
+  .pay b{color:var(--text);font-weight:600}
 
-  /* ===== slider ===== */
-  .slider-card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px 20px}
-  .slider-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-  .slider-top h3{font-family:'Space Grotesk';font-weight:700;font-size:15px}
-  .slider-val{font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--text)}
-  .slider-val .sep{color:var(--text-3);margin:0 7px}
-  .slider-val #ad-day{color:#c3ccff}
-  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:7px;border-radius:99px;background:var(--panel-3);margin:18px 0 0;cursor:pointer}
-  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--grad);border:3px solid #0b0f1c;box-shadow:0 6px 16px -3px var(--accent-glow);cursor:pointer}
-  input[type=range]::-moz-range-thumb{width:19px;height:19px;border:3px solid #0b0f1c;border-radius:50%;background:#7a90ff;cursor:pointer}
-  .slider-note{color:var(--text-2);font-size:12.5px;line-height:1.55;margin-top:13px}
-  .slider-note b{color:var(--text);font-weight:600}
+  /* toggles */
+  .tg{display:flex;align-items:center;gap:16px;padding:16px 0;border-top:1px solid var(--border)}
+  .tg:first-child{border-top:0;padding-top:0}
+  .tg:last-child{padding-bottom:0}
+  .tg .tx{flex:1;min-width:0}
+  .tg .tx .t{font-weight:600;font-size:17px}
+  .tg .tx .s{font-size:15px;color:var(--text-2);margin-top:3px;line-height:1.5}
+  .tg .pr{font-family:'Space Grotesk';font-weight:700;font-size:17px;white-space:nowrap}
+  .tg .pr small{font-size:13px;color:var(--text-3);font-weight:600}
+  .sw{position:relative;width:52px;height:30px;border-radius:999px;background:var(--panel-3);border:1px solid var(--border-strong);flex:none;transition:background .16s,border-color .16s}
+  .sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .18s}
+  .sw.on{background:var(--accent);border-color:var(--accent)}
+  .sw.on::after{transform:translateX(22px)}
+  .tg.req .sw{opacity:.55;cursor:default}
+  .tg .tag{display:inline-block;font-family:'Space Grotesk';font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#c3ccff;background:var(--accent-tint);border:1px solid rgba(82,113,255,0.3);padding:3px 9px;border-radius:999px;margin-left:8px;vertical-align:2px}
 
-  .dialbox{background:linear-gradient(180deg,rgba(82,113,255,0.10),rgba(82,113,255,0.03));border:1px solid rgba(82,113,255,0.30);border-radius:16px;padding:17px 19px;margin-top:16px}
-  .dialbox .rl{font-family:'Space Grotesk';font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#8fa2ff;margin-bottom:9px}
-  .dialbox p{color:var(--text-2);font-size:13px;line-height:1.6}
-  .dialbox p+p{margin-top:9px}
-  .dialbox b{color:var(--text)}
-  .real{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px 19px;margin-top:0}
-  .real .rl{font-family:'Space Grotesk';font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px}
-  .real p{color:var(--text-2);font-size:13px;line-height:1.6}
-  .real p.rsub{margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
-  .real a{color:#8fa2ff;text-decoration:none;font-weight:600}
-  .real a:hover{text-decoration:underline}
+  .paused .dim{opacity:.4;pointer-events:none}
+  .sw.warn.on{background:#e8913a;border-color:#e8913a}
 
-  /* ===== timeline ===== */
-  .tl{display:flex;flex-direction:column;gap:18px}
-  .tl-head{display:flex;align-items:center;justify-content:space-between}
-  .tl-head .h{font-family:'Space Grotesk';font-weight:700;font-size:14px;letter-spacing:0.02em;color:var(--text)}
-  .tl-head .live{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ok)}
-  .tl-head .live .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 var(--ok);animation:blip 2s infinite}
-  @keyframes blip{0%{box-shadow:0 0 0 0 rgba(61,220,151,0.5)}70%{box-shadow:0 0 0 7px rgba(61,220,151,0)}100%{box-shadow:0 0 0 0 rgba(61,220,151,0)}}
+  /* right column: leads + detailed timeline */
+  .builder{grid-template-columns:minmax(0,1fr) 470px}
+  .side{display:flex;flex-direction:column;gap:16px}
+  .lcard{background:var(--accent-tint);border:1px solid var(--border-strong);border-radius:24px;padding:24px 26px}
+  .lcard .k{font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent)}
+  .leads{display:flex;align-items:baseline;gap:10px;margin-top:8px}
+  .leads .big{font-family:'Space Grotesk';font-weight:700;font-size:68px;line-height:0.95;letter-spacing:-0.04em}
+  .leads .u{font-family:'Space Grotesk';font-weight:600;font-size:22px;color:var(--text-2)}
+  .leads-s{margin-top:8px;font-size:15px;color:var(--text-2)}
+  .tl-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:10px}
+  .tl-h h2{font-weight:700;font-size:24px;letter-spacing:-0.01em}
+  .tl-h h2 .a{color:var(--accent)}
+  .tl-h > span{font-size:14px;color:var(--text-3)}
+  .tl{display:flex;flex-direction:column}
+  .nd{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px}
+  .nd .rail{position:relative;display:flex;justify-content:center}
+  .nd .rail::before{content:"";position:absolute;left:50%;transform:translateX(-50%);top:46px;bottom:0;width:2px;background:var(--border-strong)}
+  .nd:last-child .rail::before{display:none}
+  .nd .dot{position:relative;z-index:1;width:38px;height:38px;margin-top:14px;border-radius:50%;background:var(--panel-2);border:2px solid rgba(82,113,255,0.55);color:#c3ccff;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:13px}
+  .nd .dot svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+  .nd.live .dot{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:var(--glow)}
+  .nd.g .dot{background:var(--accent);border-color:var(--accent);color:#fff}
+  .nd.off .dot{background:#e8913a;border-color:#e8913a;color:#fff}
+  .nc{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:18px 20px;margin-bottom:14px}
+  .nd.live .nc{background:var(--accent-tint);border-color:rgba(82,113,255,0.55)}
+  .nh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .nh .when{font-family:'Space Grotesk';font-weight:700;font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+  .nh h3{font-weight:700;font-size:20px;line-height:1.25;margin-top:4px}
+  .nh .pay{text-align:right;flex:none}
+  .nh .pay .amt{font-family:'Space Grotesk';font-weight:700;font-size:26px;letter-spacing:-0.02em;line-height:1.1;white-space:nowrap}
+  .nh .pay .amt small{font-size:13px;color:var(--text-2);font-weight:600;letter-spacing:0;margin-left:2px}
+  .nh .pay .amt.zero{color:var(--text-2)}
+  .nh .pay .psub{font-size:13px;color:var(--text-3);margin-top:3px;white-space:nowrap}
+  .get{list-style:none;margin-top:10px}
+  .get li{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.5;color:var(--text-2);padding:3px 0}
+  .get li::before{content:"";flex:none;width:16px;height:16px;margin-top:4px;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat}
+  .get li b{color:var(--text);font-weight:600}
+  .nd.g .nc{border-color:rgba(82,113,255,0.55);background:linear-gradient(135deg,rgba(82,113,255,0.18),rgba(143,107,255,0.10));font-size:16px;line-height:1.5;color:var(--text-2)}
+  .nd.g .nc b{color:var(--text)}
+  .nd.off .nc{border-color:rgba(232,145,58,0.55);background:rgba(232,145,58,0.08)}
+  .side .fine{font-size:13px;color:var(--text-3);line-height:1.5;margin-top:-4px;padding-left:54px}
+  @keyframes pop{0%{transform:scale(1)}30%{transform:scale(1.06)}100%{transform:scale(1)}}
+  .pop{display:inline-block;animation:pop .3s ease}
 
-  .roadmap{display:flex;flex-direction:column;gap:16px}
-  .rnode{display:grid;grid-template-columns:38px 1fr;gap:18px;align-items:stretch}
-  .rail{position:relative;display:flex;justify-content:center}
-  .rail::before{content:"";position:absolute;left:50%;transform:translateX(-50%);top:44px;bottom:-16px;width:2px;background:var(--border-2)}
-  .rnode:last-child .rail::before{display:none}
-  .rmark{position:relative;z-index:1;width:34px;height:34px;border-radius:50%;background:var(--panel-2);border:2px solid rgba(82,113,255,0.5);color:#c3ccff;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:11px;margin-top:6px;align-self:flex-start}
-  .rnode.mid .rmark{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 8px 22px -6px var(--accent-glow)}
-  .rcard{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;box-shadow:0 24px 60px -42px rgba(0,0,0,0.9)}
-  .rnode.mid .rcard{border-color:transparent;background:linear-gradient(180deg,rgba(82,113,255,0.11),rgba(13,17,30,0.4));box-shadow:0 0 0 1.5px rgba(82,113,255,0.5),0 28px 66px -34px var(--accent-glow)}
-  .rhead{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap}
-  .rhead .pl{font-family:'Space Grotesk';font-weight:700;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3)}
-  .rnode.mid .rhead .pl{color:#a9b7ff}
-  .rhead h3{font-family:'Space Grotesk';font-weight:700;font-size:19px;margin-top:7px}
-  .rhead h3 .a{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-style:italic;font-size:1.14em;color:#a9b7ff;letter-spacing:0}
-  .big{font-family:'Space Grotesk';font-weight:700;font-size:clamp(27px,2.6vw,35px);letter-spacing:-0.03em;line-height:1;color:var(--text);display:inline-block;transform-origin:right;white-space:nowrap}
-  .big small{font-size:12.5px;font-weight:600;letter-spacing:0;margin-left:5px;color:var(--text-3)}
-  .rrows{display:flex;gap:26px;flex-wrap:wrap;margin-top:17px;padding-top:16px;border-top:1px solid var(--border)}
-  .rr{display:flex;flex-direction:column;gap:4px}
-  .rr .k{color:var(--text-2);font-size:12px}
-  .rr .v{font-family:'Space Grotesk';font-weight:700;font-size:14.5px;color:var(--text)}
-  .rr .v.muted{color:var(--text-3);font-weight:600}
-  .rr.dial .k{color:#a98bff}
-  .rr.dial .v,.rr.dial .v.muted{color:#a98bff;font-weight:700}
-  .pn{color:var(--text-2);font-size:12px;line-height:1.55;margin-top:16px}
-  .pn b{color:var(--text);font-weight:600}
+  /* sections: same as the calendar page */
+  section{padding:62px 0 0;border-top:1px solid var(--border);margin-top:64px}
+  .sec-title{text-align:center;font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4.4vw,40px);letter-spacing:-0.02em;line-height:1.1}
+  .sec-title .a{color:var(--accent)}
+  .sec-sub{text-align:center;color:var(--text-2);font-size:16px;margin:12px auto 0;max-width:580px;line-height:1.6}
+  .divider{width:64px;height:3px;background:var(--grad);border-radius:99px;margin:20px auto 0}
 
-  .guar{background:linear-gradient(180deg,rgba(61,220,151,0.11),rgba(13,17,30,0.3));border:1px solid var(--ok-border);border-radius:var(--radius);padding:17px 20px;display:flex;align-items:center;gap:14px}
-  .guar .gi{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ok-tint);border:1px solid var(--ok-border);display:flex;align-items:center;justify-content:center}
-  .guar .gi svg{width:16px;height:16px;stroke:var(--ok);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-  .guar p{font-size:13.5px;line-height:1.5;color:var(--text)}
-  .guar p b.gt{color:var(--ok)}
-  .rnode.gnode .rmark{background:var(--ok-tint);border-color:var(--ok-border);color:var(--ok)}
-  .rnode.gnode .rmark svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-  .rnode.gnode.off .rmark{background:rgba(255,176,82,0.14);border-color:rgba(255,176,82,0.4);color:#ffb052}
+  /* payback */
+  .pb{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px}
+  .pb .card h3{font-weight:700;font-size:19px;margin-bottom:10px}
+  .q{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:16px;color:var(--text-2)}
+  .q b{font-family:'Space Grotesk';font-weight:700;font-size:26px;color:var(--text)}
+  .rates{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+  .rates button{text-align:center;border:1px solid var(--border-strong);background:var(--panel-2);border-radius:12px;padding:12px;font-family:'Space Grotesk';font-weight:700;font-size:18px;color:var(--text-2);transition:all .16s}
+  .rates button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .ro{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:16px;color:var(--text-2)}
+  .ro .v{font-family:'Space Grotesk';font-weight:700;color:var(--text);font-size:18px}
+  .ro.hero{border-bottom:0;padding-top:18px;align-items:baseline}
+  .ro.hero .k{color:var(--text);font-weight:600;font-size:17px}
+  .ro.hero .v{font-size:38px;letter-spacing:-0.03em;color:var(--accent);line-height:1}
+  .ro.hero .v.neg{color:#ff8a8a}
+  .lev{margin-top:12px;font-size:15px;color:var(--text-2);line-height:1.55}
+  .lev b{color:var(--text)}
+  .est{text-align:center;color:var(--text-3);font-size:14px;margin:18px auto 0;max-width:640px;line-height:1.6}
 
-  .totals{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .total{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 24px 60px -44px rgba(0,0,0,0.9)}
-  .total .tl2{font-family:'Space Grotesk';font-weight:700;font-size:10.5px;letter-spacing:0.11em;text-transform:uppercase;color:var(--text-3);line-height:1.55}
-  .total .tl2 b{display:block;color:var(--text-2);font-weight:700}
-  .total .tv{font-family:'Space Grotesk';font-weight:700;font-size:clamp(25px,2.4vw,33px);letter-spacing:-0.03em;white-space:nowrap;color:var(--text);display:inline-block;transform-origin:right}
-  .total .tv small{font-size:13px;color:var(--text-3);font-weight:600}
+  /* ownership */
+  .own{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:32px auto 0;max-width:760px}
+  .own span{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border-strong);background:var(--panel);border-radius:999px;padding:10px 16px;font-size:16px;font-weight:500}
+  .own svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+  .own-note{text-align:center;color:var(--text-2);font-size:16px;margin:22px auto 0;max-width:600px;line-height:1.6}
+  .own-note b{color:var(--text)}
 
-  .fine{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap;color:var(--text-3);font-size:12.5px;line-height:1.6;padding-top:4px}
-  .fine b{color:var(--text-2);font-weight:600}
+  footer{text-align:center;color:var(--text-3);font-size:13px;padding:44px 0 0;border-top:1px solid var(--border);margin-top:64px}
+  footer a{color:var(--text-2);text-decoration:none}
+  footer .fl{margin-bottom:12px}
+  footer .fl img{height:30px;opacity:0.9}
 
-  @keyframes pop{0%{transform:scale(1)}28%{transform:scale(1.07)}100%{transform:scale(1)}}
-  .pop{animation:pop .34s cubic-bezier(.3,.7,.3,1)}
-
-  .pausebox{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;transition:border-color .18s,background .18s}
-  .pausebox .pb-t{font-family:'Space Grotesk';font-weight:700;font-size:14px;color:var(--text)}
-  .pausebox .pb-s{color:var(--text-2);font-size:12.5px;line-height:1.5;margin-top:4px}
-  .sw{flex:none;width:52px;height:30px;border-radius:99px;background:var(--panel-3);border:1px solid var(--border-2);position:relative;cursor:pointer;padding:0;transition:background .18s,border-color .18s}
-  .sw-k{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#7a8aae;transition:transform .2s,background .2s}
-  .sw[aria-checked="true"]{background:rgba(255,176,82,0.22);border-color:rgba(255,176,82,0.52)}
-  .sw[aria-checked="true"] .sw-k{transform:translateX(22px);background:#ffb052}
-  .paused .mods,.paused .slider-card,.paused #build,.paused #lane{opacity:.38;pointer-events:none}
-  .paused .pausebox{border-color:rgba(255,176,82,0.45);background:linear-gradient(180deg,rgba(255,176,82,0.09),transparent)}
-  .guar.off{background:linear-gradient(180deg,rgba(255,176,82,0.11),rgba(13,17,30,0.3));border-color:rgba(255,176,82,0.38)}
-  .guar.off .gi{background:rgba(255,176,82,0.14);border-color:rgba(255,176,82,0.4)}
-  .guar.off .gi svg{stroke:#ffb052}
-  .guar.off p b.gt{color:#ffb052}
-  .roi{background:linear-gradient(180deg,rgba(61,220,151,0.07),rgba(13,17,30,0.3));border:1px solid rgba(61,220,151,0.26);border-radius:var(--radius);padding:18px 20px}
-  .roi .rl{font-family:'Space Grotesk';font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#6fe3ae;margin-bottom:14px}
-  .roi-inputs{display:block}
-  .roi-assume{margin-top:14px;color:var(--text-2);font-size:12.5px;line-height:1.55}
-  .roi-assume b{color:var(--text);font-weight:600}
-  .roi-lab{display:flex;align-items:baseline;justify-content:space-between;gap:10px;color:var(--text-2);font-size:12.5px}
-  .roi-lab b{font-family:'Space Grotesk';font-weight:700;font-size:14px;color:var(--text);white-space:nowrap}
-  .roi-inputs input[type=range]{margin-top:11px;height:6px}
-  .roi-out{display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(61,220,151,0.2);align-items:flex-end}
-  .ro{display:flex;flex-direction:column;gap:3px}
-  .ro .k{color:var(--text-2);font-size:11.5px}
-  .ro .v{font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--text)}
-  .roi-hero{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:13px;padding-top:13px;border-top:1px solid rgba(61,220,151,0.2)}
-  .roi-hero .k{color:#6fe3ae;font-size:12.5px;font-weight:600}
-  .roi-hero .v{font-family:'Space Grotesk';font-weight:700;font-size:26px;letter-spacing:-0.025em;color:#6fe3ae;line-height:1;white-space:nowrap}
-  .roi-lev{margin-top:13px;color:var(--text-2);font-size:12.5px;line-height:1.55}
-  .roi-lev b{color:var(--text);font-weight:600}
-  .roi-note{color:var(--text-3);font-size:11.5px;line-height:1.5;margin-top:11px}
-  .roi-in + .roi-in{margin-top:16px}
-  #roi-case[style*="none"] + .roi-in{margin-top:0}
-  .seg{display:flex;gap:8px;margin-top:10px}
-  .seg button{flex:1;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--text-2);background:var(--panel-2);border:1px solid var(--border-2);border-radius:10px;padding:9px 0;cursor:pointer;transition:all .15s}
-  .seg button:hover{border-color:rgba(61,220,151,0.4);color:var(--text)}
-  .seg button.on{color:#6fe3ae;background:rgba(61,220,151,0.14);border-color:rgba(61,220,151,0.55)}
-  .paused .roi{opacity:.38;pointer-events:none}
-  @media(max-width:900px){.roi-inputs{grid-template-columns:1fr;gap:14px}}
-  @media(max-width:640px){.roi-inputs{grid-template-columns:1fr;gap:14px}.ro.net{margin-left:0;text-align:left;width:100%}}
-  .own{background:linear-gradient(180deg,rgba(82,113,255,0.09),rgba(13,17,30,0.3));border:1px solid rgba(82,113,255,0.28);border-radius:var(--radius);padding:17px 20px}
-  .own .rl{font-family:'Space Grotesk';font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#8fa2ff;margin-bottom:10px}
-  .own ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px}
-  .own li{display:flex;align-items:center;gap:7px;color:var(--text-2);font-size:12.5px;background:rgba(148,160,196,0.07);border:1px solid var(--border);border-radius:99px;padding:5px 11px}
-  .own li::before{content:"";width:5px;height:5px;border-radius:50%;background:#8fa2ff;flex:none}
-  .own p.on2{color:var(--text-2);font-size:12.5px;line-height:1.55;margin-top:11px}
-  .own p.on2 b{color:var(--text);font-weight:600}
-  .cfg-note{color:var(--text-3);font-size:12px;margin:-4px 0 14px 0}
-  .cfg-note b{color:#c3ccff;font-weight:600}
-
-  @media (max-width:1000px){
+  .mbar{display:none}
+  @media(max-width:980px){
     .builder{grid-template-columns:1fr}
-    .hdr-tag{display:none}
+    .mbar{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:20;align-items:center;justify-content:space-between;gap:10px;background:rgba(19,24,41,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--border-strong);border-radius:16px;padding:12px 16px;box-shadow:0 20px 40px -20px rgba(0,0,0,.9)}
+    .mbar .a{font-family:'Space Grotesk';font-weight:700;font-size:19px;color:var(--accent)}
+    .mbar .b{font-size:14px;color:var(--text-2);text-align:right;line-height:1.3}
+    .mbar .b b{color:var(--text);font-family:'Space Grotesk';font-size:16px}
   }
-  @media (max-width:640px){
-    .wrap{padding-left:20px;padding-right:20px}
-    .hero{padding-top:46px;text-align:center}
-    .hero h1{font-size:clamp(31px,8.4vw,42px)}
-    .hero p{margin-left:auto;margin-right:auto;font-size:15px}
-    .choices{grid-template-columns:1fr}
-    .totals{grid-template-columns:1fr}
-    .choice{padding:16px}
-    .choice p{font-size:13px}
-    .mod{padding:15px 16px;gap:12px}
-    .mod .ic{width:34px;height:34px}
-    .mod p{font-size:13px}
-    .slider-note{font-size:13px}
-    /* stack the roadmap header so the big number doesn't cram to the edge */
-    .rnode{grid-template-columns:28px 1fr;gap:14px}
-    .rmark{width:28px;height:28px;font-size:10px;margin-top:5px}
-    .rail::before{top:38px}
-    .rcard{padding:18px 18px}
-    .rhead{flex-direction:column;align-items:flex-start;gap:7px}
-    .big{font-size:32px}
-    .rrows{gap:15px 24px}
-    .rr .k{font-size:12.5px}
-    .rr .v{font-size:14.5px}
-    .pn{font-size:12.5px}
-    .guar{padding:16px 18px}
-    .guar p{font-size:13.5px}
-    .total{padding:16px 18px}
-    .total .tv{font-size:29px}
-    .real{text-align:center}
-    .fine{gap:12px;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:13px}
+  @media(max-width:700px){
+    .eyebrow{margin:42px 0 14px}
+    .builder{margin-top:32px}
+    .card{padding:22px 18px 24px}
+    .card h2{font-size:20px}
+    .opts,.pb{grid-template-columns:1fr}
+    .chip{padding:13px 14px}
+    .chip .nm{font-size:15px}
+    .lcard{padding:22px 20px}
+    .nd{grid-template-columns:30px minmax(0,1fr);gap:10px}
+    .nd .dot{width:30px;height:30px;font-size:11px;margin-top:16px}
+    .nd .rail::before{top:46px}
+    .nc{padding:16px}
+    .nh{flex-direction:column;gap:8px}
+    .nh .pay{text-align:left}
+    .side .fine{padding-left:40px}
+    .leads .big{font-size:58px}
+    section{padding:40px 0 0;margin-top:40px}
+    .tg .tx .t{font-size:16px}
+    .tg{flex-wrap:wrap;gap:10px 14px}
+    .tg .tx{flex:1 1 100%}
+    .tg .pr{margin-right:auto}
   }
+  @media(max-width:360px){ .chips{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -289,439 +277,285 @@
 
 <header><div class="hdr-inner">
   <div class="logo"><img id="logo" alt="Sky Scaling" src=""><span class="fb">Sky Scaling</span></div>
-  <div class="hdr-tag" id="hdr-tag"></div>
+  <span class="pill">Pricing</span>
 </div></header>
 
-<div class="wrap">
-  <div class="hero">
-    <h1>Pick Your Plan. <span class="a">See Every Dollar.</span></h1>
-    <p>Every fee, every month, <b>and your ad spend</b>. Nothing else, ever.</p>
-  </div>
+<div class="wrap" id="app">
+
+  <div class="eyebrow">&lt; Build your plan &gt;</div>
+  <h1 class="hero">Pick Your Plan. <span class="a" style="white-space:nowrap">See Every Dollar.</span></h1>
+  <p class="lead"><b>Pick your campaign and your budget.</b> You'll see what it costs, month by month, and about how many leads it brings in.</p>
 
   <div class="builder">
+    <div class="steps">
 
-    <!-- ===== CONFIG ===== -->
-    <div class="config">
-
-      <div class="cfg-lab"><span class="n">1</span> Your Lane</div>
-      <div class="choices" id="lane">
-        <button class="choice sel" data-v="client" type="button">
-          <span class="ic"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <div class="cbody"><div class="ct"><h3>Getting clients</h3></div><p>Life, living benefits, income protection, mortgage protection. <b>The right clients, asking for you by name.</b></p></div>
-        </button>
-        <button class="choice" data-v="recruiting" type="button">
-          <span class="ic"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></span>
-          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <div class="cbody"><div class="ct"><h3>Recruiting</h3></div><p>Build your team, licensed or unlicensed. <b>Recruits who already know who you are.</b></p></div>
-        </button>
+      <div class="card">
+        <h2><span class="n">1.</span> Where are you licensed?</h2>
+        <div class="body"><div class="seg" id="country">
+          <button type="button" data-c="CA">Canada<small>Prices in CAD</small></button>
+          <button type="button" data-c="US">United States<small>Prices in USD</small></button>
+        </div></div>
       </div>
 
-      <div class="cfg-lab"><span class="n">2</span> The Build · paid once</div>
-      <div class="choices" id="build">
-        <button class="choice sel" data-v="full" type="button">
-          <span class="ic"><svg viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg></span>
-          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <div class="cbody"><div class="ct"><h3>Full Install</h3><span class="price">$3,500</span></div><p>From zero: brand, socials, AI assistant, booking pages, ad account. Ads live month 3.</p></div>
-        </button>
-        <button class="choice" data-v="fast" type="button">
-          <span class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
-          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <div class="cbody"><div class="ct"><h3>Fast-Track</h3><span class="price">$1,750</span></div><p>Already posting real video weekly? We build the system behind it. Ads live weeks 2 to 4.</p></div>
-        </button>
+      <div class="card dim">
+        <h2><span class="n">2.</span> What do you want more of?</h2>
+        <p class="sub">Cost per lead from our campaigns.</p>
+        <div class="body" id="camps"></div>
       </div>
 
-      <div class="cfg-lab"><span class="n">3</span> Your Monthly Plan · starts at launch</div>
-      <div class="mods">
-        <div class="mod req-row" data-mod="engine">
-          <span class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></span>
-          <div class="mt">
-            <div class="mt-top"><h3>The engine · CRM + AI <span class="req">Required</span></h3><div class="mprice">$150<small>/mo</small></div></div>
-            <p>Your calendar, your follow-up, and an AI that <b>texts every lead back within four minutes.</b></p>
+      <div class="card dim">
+        <h2><span class="n">3.</span> Your ad budget</h2>
+        <div class="body">
+          <div class="bud"><div class="day" id="bud-day">$40<small>/day</small></div><div class="mo" id="bud-mo">$1,200 a month</div></div>
+          <input type="range" id="slider" min="40" max="200" step="5" value="40" aria-label="Daily ad budget">
+          <div class="ticks"><span>$40</span><span>$120</span><span>$200 a day</span></div>
+          <p class="note">Paid straight to Meta from <b>your own card</b>, in your own ad account. It never goes through us. <b>$40 a day is the minimum.</b></p>
+        </div>
+      </div>
+
+      <div class="card dim">
+        <h2><span class="n">4.</span> Your build <span class="hint">Paid once</span></h2>
+        <div class="body">
+          <div class="opts" id="build">
+            <button type="button" class="opt" data-b="full"><div class="t"><span class="nm">Full Install</span><span class="pr" id="p-full">$3,500</span></div><p>We build it all from zero: brand, socials, booking page, AI assistant, ad account. Ads go live in month 3.</p></button>
+            <button type="button" class="opt" data-b="fast"><div class="t"><span class="nm">Fast-Track</span><span class="pr" id="p-fast">$1,750</span></div><p>Only if we offer it to you. Your socials already work, so we build the system behind them. Ads live in weeks 2 to 4.</p></button>
           </div>
-          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-        </div>
-        <div class="mod opt off" data-mod="ads" role="checkbox" aria-checked="false" tabindex="0">
-          <span class="ic"><svg viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
-          <div class="mt">
-            <div class="mt-top"><h3>Ad management <span class="req">20 leads/mo guaranteed</span></h3><div class="mprice">$500<small>/mo</small></div></div>
-            <p>Always included in your first two ad months. <b>After that it's your call, any month.</b> Built, tested and changed every week. New scripts free when an ad stops working. <b>20 qualified leads that month at $40/day or more, or the $500 comes back.</b></p>
-          </div>
-          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-        </div>
-        <div class="mod opt off" data-mod="content" role="checkbox" aria-checked="false" tabindex="0">
-          <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></span>
-          <div class="mt">
-            <div class="mt-top"><h3>Content posting</h3><div class="mprice">$500<small>/mo</small></div></div>
-            <p><b>About 3 posts a week</b>, designed for your brand, captions written, scheduled and posted for you. Keeps your page alive between your own videos. Regular posts only, never your ads.</p>
-          </div>
-          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-        </div>
-        <div class="mod opt off" data-mod="scripts" role="checkbox" aria-checked="false" tabindex="0">
-          <span class="ic"><svg viewBox="0 0 24 24"><path d="m22 8-6 4 6 4V8z"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></span>
-          <div class="mt">
-            <div class="mt-top"><h3>Organic videos</h3><div class="mprice">$500<small>/mo</small></div></div>
-            <p><b>Up to 3 videos a week.</b> We write the scripts in your voice, you record, <b>we edit and post them for you.</b> Ad scripts are free while we run your ads.</p>
-          </div>
-          <span class="chk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <p class="pay" id="pay-note"></p>
         </div>
       </div>
 
-      <div class="cfg-lab"><span class="n">4</span> Ad Spend · your card → Facebook</div>
-      <div class="slider-card">
-        <div class="slider-top"><h3>Daily budget</h3><div class="slider-val"><span id="ad-day">$40/day</span><span class="sep">·</span><span id="ad-month">$1,200/mo</span></div></div>
-        <input type="range" id="ad-slider" min="40" max="200" step="5" value="40">
-        <div class="slider-note">Straight to Facebook from your own account. <b>We never touch it.</b> <span id="ad-min">$40/day</span> minimum for the guarantee. After your first two ad months, the budget is your call.</div>
-      </div>
-
-      <div class="cfg-lab"><span class="n">5</span> Pause any time</div>
-      <div class="pausebox" id="pausebox">
-        <div>
-          <div class="pb-t">Need to stop for a while?</div>
-          <div class="pb-s">Traveling, or just need a break? Flip this.</div>
-        </div>
-        <button class="sw" id="pause-sw" role="switch" aria-checked="false" type="button" aria-label="Pause everything"><span class="sw-k"></span></button>
-      </div>
-
-      <div class="cfg-lab"><span class="n">6</span> Proof &amp; details</div>
-
-      <div class="real">
-        <div class="rl">See a real build</div>
-        <p><a id="lnk-booking" href="#" target="_blank" rel="noopener">A live booking page</a> · <a id="lnk-ty" href="#" target="_blank" rel="noopener">the thank-you page</a>. Yours is built like this, under your name.</p>
-      </div>
-
-      <div class="dialbox">
-        <div class="rl">What's a working session?</div>
-        <p>Every week we show you how to work the system: how to handle the leads, what to say, which ads to kill. <b>Same two months your leads are guaranteed. Not a coincidence.</b></p>
-      </div>
-
-    </div>
-
-    <!-- ===== TIMELINE ===== -->
-    <div class="tl">
-      <div class="tl-head"><span class="h">Your plan</span><span class="live"><span class="dot"></span>Updates live</span></div>
-
-      <div class="roadmap" id="roadmap"></div>
-
-      <div class="roi" id="roi">
-        <div class="rl" id="roi-title">What it pays back</div>
-        <div class="roi-inputs" id="roi-inputs">
-          <div class="roi-in" id="roi-case">
-            <div class="roi-lab"><span id="roi-q1">What does a case pay you?</span><b id="roi-v1">$1,750</b></div>
-            <input type="range" id="roi-value" min="500" max="6000" step="250" value="1750">
-          </div>
-          <div class="roi-in">
-            <div class="roi-lab"><span id="roi-q2">Your close rate</span></div>
-            <div class="seg" id="roi-rate">
-              <button type="button" data-v="0.05" aria-pressed="false">5%</button>
-              <button type="button" data-v="0.10" class="on" aria-pressed="true">10%</button>
-              <button type="button" data-v="0.15" aria-pressed="false">15%</button>
-            </div>
-          </div>
-        </div>
-        <div class="roi-assume" id="roi-assume">Average cost per lead about <b>$35</b>. Average close rate <b>5 to 15%</b>.</div>
-        <div class="roi-out" id="roi-out"></div>
-        <div class="roi-hero" id="roi-hero"></div>
-        <div class="roi-lev" id="roi-lev"></div>
-        <p class="roi-note">An estimate from campaigns we've run, not a promise. <b>The only numbers we put in writing are the lead guarantees.</b></p>
-      </div>
-
-      <div class="own">
-        <div class="rl">What you walk away with</div>
-        <ul>
-          <li>Your domain</li><li>Your booking page</li><li>Your socials</li><li>Your ad account</li><li>Your pixel</li><li>Your content</li><li>Your leads</li>
-        </ul>
-        <p class="on2"><b>Yours to keep, whether you keep paying us or not.</b> The only pieces you rent are the CRM, the automations and the AI.</p>
-      </div>
-
-      <div class="totals">
-        <div class="total">
-          <div class="tl2" id="t-fees-lab">Your monthly fees<b>After your first two ad months</b></div>
-          <div class="tv" id="t-fees">$150<small>/mo</small></div>
-        </div>
-        <div class="total">
-          <div class="tl2" id="t-ads-lab">Your ad budget<b>Straight to Facebook, your card</b></div>
-          <div class="tv" id="t-ads">$1,200<small>/mo</small></div>
+      <div class="card dim">
+        <h2><span class="n">5.</span> Each month <span class="hint">Once ads are live</span></h2>
+        <div class="body">
+          <div class="tg req"><div class="tx"><div class="t">The engine: CRM + AI <span class="tag">Required</span></div><div class="s">Your calendar, your follow-up, and an AI that texts every new lead back.</div></div><div class="pr">$150<small>/mo</small></div><span class="sw on" aria-hidden="true"></span></div>
+          <div class="tg"><div class="tx"><div class="t">Keep us running your ads</div><div class="s">Always included in your first 2 months of ads. After that, your call: 20 qualified leads a month, or the $500 comes back.</div></div><div class="pr">$500<small>/mo</small></div><button type="button" class="sw" id="t-ads" role="switch" aria-checked="false" aria-label="Keep us on your ads"></button></div>
+          <div class="tg"><div class="tx"><div class="t">Content posting</div><div class="s">About 3 posts a week, designed, written and posted for you.</div></div><div class="pr">$500<small>/mo</small></div><button type="button" class="sw" id="t-content" role="switch" aria-checked="false" aria-label="Content posting"></button></div>
+          <div class="tg"><div class="tx"><div class="t">Organic videos</div><div class="s">Up to 3 a week. We write the scripts, you record, we edit and post.</div></div><div class="pr">$500<small>/mo</small></div><button type="button" class="sw" id="t-videos" role="switch" aria-checked="false" aria-label="Organic videos"></button></div>
         </div>
       </div>
 
-      <div class="fine">
-        <div id="fine-note"><b>Your first two ad months add $1,000/mo</b>: ad management and the weekly working session. No markup on ad spend, no long-term contract.</div>
+      <div class="card">
+        <div class="tg" style="padding:0;border:0"><div class="tx"><div class="t" style="font-family:'Space Grotesk';font-size:20px;font-weight:700">Need to pause?</div><div class="s">Traveling, or need a break? Flip this to see what it costs.</div></div><button type="button" class="sw warn" id="pause" role="switch" aria-checked="false" aria-label="Pause"></button></div>
       </div>
     </div>
 
+    <aside class="side" id="side">
+      <div class="lcard">
+        <div class="k" id="l-k">About this many leads a month</div>
+        <div class="leads"><span class="big" id="s-leads">55</span><span class="u" id="s-leads-u">leads</span></div>
+        <div class="leads-s" id="s-leads-s">Life insurance at about $22 a lead</div>
+      </div>
+      <div class="tl-h"><h2>Your <span class="a">Timeline</span></h2><span>Updates as you pick</span></div>
+      <div class="tl" id="tl"></div>
+      <p class="fine" id="s-fine">Prices in CAD, plus tax. No markup on ad spend, no long-term contract.</p>
+    </aside>
   </div>
+
+  <section class="dim" id="pb-sec">
+    <h2 class="sec-title" id="pb-title">What It Could <span class="a">Pay Back.</span></h2>
+    <div class="divider"></div>
+    <p class="sec-sub" id="pb-sub">Month to month, after your first 2 months of ads.</p>
+    <div class="pb">
+      <div class="card">
+        <div id="case-wrap">
+          <div class="q"><span>What does a new client pay you?</span><b id="case-val">$1,750</b></div>
+          <input type="range" id="case" min="500" max="6000" step="250" value="1750" aria-label="Commission per client">
+          <div class="ticks"><span>$500</span><span>$6,000</span></div>
+        </div>
+        <div class="q" id="rate-q" style="margin-top:20px"><span>Your close rate</span></div>
+        <div class="rates" id="rates"><button type="button" data-r="0.05">5%</button><button type="button" data-r="0.10">10%</button><button type="button" data-r="0.15">15%</button></div>
+      </div>
+      <div class="card">
+        <div id="pb-out"></div>
+        <p class="lev" id="lev"></p>
+      </div>
+    </div>
+    <p class="est">An estimate from campaigns we've run, not a promise. Cost per lead can go up a bit as the budget grows. The only numbers we put in writing are the lead guarantees.</p>
+  </section>
+
+  <section>
+    <h2 class="sec-title">What You <span class="a">Keep.</span></h2>
+    <div class="divider"></div>
+    <div class="own">
+      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Your domain</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Your booking page</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Your socials</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Your ad account</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Your pixel</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Your content</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Your leads</span>
+    </div>
+    <p class="own-note"><b>Yours to keep, even if you stop working with us.</b> We only keep the CRM, the automations and the AI.</p>
+  </section>
+
+  <footer>
+    <div class="fl"><img id="flogo" alt="Sky Scaling" src=""></div>
+    <div><a href="mailto:hello@skyscaling.com">hello@skyscaling.com</a></div>
+    <div style="margin-top:10px">Copyright &copy; Sky Scaling Inc. All rights reserved.</div>
+  </footer>
 </div>
+
+<div class="mbar" id="mbar"><span class="a" id="m-leads">55 leads/mo</span><span class="b" id="m-b">First 2 ad months<br><b id="m-win">$2,350/mo</b></span></div>
 
 <script>
 (function(){
   "use strict";
-  var C = window.SS_CONFIG || {};
-
-  var logo=document.getElementById('logo');
-  if(C.LOGO_URL){ logo.src=C.LOGO_URL; }
+  var C = window.SS;
+  function $(id){ return document.getElementById(id); }
+  var logo=$('logo'), flogo=$('flogo');
   logo.onerror=function(){ logo.style.display='none'; document.querySelector('.logo .fb').style.display='inline-block'; };
-  if(!C.LOGO_URL){ logo.onerror(); }
-  if(C.HEADER_TAG){ document.getElementById('hdr-tag').innerHTML = C.HEADER_TAG.replace(/·\s*([^·]+)$/, '· <b>$1</b>'); }
-  if(C.REAL_BOOKING_URL){ document.getElementById('lnk-booking').href=C.REAL_BOOKING_URL; }
-  if(C.REAL_THANKYOU_URL){ document.getElementById('lnk-ty').href=C.REAL_THANKYOU_URL; }
-  [['lnk-ig1','IG_FINANCEBRIDGES'],['lnk-ig2','IG_SKYSCALING'],['lnk-ig3','IG_GABRIEL']].forEach(function(p){
-    var el=document.getElementById(p[0]); if(el && C[p[1]]) el.href=C[p[1]];
-  });
+  flogo.onerror=function(){ flogo.style.display='none'; };
+  if(C.LOGO_URL){ logo.src=C.LOGO_URL; flogo.src=C.LOGO_URL; } else { logo.onerror(); flogo.onerror(); }
 
-  var S = { lane:'client', build:'full', ads:false, content:false, scripts:false, adDay:40, paused:false, roiValue:1750, rate:0.10 };
-  var DIAL = 500;
+  /* Default country: US visitors by time zone (same test as the booking page), everyone else Canada. ?country=us or ?country=ca forces it. */
+  function guessCountry(){
+    var m=location.search.match(/[?&]country=(us|ca)\b/i); if(m) return m[1].toUpperCase();
+    var tz=""; try{ tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""; }catch(e){}
+    return /^(America\/(New_York|Chicago|Denver|Los_Angeles|Phoenix|Anchorage|Juneau|Sitka|Nome|Yakutat|Metlakatla|Adak|Boise|Detroit|Menominee|Indiana\/.+|Kentucky\/.+|North_Dakota\/.+)|Pacific\/Honolulu|US\/.+)$/.test(tz) ? 'US' : 'CA';
+  }
+
+  var S = { c: guessCountry(), camp: null, day: C.MIN_DAY, build:'full', ads:false, content:false, videos:false, paused:false, caseVal:1750, rate:0.10 };
+  var CHECK='<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
+  var PAUSE='<svg viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></svg>';
   function money(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+  function camps(){ return C.CAMPAIGNS[S.c]; }
+  function camp(){ var l=camps(); for(var i=0;i<l.length;i++){ if(l[i].id===S.camp) return l[i]; } return l[0]; }
+  function setPop(el, txt){ if(el.textContent===txt) return; el.textContent=txt; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
 
-  function setHTML(el, html){
-    if(el.innerHTML!==html){ el.innerHTML=html; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
-  }
-  function setText(el, txt){
-    if(el.textContent!==txt){ el.textContent=txt; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
-  }
-
-  function rowsHTML(rows){
-    return rows.map(function(r){
-      var mod = r[2]||'';
-      return '<div class="rr'+(mod.indexOf('dial')>-1?' dial':'')+'"><span class="k">'+r[0]+'</span><span class="v'+(mod?' '+mod:'')+'">'+r[1]+'</span></div>';
-    }).join('');
-  }
-  function nodeHTML(m){
-    if(m.guar){
-      return '<div class="rnode gnode'+(m.off?' off':'')+'">'
-        + '<div class="rail"><div class="rmark">'+(m.off?'!':'<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>')+'</div></div>'
-        + '<div class="guar'+(m.off?' off':'')+'"><p>'+m.html+'</p></div></div>';
-    }
-    return '<div class="rnode'+(m.mid?' mid':'')+'">'
-      + '<div class="rail"><div class="rmark">'+m.mark+'</div></div>'
-      + '<div class="rcard"><div class="rhead">'
-      + '<div><div class="pl">'+m.lab+'</div><h3>'+m.title+'</h3></div>'
-      + '<div class="big">'+m.big+'</div></div>'
-      + '<div class="rrows">'+rowsHTML(m.rows)+'</div>'
-      + '<div class="pn">'+m.note+'</div></div></div>';
-  }
-
-
-  var LANE = {
-    client: { q1:'What does a case pay you?', vMin:500, vMax:6000, vStep:250, vDef:1750,
-      unit:'client', kUnit:'New clients a month' },
-    recruiting:{ unit:'recruit', kUnit:'New recruits a month' }
-  };
-
-  function plural(n, word){
-    var r = Math.round(n*10)/10;
-    return r + ' more ' + word + (r===1 ? '' : 's');
-  }
-
-  var CPL = { client: 35, recruiting: 30 };   /* our campaign averages, by lane */
-
-  function renderROI(stack, adMonth){
-    var L = LANE[S.lane];
-    var cpl   = CPL[S.lane];
-    var leads = Math.round(adMonth / cpl);
-    var wins  = Math.round(leads * S.rate);
-    var cost  = stack + adMonth;
-    var isClient = S.lane === 'client';
-    var payLab = S.build === 'full' ? 'What you pay from month 5' : 'What you pay from ad month 3';
-
-    setHTML(document.getElementById('roi-assume'),
-      'Average cost per lead about <b>'+money(cpl)+'</b>, so <b>'+money(adMonth)+'</b> of ads a month is about <b>'+leads+' leads</b>. ' + (isClient ? 'Average close rate <b>5 to 15%</b>.' : 'Usually <b>5 to 15%</b> of leads join.'));
-
-    document.getElementById('roi-case').style.display = isClient ? '' : 'none';
-    document.getElementById('roi-q2').textContent = isClient ? 'Your close rate' : 'How many leads join you';
-    if (isClient) {
-      document.getElementById('roi-q1').textContent = L.q1;
-      document.getElementById('roi-v1').textContent = money(S.roiValue);
-    }
-
-    var rows = [['Leads a month', String(leads)], [L.kUnit, String(wins)]];
-    var heroK, heroV;
-
-    if (isClient) {
-      var rev = wins * S.roiValue;
-      rows.push(['Commission a month', money(rev)]);
-      rows.push([payLab, money(cost)+'/mo']);
-      heroK = 'Net a month'; heroV = (rev-cost<0?'-':'')+money(Math.abs(rev-cost));
-    } else {
-      rows.push([payLab, money(cost)+'/mo']);
-      heroK = 'Cost per recruit'; heroV = wins > 0 ? money(cost/wins) : '--';
-    }
-
-    setHTML(document.getElementById('roi-out'),
-      rows.map(function(c){ return '<div class="ro"><span class="k">'+c[0]+'</span><span class="v">'+c[1]+'</span></div>'; }).join(''));
-    setHTML(document.getElementById('roi-hero'),
-      '<span class="k">'+heroK+'</span><span class="v">'+heroV+'</span>');
-
-    setHTML(document.getElementById('roi-lev'), isClient
-      ? 'Our fee stays at <b>'+money(stack)+'/mo</b> no matter what you spend. <b>More ad budget means more leads, not a bigger bill from us.</b>'
-      : 'What a recruit is worth to you is your math, not ours. <b>We can tell you what one costs.</b>');
-  }
-
-  function recompute(){
-    /* Ad management is required during the guarantee window, optional from month 5. */
-    var winStack   = 150 + 500 + (S.content?500:0) + (S.scripts?500:0);
-    var stack      = 150 + (S.ads?500:0) + (S.content?500:0) + (S.scripts?500:0);
-    var install = S.build==='full' ? 3500 : 1750;
-    var adMonth = S.adDay*30;
-    var dialAllIn = winStack + DIAL + adMonth;
-    var steadyAllIn = stack + adMonth;
-    var allInWindow = install + 2*(winStack+DIAL) + 2*adMonth;
-    var leads = 50;
-    var installLab = S.build==='full' ? 'Full Install' : 'Fast-Track';
-
-    var addOns = (S.content?500:0) + (S.scripts?500:0);
-    var dialRows = [[addOns ? 'Engine, ads managed + add-ons' : 'Engine + ad management', money(winStack)+'/mo',''],['Weekly working session', money(DIAL)+'/mo','dial'],['Ad spend → Facebook', money(adMonth)+'/mo','']];
-    var steadyRows = [['The engine · required', '$150/mo',''],['Ad management', S.ads ? '$500/mo' : 'off', S.ads ? '' : 'muted']];
-    if(addOns){ steadyRows.push(['Add-ons', money(addOns)+'/mo','']); }
-    steadyRows.push(['Ad spend → Facebook', money(adMonth)+'/mo','']);
-    steadyRows.push(['All in at '+money(S.adDay)+'/day', money(steadyAllIn)+'/mo','']);
-    var steadyBig = money(stack)+'<small>/mo + your ads</small>';
-    var floorNote = S.ads
-      ? '<b>The only required fee is $150/mo.</b> Month to month from here. <b>20 qualified leads a month while we run your ads at $40/day or more, or that month\'s $500 comes back.</b> Drop ad management or pause ads any month.'
-      : '<b>The only required fee is $150/mo.</b> Month to month from here. Keep your ads running, lower the budget or pause them, <b>it\'s your call.</b> Add ad management back any month and the 20-lead guarantee comes with it.';
-    var lastWinNote = 'Last month with the working sessions. <b>After this, the only required fee is $150/mo.</b>';
-
-    var months;
-    if(S.build==='full'){
-      months = [
-        {mark:'1', lab:'Month 1', title:'The <span class="a">Build</span>', big: money(install)+'<small>once</small>',
-         rows:[[installLab, money(install),''],['Monthly fees','$0','muted'],['Ad spend','$0','muted']],
-         note:'<b>No monthly fee while we build.</b> Training calls, scripts, video editing and posting are free.'},
-        {mark:'2', lab:'Month 2', title:'The <span class="a">Build</span>', big:'$0<small>this month</small>',
-         rows:[['Install','paid','muted'],['Monthly fees','$0','muted'],['Ad spend','$0','muted']],
-         note:'Still building. No fees, no ad spend.'},
-        {mark:'3', lab:'Month 3 · Ads live', title:'The <span class="a">Guarantee Window</span>', big: money(dialAllIn)+'<small>/mo all-in</small>', mid:true,
-         rows:dialRows, note:'<b>The $500 weekly working session only runs these two months.</b>'},
-        {mark:'4', lab:'Month 4 · Ads live', title:'The <span class="a">Guarantee Window</span>', big: money(dialAllIn)+'<small>/mo all-in</small>',
-         rows:dialRows, note:lastWinNote},
-        {mark:'5+', lab:'Month 5 and on', title:'Your <span class="a">Call</span>', big: steadyBig,
-         rows:steadyRows, note:floorNote}
-      ];
-    } else {
-      months = [
-        {mark:'1', lab:'Weeks 1 to 4', title:'Build + <span class="a">Launch</span>', big: money(install)+'<small>once</small>',
-         rows:[[installLab, money(install),''],['Monthly fees','$0','muted'],['Ad spend','$0','muted']],
-         note:'<b>Fast-Track.</b> Ads live in weeks 2 to 4.'},
-        {mark:'2', lab:'Ad month 1', title:'The <span class="a">Guarantee Window</span>', big: money(dialAllIn)+'<small>/mo all-in</small>', mid:true,
-         rows:dialRows, note:'<b>The $500 weekly working session only runs these two months.</b>'},
-        {mark:'3', lab:'Ad month 2', title:'The <span class="a">Guarantee Window</span>', big: money(dialAllIn)+'<small>/mo all-in</small>',
-         rows:dialRows, note:lastWinNote},
-        {mark:'4+', lab:'From ad month 3', title:'Your <span class="a">Call</span>', big: steadyBig,
-         rows:steadyRows, note:floorNote}
-      ];
-    }
-    months.splice(months.length-1, 0, {guar:true, html:'<b class="gt">The guarantee:</b> '+leads+' leads minimum in your first two ad months, <b>or both months\' service fees come back, weekly working session included.</b>'});
-    if(S.paused){
-      months = [{mark:'||', lab:'Paused', title:'The <span class="a">Engine</span> Only', big:'$150<small>/mo</small>',
-        rows:[['Ads','off','muted'],['Monthly stack','$0 · paused','muted'],['Ad spend','$0','muted']],
-        note:'Your brand, pages and socials stay live and stay yours. <b>Nothing is deleted, nothing gets rebuilt when you come back.</b>'},
-        {guar:true, off:true, html:'<b class="gt">Paused:</b> no ads running, so no leads and no guarantee. <b>You keep everything you own and pay $150/mo for the engine.</b> Turn it back on any time.'}];
-    }
-
-    document.getElementById('roadmap').innerHTML = months.map(nodeHTML).join('');
-
-    var feeLab=document.getElementById('t-fees-lab'), adLab=document.getElementById('t-ads-lab');
-    var fineNote=document.getElementById('fine-note');
-
-    if(S.paused){
-      feeLab.innerHTML = 'Your monthly fees<b>Paused · the engine only</b>';
-      adLab.innerHTML  = 'Your ad budget<b>Nothing running</b>';
-      fineNote.innerHTML = '<b>Restarting costs nothing.</b> No new build, no setup fee, no re-signing.';
-      setHTML(document.getElementById('t-fees'), '$150<small>/mo</small>');
-      setHTML(document.getElementById('t-ads'), '$0<small>/mo</small>');
-    } else {
-      feeLab.innerHTML = 'Your monthly fees<b>After your first two ad months</b>';
-      adLab.innerHTML  = 'Your ad budget<b>Straight to Facebook, your card</b>';
-      var winExtra = (winStack + DIAL) - stack;
-      fineNote.innerHTML = '<b>Your first two ad months add ' + money(winExtra) + '/mo</b>: ' + (S.ads ? 'the weekly working session' : 'ad management and the weekly working session') + '. No markup on ad spend, no long-term contract.';
-      setHTML(document.getElementById('t-fees'), money(stack)+'<small>/mo</small>');
-      setHTML(document.getElementById('t-ads'), money(adMonth)+'<small>/mo</small>');
-    }
-
-    renderROI(S.paused ? 150 : stack, S.paused ? 0 : adMonth);
-
-    document.getElementById('ad-day').textContent = money(S.adDay)+'/day';
-    document.getElementById('ad-month').textContent = money(adMonth)+'/mo';
-  }
-
-  function laneMin(){ return 40; }
-
-  function bindChoices(id, key, after){
-    var group=document.getElementById(id);
-    group.querySelectorAll('.choice').forEach(function(b){
-      b.addEventListener('click', function(){
-        group.querySelectorAll('.choice').forEach(function(x){ x.classList.remove('sel'); });
-        b.classList.add('sel'); S[key]=b.getAttribute('data-v');
-        if(after) after();
-        recompute();
+  function renderCamps(){
+    var l=camps(), html='';
+    [['client','Getting clients'],['recruit','Recruiting']].forEach(function(g){
+      html+='<div class="grp">'+g[1]+'</div><div class="chips">';
+      l.filter(function(x){return x.kind===g[0];}).forEach(function(x){
+        html+='<button type="button" class="chip" data-id="'+x.id+'"><span class="nm">'+x.name+'</span><span class="cp">about $'+x.cpl+' a lead</span></button>';
       });
+      html+='</div>';
     });
+    $('camps').innerHTML=html;
   }
-  var rv=document.getElementById('roi-value');
-  function applyLaneROI(){
-    var L=LANE[S.lane];
-    if(L.vDef===undefined) return;
-    rv.min=L.vMin; rv.max=L.vMax; rv.step=L.vStep;
-    S.roiValue=L.vDef; rv.value=L.vDef;
-    paintRange(rv);
+
+  function row(lab, sub, v, d, hl){
+    return '<div class="row'+(hl?' hl':'')+'"><div class="top"><div class="lab">'+lab+(sub?'<span>'+sub+'</span>':'')+'</div><div class="v">'+v+'</div></div>'+(d?'<div class="d">'+d+'</div>':'')+'</div>';
   }
-  function paintRange(el){
-    var pct=(el.value-el.min)/(el.max-el.min)*100;
-    el.style.background='linear-gradient(90deg,#5271ff '+pct+'%,var(--panel-3) '+pct+'%)';
-  }
-  rv.addEventListener('input', function(){ S.roiValue=parseInt(rv.value,10); paintRange(rv); recompute(); });
-  document.querySelectorAll('#roi-rate button').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      document.querySelectorAll('#roi-rate button').forEach(function(x){ x.classList.remove('on'); });
-      document.querySelectorAll('#roi-rate button').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
-      btn.classList.add('on'); btn.setAttribute('aria-pressed','true'); S.rate = parseFloat(btn.getAttribute('data-v'));
-      recompute();
-    });
-  });
 
+  function render(){
+    var k=camp(); S.camp=k.id;
+    var isClient=k.kind==='client', cur=S.c==='US'?'USD':'CAD';
+    $('app').classList.toggle('paused',S.paused);
+    [].forEach.call(document.querySelectorAll('#country button'),function(b){ b.classList.toggle('on', b.getAttribute('data-c')===S.c); });
+    [].forEach.call(document.querySelectorAll('#camps .chip'),function(b){ b.classList.toggle('on', b.getAttribute('data-id')===S.camp); });
+    [].forEach.call(document.querySelectorAll('#build .opt'),function(b){ b.classList.toggle('on', b.getAttribute('data-b')===S.build); });
+    ['ads','content','videos'].forEach(function(t){ $('t-'+t).classList.toggle('on',S[t]); $('t-'+t).setAttribute('aria-checked',S[t]?'true':'false'); });
+    $('pause').classList.toggle('on',S.paused); $('pause').setAttribute('aria-checked',S.paused?'true':'false');
+    [].forEach.call(document.querySelectorAll('#rates button'),function(b){ b.classList.toggle('on', +b.getAttribute('data-r')===S.rate); });
 
-  bindChoices('lane','lane', function(){ applyLaneMin(true); applyLaneROI(); });
-  bindChoices('build','build');
+    /* budget */
+    var adMo=S.day*30;
+    $('slider').style.setProperty('--p', ((S.day-C.MIN_DAY)/(C.MAX_DAY-C.MIN_DAY)*100)+'%');
+    $('bud-day').innerHTML=money(S.day)+'<small>/day</small>';
+    $('bud-mo').textContent=money(adMo)+' a month';
 
-  document.querySelectorAll('.mod.opt').forEach(function(mod){
-    var key=mod.getAttribute('data-mod');
-    function toggle(){
-      S[key]=!S[key];
-      mod.classList.toggle('on', S[key]); mod.classList.toggle('off', !S[key]);
-      mod.setAttribute('aria-checked', S[key]?'true':'false');
-      recompute();
+    /* leads */
+    var leads=Math.round(adMo/k.cpl);
+    setPop($('s-leads'), S.paused?'0':String(leads));
+    $('s-leads-u').textContent=isClient?'leads':'recruit leads';
+    $('l-k').textContent=S.paused?'Paused':'About this many leads a month';
+    $('s-leads-s').textContent=S.paused?'No ads running while you\'re paused.':(k.name+' at about $'+k.cpl+' a lead');
+
+    /* money */
+    var extras=(S.content?C.CONTENT:0)+(S.videos?C.VIDEOS:0);
+    var winFee=C.ENGINE+C.ADMGMT+C.SESSION+extras;
+    var afterFee=C.ENGINE+(S.ads?C.ADMGMT:0)+extras;
+    var build=C.BUILD[S.build];
+    $('p-full').textContent=money(C.BUILD.full); $('p-fast').textContent=money(C.BUILD.fast);
+    $('pay-note').innerHTML = S.c==='US'
+      ? (S.build==='full' ? '<b>Pay in full</b>, or half now and half within 30 days.' : 'Fast-Track is <b>paid in full</b>.')
+      : '<b>Pay in full</b> or finance it.';
+    $('s-fine').textContent='Prices in '+cur+', plus tax. No markup on ad spend, no long-term contract.';
+
+    var payNote = S.c==='US'
+      ? (S.build==='full' ? 'Or half now, half in 30 days' : 'Paid in full')
+      : 'Or finance it';
+    function node(o){
+      if(o.g) return '<div class="nd g'+(o.off?' off':'')+'"><div class="rail"><span class="dot">'+(o.off?PAUSE:CHECK)+'</span></div><div class="nc">'+o.html+'</div></div>';
+      return '<div class="nd'+(o.live?' live':'')+'"><div class="rail"><span class="dot">'+o.mark+'</span></div><div class="nc">'+
+        '<div class="nh"><div><div class="when">'+o.when+'</div><h3>'+o.title+'</h3></div><div class="pay"><div class="amt'+(o.zero?' zero':'')+'">'+o.amt+'</div>'+(o.sub?'<div class="psub">'+o.sub+'</div>':'')+'</div></div>'+
+        (o.get?'<ul class="get">'+o.get.map(function(x){return '<li><span>'+x+'</span></li>';}).join('')+'</ul>':'')+'</div></div>';
     }
-    mod.addEventListener('click', toggle);
-    mod.addEventListener('keydown', function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); } });
+    var coreFees=C.ENGINE+C.ADMGMT+C.SESSION;
+    var guar={g:true, html:'<b>Guaranteed:</b> '+C.GUARANTEE_LEADS+' qualified leads in your first 2 months of ads, or <b>both months of fees back ('+money(2*coreFees)+')</b>.'};
+    var winAmt=money(winFee+adMo)+'<small>/mo</small>', winSub=money(winFee)+' to us + '+money(adMo)+' ads';
+    var aftAmt=money(afterFee)+'<small>/mo + ads</small>', aftSub='All in: '+money(afterFee+adMo)+'/mo';
+    var aftGet=[S.ads?'We keep running your ads: '+C.MONTHLY_GUARANTEE+' leads a month or $500 back':'Only $'+C.ENGINE+'/mo is required','Month to month, pause any time'];
+    var start={mark:'0', when:'Day 0', title:'You sign up', amt:money(build)+'<small> once</small>', sub:payNote, get:['Account set up + onboarding course']};
+    var nodes;
+    if(S.paused){
+      nodes=[{mark:PAUSE, when:'Paused', title:'Only the engine runs', amt:money(C.ENGINE)+'<small>/mo</small>', sub:'No ad spend', get:['Your pages and socials stay live and yours']},
+        {g:true, off:true, html:'<b>Paused:</b> no ads, no leads, no guarantee. <b>Restarting costs nothing.</b>'}];
+    } else if(S.build==='full'){
+      nodes=[start,
+        {mark:'1', when:'Month 1', title:'We build your brand', amt:'$0', zero:true, get:['Your socials set up and branded','You film, we edit and post 3 videos a week']},
+        {mark:'2', when:'Month 2', title:'We build your system', amt:'$0', zero:true, get:['Booking page, AI assistant, ad account','Live test lead before launch']},
+        {mark:'3', live:true, when:'Month 3', title:'Ads go live', amt:winAmt, sub:winSub, get:['Ads managed every week','Weekly working session with us']},
+        {mark:'4', live:true, when:'Month 4', title:'Ads keep running', amt:winAmt, sub:winSub, get:['Last weekly working session']},
+        guar,
+        {mark:'5+', when:'Month 5 on', title:'Your call', amt:aftAmt, sub:aftSub, get:aftGet}];
+    } else {
+      nodes=[start,
+        {mark:'1', when:'Weeks 1 to 4', title:'We build your system', amt:'$0', zero:true, get:['Booking page, AI assistant, ad account','Ads live in weeks 2 to 4']},
+        {mark:'2', live:true, when:'Ad month 1', title:'Ads go live', amt:winAmt, sub:winSub, get:['Ads managed every week','Weekly working session with us']},
+        {mark:'3', live:true, when:'Ad month 2', title:'Ads keep running', amt:winAmt, sub:winSub, get:['Last weekly working session']},
+        guar,
+        {mark:'4+', when:'After that', title:'Your call', amt:aftAmt, sub:aftSub, get:aftGet}];
+    }
+    $('tl').innerHTML=nodes.map(node).join('');
+
+    /* payback */
+    var cost=afterFee+adMo, rows=[];
+    $('case-wrap').style.display=isClient?'':'none';
+    $('rate-q').innerHTML='<span>'+(isClient?'Your close rate':'How many recruit leads join you')+'</span>';
+    $('pb-title').innerHTML=isClient?'What It Could <span class="a">Pay Back.</span>':'What a Recruit <span class="a">Could Cost.</span>';
+    $('case-val').textContent=money(S.caseVal);
+    $('case').style.setProperty('--p', ((S.caseVal-500)/(6000-500)*100)+'%');
+    rows.push(['Leads a month',String(leads)]);
+    if(isClient){
+      var clients=Math.round(leads*S.rate), rev=clients*S.caseVal, net=rev-cost;
+      rows.push(['New clients a month',String(clients)]);
+      rows.push(['Commission a month',money(rev)]);
+      rows.push(['Your cost a month',money(cost)]);
+      rows.push(['hero','Left over a month',(net<0?'-':'')+money(Math.abs(net)),net<0]);
+      $('lev').innerHTML='Our fee stays the same whatever you spend. <b>More budget means more leads, not a bigger bill from us.</b>';
+    } else {
+      var rec=Math.round(leads*S.rate);
+      rows.push(['New recruits a month',String(rec)]);
+      rows.push(['Your cost a month',money(cost)]);
+      rows.push(['hero','Cost per recruit',rec>0?money(cost/rec):'--',false]);
+      $('lev').innerHTML='What a recruit is worth to you is your math. <b>We can tell you what one costs.</b>';
+    }
+    $('pb-out').innerHTML=rows.map(function(r){
+      if(r[0]==='hero') return '<div class="ro hero"><span class="k">'+r[1]+'</span><span class="v'+(r[3]?' neg':'')+'">'+r[2]+'</span></div>';
+      return '<div class="ro"><span class="k">'+r[0]+'</span><span class="v">'+r[1]+'</span></div>';
+    }).join('');
+
+    $('m-leads').textContent=S.paused?'Paused':leads+' leads/mo';
+    $('m-b').innerHTML=S.paused?'Engine only<br><b>'+money(C.ENGINE)+'/mo</b>':'First 2 ad months<br><b>'+money(winFee+adMo)+'/mo</b>';
+  }
+
+  $('country').addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return; var c=b.getAttribute('data-c'); if(c===S.c) return;
+    var old=camp(); S.c=c;
+    var match=camps().filter(function(x){return x.id===old.id;})[0] || camps().filter(function(x){return x.kind===old.kind;})[0];
+    S.camp=match?match.id:null; renderCamps(); render();
   });
+  $('camps').addEventListener('click',function(e){ var b=e.target.closest('.chip'); if(!b) return; S.camp=b.getAttribute('data-id'); render(); });
+  $('build').addEventListener('click',function(e){ var b=e.target.closest('.opt'); if(!b) return; S.build=b.getAttribute('data-b'); render(); });
+  $('slider').addEventListener('input',function(){ S.day=parseInt(this.value,10)||C.MIN_DAY; render(); });
+  $('case').addEventListener('input',function(){ S.caseVal=parseInt(this.value,10)||1750; render(); });
+  $('rates').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return; S.rate=+b.getAttribute('data-r'); render(); });
+  ['ads','content','videos'].forEach(function(t){ $('t-'+t).addEventListener('click',function(){ S[t]=!S[t]; render(); }); });
+  $('pause').addEventListener('click',function(){ S.paused=!S.paused; render(); });
 
-  var sl=document.getElementById('ad-slider');
-  function paintTrack(){
-    var pct=(sl.value-sl.min)/(sl.max-sl.min)*100;
-    sl.style.background='linear-gradient(90deg,#5271ff '+pct+'%,var(--panel-3) '+pct+'%)';
-  }
-  function applyLaneMin(snap){
-    var min=laneMin(); sl.min=min;
-    if(snap || S.adDay<min){ S.adDay=min; }
-    sl.value=S.adDay;
-    document.getElementById('ad-min').textContent=money(min)+'/day';
-    paintTrack();
-  }
-  sl.addEventListener('input', function(){ S.adDay=parseInt(sl.value,10)||laneMin(); paintTrack(); recompute(); });
-
-  var psw=document.getElementById('pause-sw');
-  function setPaused(v){
-    S.paused=v;
-    psw.setAttribute('aria-checked', v?'true':'false');
-    document.body.classList.toggle('paused', v);
-    recompute();
-  }
-  psw.addEventListener('click', function(){ setPaused(!S.paused); });
-  psw.addEventListener('keydown', function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); setPaused(!S.paused); } });
-
-  applyLaneMin();
-  applyLaneROI();
-  recompute();
+  renderCamps(); render();
 })();
 </script>
 </body>
