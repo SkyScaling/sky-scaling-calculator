@@ -186,20 +186,14 @@ window.SS = {
   .nh .when{font-family:'Space Grotesk';font-weight:700;font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
   .nh h3{font-weight:700;font-size:20px;line-height:1.25;margin-top:4px}
   .nh .pay{text-align:right;flex:none}
-  .nh .pay .pl{font-size:12px;color:var(--text-3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase}
   .nh .pay .amt{font-family:'Space Grotesk';font-weight:700;font-size:26px;letter-spacing:-0.02em;line-height:1.1;white-space:nowrap}
   .nh .pay .amt small{font-size:13px;color:var(--text-2);font-weight:600;letter-spacing:0;margin-left:2px}
   .nh .pay .amt.zero{color:var(--text-2)}
-  .brk{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-  .brk span{font-size:13px;color:var(--text-2);background:rgba(148,160,196,0.08);border:1px solid var(--border);border-radius:999px;padding:4px 10px;white-space:nowrap}
-  .brk span b{color:var(--text);font-weight:600}
-  .brk span.off{color:var(--text-3);text-decoration:line-through}
-  .get{list-style:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+  .nh .pay .psub{font-size:13px;color:var(--text-3);margin-top:3px;white-space:nowrap}
+  .get{list-style:none;margin-top:10px}
   .get li{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.5;color:var(--text-2);padding:3px 0}
   .get li::before{content:"";flex:none;width:16px;height:16px;margin-top:4px;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat}
   .get li b{color:var(--text);font-weight:600}
-  .nnote{margin-top:10px;font-size:14px;color:var(--text-3);line-height:1.5}
-  .nnote b{color:var(--text-2)}
   .nd.g .nc{border-color:rgba(82,113,255,0.55);background:linear-gradient(135deg,rgba(82,113,255,0.18),rgba(143,107,255,0.10));font-size:16px;line-height:1.5;color:var(--text-2)}
   .nd.g .nc b{color:var(--text)}
   .nd.off .nc{border-color:rgba(232,145,58,0.55);background:rgba(232,145,58,0.08)}
@@ -334,7 +328,7 @@ window.SS = {
         <h2><span class="n">5.</span> Each month <span class="hint">Once ads are live</span></h2>
         <div class="body">
           <div class="tg req"><div class="tx"><div class="t">The engine: CRM + AI <span class="tag">Required</span></div><div class="s">Your calendar, your follow-up, and an AI that texts every new lead back.</div></div><div class="pr">$150<small>/mo</small></div><span class="sw on" aria-hidden="true"></span></div>
-          <div class="tg"><div class="tx"><div class="t">Keep us on your ads after month 2</div><div class="s">Always included in your first 2 months of ads. After that, your call. 20 qualified leads that month, or the $500 comes back.</div></div><div class="pr">$500<small>/mo</small></div><button type="button" class="sw" id="t-ads" role="switch" aria-checked="false" aria-label="Keep us on your ads"></button></div>
+          <div class="tg"><div class="tx"><div class="t">Keep us running your ads</div><div class="s">Always included in your first 2 months of ads. After that, your call: 20 qualified leads a month, or the $500 comes back.</div></div><div class="pr">$500<small>/mo</small></div><button type="button" class="sw" id="t-ads" role="switch" aria-checked="false" aria-label="Keep us on your ads"></button></div>
           <div class="tg"><div class="tx"><div class="t">Content posting</div><div class="s">About 3 posts a week, designed, written and posted for you.</div></div><div class="pr">$500<small>/mo</small></div><button type="button" class="sw" id="t-content" role="switch" aria-checked="false" aria-label="Content posting"></button></div>
           <div class="tg"><div class="tx"><div class="t">Organic videos</div><div class="s">Up to 3 a week. We write the scripts, you record, we edit and post.</div></div><div class="pr">$500<small>/mo</small></div><button type="button" class="sw" id="t-videos" role="switch" aria-checked="false" aria-label="Organic videos"></button></div>
         </div>
@@ -480,59 +474,39 @@ window.SS = {
     $('s-fine').textContent='Prices in '+cur+', plus tax. No markup on ad spend, no long-term contract.';
 
     var payNote = S.c==='US'
-      ? (S.build==='full' ? 'Pay in full, or half now and half within 30 days.' : 'Paid in full.')
-      : 'Pay in full or finance it.';
-    function brk(items){ return '<div class="brk">'+items.map(function(x){ return '<span'+(x[2]?' class="off"':'')+'>'+x[0]+' <b>'+x[1]+'</b></span>'; }).join('')+'</div>'; }
+      ? (S.build==='full' ? 'Or half now, half in 30 days' : 'Paid in full')
+      : 'Or finance it';
     function node(o){
       if(o.g) return '<div class="nd g'+(o.off?' off':'')+'"><div class="rail"><span class="dot">'+(o.off?PAUSE:CHECK)+'</span></div><div class="nc">'+o.html+'</div></div>';
       return '<div class="nd'+(o.live?' live':'')+'"><div class="rail"><span class="dot">'+o.mark+'</span></div><div class="nc">'+
-        '<div class="nh"><div><div class="when">'+o.when+'</div><h3>'+o.title+'</h3></div><div class="pay"><div class="pl">You pay</div><div class="amt'+(o.zero?' zero':'')+'">'+o.amt+'</div></div></div>'+
-        (o.brk?brk(o.brk):'')+
-        '<ul class="get">'+o.get.map(function(x){return '<li><span>'+x+'</span></li>';}).join('')+'</ul>'+
-        (o.note?'<p class="nnote">'+o.note+'</p>':'')+'</div></div>';
+        '<div class="nh"><div><div class="when">'+o.when+'</div><h3>'+o.title+'</h3></div><div class="pay"><div class="amt'+(o.zero?' zero':'')+'">'+o.amt+'</div>'+(o.sub?'<div class="psub">'+o.sub+'</div>':'')+'</div></div>'+
+        (o.get?'<ul class="get">'+o.get.map(function(x){return '<li><span>'+x+'</span></li>';}).join('')+'</ul>':'')+'</div></div>';
     }
-    var winBrk=[['Engine',money(C.ENGINE)],['Ad management',money(C.ADMGMT)],['Working session',money(C.SESSION)]];
-    if(S.content) winBrk.push(['Content',money(C.CONTENT)]);
-    if(S.videos) winBrk.push(['Videos',money(C.VIDEOS)]);
-    winBrk.push(['Ads to Meta',money(adMo)]);
-    var aftBrk=[['Engine',money(C.ENGINE)],['Ad management',S.ads?money(C.ADMGMT):'off',!S.ads]];
-    if(S.content) aftBrk.push(['Content',money(C.CONTENT)]);
-    if(S.videos) aftBrk.push(['Videos',money(C.VIDEOS)]);
-    aftBrk.push(['Ads to Meta',money(adMo)]);
-    var winGet=['Ads built, tested and changed <b>every week</b>','Every new lead texted by your AI assistant and <b>booked on your calendar</b>','A <b>working session</b> with us every week: the leads, what to say, which ads to cut'];
-    if(S.content) winGet.push('About 3 posts a week, designed and posted for you');
-    if(S.videos) winGet.push('Up to 3 organic videos a week, edited and posted');
-    var aftGet=['Your CRM, calendar and AI assistant keep running (the only required fee)',
-      S.ads ? 'We keep running your ads: <b>'+C.MONTHLY_GUARANTEE+' qualified leads that month, or the $500 comes back</b>' : 'You run your ads, or add us back any month and the '+C.MONTHLY_GUARANTEE+'-lead guarantee comes with it',
-      'Raise, lower or pause your budget any month'];
-    if(S.content) aftGet.push('About 3 posts a week, designed and posted for you');
-    if(S.videos) aftGet.push('Up to 3 organic videos a week, edited and posted');
-    var start={mark:'0', when:'Day 0', title:'You sign up', amt:money(build)+'<small>once</small>', note:payNote,
-      get:['Your account set up: CRM, calendar and your private channel with us','Onboarding course: 16 short videos','Setup call with us']};
-    var guar={g:true, html:'<b>Guaranteed:</b> '+C.GUARANTEE_LEADS+' qualified leads in your first 2 months of ads, or <b>both months of fees come back ('+money(2*winFee)+')</b>.'};
+    var coreFees=C.ENGINE+C.ADMGMT+C.SESSION;
+    var guar={g:true, html:'<b>Guaranteed:</b> '+C.GUARANTEE_LEADS+' qualified leads in your first 2 months of ads, or <b>both months of fees back ('+money(2*coreFees)+')</b>.'};
+    var winAmt=money(winFee+adMo)+'<small>/mo</small>', winSub=money(winFee)+' to us + '+money(adMo)+' ads';
+    var aftAmt=money(afterFee)+'<small>/mo + ads</small>', aftSub='All in: '+money(afterFee+adMo)+'/mo';
+    var aftGet=[S.ads?'We keep running your ads: '+C.MONTHLY_GUARANTEE+' leads a month or $500 back':'Only $'+C.ENGINE+'/mo is required','Month to month, pause any time'];
+    var start={mark:'0', when:'Day 0', title:'You sign up', amt:money(build)+'<small> once</small>', sub:payNote, get:['Account set up + onboarding course']};
     var nodes;
     if(S.paused){
-      nodes=[{mark:PAUSE, when:'Paused', title:'Only the engine runs', amt:money(C.ENGINE)+'<small>/mo</small>', brk:[['Engine',money(C.ENGINE)],['Ads','off',true]],
-        get:['Your brand, pages and socials stay live and stay yours','Nothing gets deleted, nothing gets rebuilt when you come back']},
-        {g:true, off:true, html:'<b>Paused:</b> no ads, so no leads and no guarantee. Turn it back on any time. <b>Restarting costs nothing.</b>'}];
+      nodes=[{mark:PAUSE, when:'Paused', title:'Only the engine runs', amt:money(C.ENGINE)+'<small>/mo</small>', sub:'No ad spend', get:['Your pages and socials stay live and yours']},
+        {g:true, off:true, html:'<b>Paused:</b> no ads, no leads, no guarantee. <b>Restarting costs nothing.</b>'}];
     } else if(S.build==='full'){
       nodes=[start,
-        {mark:'1', when:'Month 1', title:'We build your brand', amt:'$0', zero:true,
-          get:['Your Instagram and Facebook cleaned up and branded','A content plan and <b>scripts every week</b>','You film, <b>we edit and post 3 videos a week</b>','Posts designed for you between your videos']},
-        {mark:'2', when:'Month 2', title:'We build your system', amt:'$0', zero:true,
-          get:['Your booking page and pages, <b>under your name</b>','Your AI assistant that texts every new lead','Your ad account and pixel, <b>owned by you</b>','Ad scripts: you film, we edit','Walkthrough call and a live test lead before launch']},
-        {mark:'3', live:true, when:'Month 3 · Ads live', title:'Guarantee window, month 1', amt:money(winFee+adMo)+'<small>/mo</small>', brk:winBrk, get:winGet},
-        {mark:'4', live:true, when:'Month 4 · Ads live', title:'Guarantee window, month 2', amt:money(winFee+adMo)+'<small>/mo</small>', brk:winBrk, get:['Same as month 3','Last month of the weekly working session']},
+        {mark:'1', when:'Month 1', title:'We build your brand', amt:'$0', zero:true, get:['Your socials set up and branded','You film, we edit and post 3 videos a week']},
+        {mark:'2', when:'Month 2', title:'We build your system', amt:'$0', zero:true, get:['Booking page, AI assistant, ad account','Live test lead before launch']},
+        {mark:'3', live:true, when:'Month 3', title:'Ads go live', amt:winAmt, sub:winSub, get:['Ads managed every week','Weekly working session with us']},
+        {mark:'4', live:true, when:'Month 4', title:'Ads keep running', amt:winAmt, sub:winSub, get:['Last weekly working session']},
         guar,
-        {mark:'5+', when:'Month 5 and on', title:'Your call', amt:money(afterFee)+'<small>/mo + ads</small>', brk:aftBrk, get:aftGet, note:'Month to month. All in: <b>'+money(afterFee+adMo)+'/mo</b> at '+money(S.day)+' a day.'}];
+        {mark:'5+', when:'Month 5 on', title:'Your call', amt:aftAmt, sub:aftSub, get:aftGet}];
     } else {
       nodes=[start,
-        {mark:'1', when:'Weeks 1 to 4', title:'We build the system behind your socials', amt:'$0', zero:true,
-          get:['Your booking page, under your name','Your AI assistant that texts every new lead','Your ad account and pixel, owned by you','Ad scripts: you film, we edit','<b>Ads live in weeks 2 to 4</b>']},
-        {mark:'2', live:true, when:'Ad month 1', title:'Guarantee window, month 1', amt:money(winFee+adMo)+'<small>/mo</small>', brk:winBrk, get:winGet},
-        {mark:'3', live:true, when:'Ad month 2', title:'Guarantee window, month 2', amt:money(winFee+adMo)+'<small>/mo</small>', brk:winBrk, get:['Same as ad month 1','Last month of the weekly working session']},
+        {mark:'1', when:'Weeks 1 to 4', title:'We build your system', amt:'$0', zero:true, get:['Booking page, AI assistant, ad account','Ads live in weeks 2 to 4']},
+        {mark:'2', live:true, when:'Ad month 1', title:'Ads go live', amt:winAmt, sub:winSub, get:['Ads managed every week','Weekly working session with us']},
+        {mark:'3', live:true, when:'Ad month 2', title:'Ads keep running', amt:winAmt, sub:winSub, get:['Last weekly working session']},
         guar,
-        {mark:'4+', when:'After that', title:'Your call', amt:money(afterFee)+'<small>/mo + ads</small>', brk:aftBrk, get:aftGet, note:'Month to month. All in: <b>'+money(afterFee+adMo)+'/mo</b> at '+money(S.day)+' a day.'}];
+        {mark:'4+', when:'After that', title:'Your call', amt:aftAmt, sub:aftSub, get:aftGet}];
     }
     $('tl').innerHTML=nodes.map(node).join('');
 
