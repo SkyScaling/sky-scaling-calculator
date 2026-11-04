@@ -78,7 +78,7 @@ window.SS = {
 
   .wrap{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 22px 84px}
 
-  .eyebrow{text-align:center;color:var(--accent);font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:0.22em;text-transform:uppercase;margin:46px 0 22px}
+  .eyebrow{text-align:center;color:var(--accent);font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:0.22em;text-transform:uppercase;margin:58px 0 22px}
   h1.hero{text-align:center;font-weight:700;font-size:clamp(36px,5.6vw,52px);line-height:1.06;letter-spacing:-0.03em;max-width:900px;margin:0 auto}
   h1.hero .a{color:var(--accent)}
   .lead{text-align:center;color:var(--text-2);font-size:clamp(16px,2.2vw,18px);line-height:1.7;max-width:620px;margin:22px auto 0}
@@ -105,6 +105,8 @@ window.SS = {
   .chip .cp{font-size:14px;color:var(--text-3);white-space:nowrap}
   .chip.on{border-color:var(--accent);background:var(--accent-tint);box-shadow:0 0 0 1px var(--accent) inset}
   .chip.on .cp{color:#c3ccff}
+  .chip .cp b{color:var(--text);font-weight:700}
+  .chip.on .cp b{color:#fff}
 
   /* budget */
   .bud{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -159,6 +161,7 @@ window.SS = {
   .leads .big{font-family:'Space Grotesk';font-weight:700;font-size:68px;line-height:0.95;letter-spacing:-0.04em}
   .leads .u{font-family:'Space Grotesk';font-weight:600;font-size:22px;color:var(--text-2)}
   .leads-s{margin-top:8px;font-size:15px;color:var(--text-2)}
+  .leads-s b{color:var(--text);font-weight:700}
   .tl-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:10px}
   .tl-h h2{font-weight:700;font-size:24px;letter-spacing:-0.01em}
   .tl-h h2 .a{color:var(--accent)}
@@ -238,9 +241,11 @@ window.SS = {
     .mbar .a{font-family:'Space Grotesk';font-weight:700;font-size:19px;color:var(--accent)}
     .mbar .b{font-size:14px;color:var(--text-2);text-align:right;line-height:1.3}
     .mbar .b b{color:var(--text);font-family:'Space Grotesk';font-size:16px}
+    .mbar{transition:opacity .25s ease,transform .25s ease}
+    .mbar.off{opacity:0;transform:translateY(20px);pointer-events:none}
   }
   @media(max-width:700px){
-    .eyebrow{margin:34px 0 18px}
+    .eyebrow{margin:42px 0 18px}
     .lead{margin-top:12px}
     .builder{margin-top:26px}
     .card{padding:22px 18px 24px}
@@ -258,6 +263,7 @@ window.SS = {
     .side .fine{padding-left:40px}
     .leads .big{font-size:58px}
     section{padding:38px 0 0;margin-top:38px}
+    footer{padding-top:36px;margin-top:46px}
     .tg .tx .t{font-size:16px}
     .tg{flex-wrap:wrap;gap:10px 14px}
     .tg .tx{flex:1 1 100%}
@@ -329,7 +335,7 @@ window.SS = {
       <div class="lcard">
         <div class="k" id="l-k">About this many leads a month</div>
         <div class="leads"><span class="big" id="s-leads">55</span><span class="u" id="s-leads-u">leads</span></div>
-        <div class="leads-s" id="s-leads-s">Life insurance at about $22 a lead</div>
+        <div class="leads-s" id="s-leads-s">Life insurance at about <b>$22</b> a lead</div>
       </div>
       <div class="tl-h"><h2>Your <span class="a">Timeline</span></h2><span>Updates as you pick</span></div>
       <div class="tl" id="tl"></div>
@@ -413,7 +419,7 @@ window.SS = {
     [['client','Getting clients'],['recruit','Recruiting']].forEach(function(g){
       html+='<div class="grp">'+g[1]+'</div><div class="chips">';
       l.filter(function(x){return x.kind===g[0];}).forEach(function(x){
-        html+='<button type="button" class="chip" data-id="'+x.id+'"><span class="nm">'+x.name+'</span><span class="cp">about $'+x.cpl+' a lead</span></button>';
+        html+='<button type="button" class="chip" data-id="'+x.id+'"><span class="nm">'+x.name+'</span><span class="cp">about <b>$'+x.cpl+'</b> a lead</span></button>';
       });
       html+='</div>';
     });
@@ -445,7 +451,7 @@ window.SS = {
     setPop($('s-leads'), S.paused?'0':String(leads));
     $('s-leads-u').textContent=isClient?'leads':'recruit leads';
     $('l-k').textContent=S.paused?'Paused':'About this many leads a month';
-    $('s-leads-s').textContent=S.paused?'No ads running while you\'re paused.':(k.name+' at about $'+k.cpl+' a lead');
+    $('s-leads-s').innerHTML=S.paused?'No ads running while you\'re paused.':(k.name+' at about <b>$'+k.cpl+'</b> a lead');
 
     /* money */
     var extras=(S.content?C.CONTENT:0)+(S.videos?C.VIDEOS:0);
@@ -536,6 +542,7 @@ window.SS = {
   $('pause').addEventListener('click',function(){ S.paused=!S.paused; render(); });
 
   renderCamps(); render();
+  if('IntersectionObserver' in window){ var mb=$('mbar'); new IntersectionObserver(function(en){ mb.classList.toggle('off',en[0].isIntersecting); },{rootMargin:'0px 0px -40px 0px'}).observe(document.querySelector('footer')); }
 })();
 </script>
 </body>
