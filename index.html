@@ -37,14 +37,16 @@ window.SS = {
       { id:"lic",  name:"Licensed recruits",    cpl:10, kind:"recruit" }
     ]
   },
-  BUILD:   { full:3500, fast:1750 },
-  ENGINE:  150,   /* CRM + AI, required every month once ads are live (also the price while paused) */
-  ADMGMT:  250,   /* ad management, always on in the first two ad months, optional after */
-  SESSION: 250,   /* weekly working session, first two ad months only */
-  CONTENT: 250,   /* content posting, about 3 posts a week */
-  VIDEOS:  500,   /* organic videos, up to 3 a week */
-  GUARANTEE_LEADS: 50,   /* first two ad months, at $40/day or more */
-  MONTHLY_GUARANTEE: 25, /* every month after, while we run the ads */
+  /* One-package pricing (deck v38, kept Nov 20 2026): the package covers the build AND the first 2 months of ads (run for them, weekly sessions). */
+  BUILD:   { full:5000, fast:3000 },
+  START_OFF: 500,       /* $500 off if they start within 24 hours of the call ($4,500 / $2,500) */
+  AFFIRM_FULL_MO: 405,  /* about, The Install through Affirm (Canada only) */
+  PLANS:   { engine:150, ads:400, dfy:1150 }, /* after the first 2 ad months, change any month */
+  ENGINE:  150,   /* CRM + AI, the minimum every month after (also the price while paused) */
+  ADMGMT:  250,   /* the part of Engine + Ads that comes back if we miss the monthly guarantee */
+  GUARANTEE_LEADS: 50,     /* first two ad months, at $40/day or more */
+  GUARANTEE_REFUND: 1300,  /* or this comes back */
+  MONTHLY_GUARANTEE: 25,   /* every month after, while we run the ads */
   MIN_DAY: 40, MAX_DAY: 200
 };
 </script>
@@ -130,6 +132,8 @@ window.SS = {
   .opt p{margin-top:8px;font-size:15px;color:var(--text-2);line-height:1.55}
   .opt.on{border-color:var(--accent);background:var(--accent-tint);box-shadow:0 0 0 1px var(--accent) inset,var(--glow)}
   .opt.on .t .pr{color:#c3ccff}
+  .opt .t .pr small{font-size:13px;color:var(--text-3);font-weight:600;margin-left:2px}
+  #plans{grid-template-columns:1fr}
   .pay{margin-top:14px;font-size:15px;color:var(--text-2)}
   .pay b{color:var(--text);font-weight:600}
 
@@ -307,23 +311,24 @@ window.SS = {
       </div>
 
       <div class="card dim">
-        <h2><span class="n">3.</span> Your build <span class="hint">Paid once</span></h2>
+        <h2><span class="n">3.</span> Your package <span class="hint">Paid once</span></h2>
         <div class="body">
           <div class="opts" id="build">
-            <button type="button" class="opt" data-b="full"><div class="t"><span class="nm">Full Install</span><span class="pr" id="p-full">$3,500</span></div><p>We build it all from zero: brand, socials, booking page, AI assistant, ad account. Ads go live in month 3.</p></button>
-            <button type="button" class="opt" data-b="fast"><div class="t"><span class="nm">Fast-Track</span><span class="pr" id="p-fast">$1,750</span></div><p>Only if we offer it to you. Your socials already work, so we build the system behind them. Ads live in weeks 2 to 4.</p></button>
+            <button type="button" class="opt" data-b="full"><div class="t"><span class="nm">The Install</span><span class="pr" id="p-full">$5,000</span></div><p>We build it all from zero: brand, socials, booking page, AI assistant, ad account. Covers 4 months: the 2-month build, then your first 2 months of ads run for you, with a working session every week.</p></button>
+            <button type="button" class="opt" data-b="fast"><div class="t"><span class="nm">Fast-Track</span><span class="pr" id="p-fast">$3,000</span></div><p>Only if we offer it to you. Your socials already work, so we build the system behind them. Ads live in weeks 2 to 4, then your first 2 months of ads are run for you.</p></button>
           </div>
           <p class="pay" id="pay-note"></p>
         </div>
       </div>
 
       <div class="card dim">
-        <h2><span class="n">4.</span> Each month <span class="hint">Once ads are live</span></h2>
+        <h2><span class="n">4.</span> After your first 2 months of ads <span class="hint">Change it any month</span></h2>
         <div class="body">
-          <div class="tg req"><div class="tx"><div class="t">The engine: CRM + AI <span class="tag">Required</span></div><div class="s">Your calendar, your follow-up, and an AI that texts every new lead back.</div></div><div class="pr">$150<small>/mo</small></div><span class="sw on" aria-hidden="true"></span></div>
-          <div class="tg"><div class="tx"><div class="t">Keep us running your ads</div><div class="s">Always included in your first 2 months of ads. After that, your call: 25 qualified leads a month, or the $250 comes back.</div></div><div class="pr">$250<small>/mo</small></div><button type="button" class="sw" id="t-ads" role="switch" aria-checked="false" aria-label="Keep us on your ads"></button></div>
-          <div class="tg"><div class="tx"><div class="t">Content posting</div><div class="s">About 3 posts a week, designed, written and posted for you.</div></div><div class="pr">$250<small>/mo</small></div><button type="button" class="sw" id="t-content" role="switch" aria-checked="false" aria-label="Content posting"></button></div>
-          <div class="tg"><div class="tx"><div class="t">Organic videos</div><div class="s">Up to 3 a week. We write the scripts, you record, we edit and post.</div></div><div class="pr">$500<small>/mo</small></div><button type="button" class="sw" id="t-videos" role="switch" aria-checked="false" aria-label="Organic videos"></button></div>
+          <div class="opts" id="plans">
+            <button type="button" class="opt" data-p="engine"><div class="t"><span class="nm">The Engine</span><span class="pr">$150<small>/mo</small></span></div><p>Your CRM, your calendar and the AI that texts every new lead back. You run your own ads.</p></button>
+            <button type="button" class="opt" data-p="ads"><div class="t"><span class="nm">Engine + Ads</span><span class="pr">$400<small>/mo</small></span></div><p>We keep running your ads. 25 qualified leads a month, or the $250 comes back.</p></button>
+            <button type="button" class="opt" data-p="dfy"><div class="t"><span class="nm">Done For You</span><span class="pr">$1,150<small>/mo</small></span></div><p>Your ads, plus your content posted 3 times a week and up to 3 organic videos a week. We write the scripts, you record, we edit and post.</p></button>
+          </div>
         </div>
       </div>
 
@@ -388,7 +393,7 @@ window.SS = {
   </footer>
 </div>
 
-<div class="mbar" id="mbar"><span class="a" id="m-leads">55 leads/mo</span><span class="b" id="m-b">First 2 ad months<br><b id="m-win">$1,850/mo</b></span></div>
+<div class="mbar" id="mbar"><span class="a" id="m-leads">55 leads/mo</span><span class="b" id="m-b">Your package<br><b id="m-win">$5,000 once</b></span></div>
 
 <script>
 (function(){
@@ -407,7 +412,7 @@ window.SS = {
     return /^(America\/(New_York|Chicago|Denver|Los_Angeles|Phoenix|Anchorage|Juneau|Sitka|Nome|Yakutat|Metlakatla|Adak|Boise|Detroit|Menominee|Indiana\/.+|Kentucky\/.+|North_Dakota\/.+)|Pacific\/Honolulu|US\/.+)$/.test(tz) ? 'US' : 'CA';
   }
 
-  var S = { c: guessCountry(), camp: null, day: C.MIN_DAY, build:'full', ads:false, content:false, videos:false, paused:false, caseVal:1750, rate:0.10 };
+  var S = { c: guessCountry(), camp: null, day: C.MIN_DAY, build:'full', plan:'engine', paused:false, caseVal:1750, rate:0.10 };
   var CHECK='<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
   var PAUSE='<svg viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></svg>';
   function money(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
@@ -437,7 +442,7 @@ window.SS = {
     $('app').classList.toggle('paused',S.paused);
     [].forEach.call(document.querySelectorAll('#camps .chip'),function(b){ b.classList.toggle('on', b.getAttribute('data-id')===S.camp); });
     [].forEach.call(document.querySelectorAll('#build .opt'),function(b){ b.classList.toggle('on', b.getAttribute('data-b')===S.build); });
-    ['ads','content','videos'].forEach(function(t){ $('t-'+t).classList.toggle('on',S[t]); $('t-'+t).setAttribute('aria-checked',S[t]?'true':'false'); });
+    [].forEach.call(document.querySelectorAll('#plans .opt'),function(b){ b.classList.toggle('on', b.getAttribute('data-p')===S.plan); });
     $('pause').classList.toggle('on',S.paused); $('pause').setAttribute('aria-checked',S.paused?'true':'false');
     [].forEach.call(document.querySelectorAll('#rates button'),function(b){ b.classList.toggle('on', +b.getAttribute('data-r')===S.rate); });
 
@@ -454,32 +459,29 @@ window.SS = {
     $('l-k').textContent=S.paused?'Paused':'About this many leads a month';
     $('s-leads-s').innerHTML=S.paused?'No ads running while you\'re paused.':(k.name+' at about <b>$'+k.cpl+'</b> a lead');
 
-    /* money */
-    var extras=(S.content?C.CONTENT:0)+(S.videos?C.VIDEOS:0);
-    var winFee=C.ENGINE+C.ADMGMT+C.SESSION+extras;
-    var afterFee=C.ENGINE+(S.ads?C.ADMGMT:0)+extras;
-    var build=C.BUILD[S.build];
+    /* money: one package covers the build and the first 2 ad months; after that, one monthly plan */
+    var planFee=C.PLANS[S.plan];
+    var build=C.BUILD[S.build], today=build-C.START_OFF;
     $('p-full').textContent=money(C.BUILD.full); $('p-fast').textContent=money(C.BUILD.fast);
-    $('pay-note').innerHTML = S.c==='US'
+    var off='<b>'+money(C.START_OFF)+' off</b> if you start within 24 hours of your call ('+money(C.BUILD.full-C.START_OFF)+' / '+money(C.BUILD.fast-C.START_OFF)+'). ';
+    $('pay-note').innerHTML = off + (S.c==='US'
       ? (S.build==='full' ? '<b>Pay in full</b>, or half now and half within 30 days.' : 'Fast-Track is <b>paid in full</b>.')
-      : '<b>Pay in full</b> or finance it.';
+      : (S.build==='full' ? '<b>Pay in full</b>, or about <b>'+money(C.AFFIRM_FULL_MO)+'/mo</b> through Affirm.' : '<b>Pay in full</b> or finance it through Affirm.'));
     $('s-fine').textContent='Prices in '+cur+', plus tax. No markup on ad spend, no long-term contract.';
     $('cur-note').textContent='Prices in '+cur+'.';
 
-    var payNote = S.c==='US'
-      ? (S.build==='full' ? 'Or half now, half in 30 days' : 'Paid in full')
-      : 'Or finance it';
+    var payNote='Or '+money(today)+' if you start within 24 hours';
     function node(o){
       if(o.g) return '<div class="nd g'+(o.off?' off':'')+'"><div class="rail"><span class="dot">'+(o.off?PAUSE:CHECK)+'</span></div><div class="nc">'+o.html+'</div></div>';
       return '<div class="nd'+(o.live?' live':'')+'"><div class="rail"><span class="dot">'+o.mark+'</span></div><div class="nc">'+
         '<div class="nh"><div><div class="when">'+o.when+'</div><h3>'+o.title+'</h3></div><div class="pay"><div class="amt'+(o.zero?' zero':'')+'">'+o.amt+'</div>'+(o.sub?'<div class="psub">'+o.sub+'</div>':'')+'</div></div>'+
         (o.get?'<ul class="get">'+o.get.map(function(x){return '<li><span>'+x+'</span></li>';}).join('')+'</ul>':'')+'</div></div>';
     }
-    var coreFees=C.ENGINE+C.ADMGMT+C.SESSION;
-    var guar={g:true, html:'<b>Guaranteed:</b> '+C.GUARANTEE_LEADS+' qualified leads in your first 2 months of ads, or <b>both months of fees back ('+money(2*coreFees)+')</b>.'};
-    var winAmt=money(winFee+adMo)+'<small>/mo</small>', winSub=money(winFee)+' to us + '+money(adMo)+' ads';
-    var aftAmt=money(afterFee)+'<small>/mo + ads</small>', aftSub='All in: '+money(afterFee+adMo)+'/mo';
-    var aftGet=[S.ads?'We keep running your ads: '+C.MONTHLY_GUARANTEE+' leads a month or $'+C.ADMGMT+' back':'Only $'+C.ENGINE+'/mo is required','Month to month, pause any time'];
+    var guar={g:true, html:'<b>Guaranteed:</b> '+C.GUARANTEE_LEADS+' qualified leads in your first 2 months of ads, or <b>'+money(C.GUARANTEE_REFUND)+' back</b>.'};
+    var winAmt=money(adMo)+'<small>/mo ads</small>', winSub='$0 to us, it\'s in your package';
+    var planName={engine:'The Engine',ads:'Engine + Ads',dfy:'Done For You'}[S.plan];
+    var aftAmt=money(planFee)+'<small>/mo + ads</small>', aftSub='All in: '+money(planFee+adMo)+'/mo';
+    var aftGet=[S.plan==='engine'?planName+': you run your own ads':S.plan==='ads'?planName+': '+C.MONTHLY_GUARANTEE+' leads a month or $'+C.ADMGMT+' back':planName+': ads, content and videos for you','Month to month, change or pause any time'];
     var start={mark:'0', when:'Day 0', title:'You sign up', amt:money(build)+'<small> once</small>', sub:payNote, get:['Account set up + onboarding course']};
     var nodes;
     if(S.paused){
@@ -489,22 +491,22 @@ window.SS = {
       nodes=[start,
         {mark:'1', when:'Month 1', title:'We build your brand', amt:'$0', zero:true, get:['Your socials set up and branded','You film, we edit and post 3 videos a week']},
         {mark:'2', when:'Month 2', title:'We build your system', amt:'$0', zero:true, get:['Booking page, AI assistant, ad account','Live test lead before launch']},
-        {mark:'3', live:true, when:'Month 3', title:'Ads go live', amt:winAmt, sub:winSub, get:['Ads managed every week','Weekly working session with us']},
-        {mark:'4', live:true, when:'Month 4', title:'Ads keep running', amt:winAmt, sub:winSub, get:['Last weekly working session']},
+        {mark:'3', live:true, when:'Month 3', title:'Ads go live', amt:winAmt, sub:winSub, get:['We run your ads and check them every day','Weekly working session with us']},
+        {mark:'4', live:true, when:'Month 4', title:'Ads keep running', amt:winAmt, sub:winSub, get:['Still run for you, still in your package','Weekly working session with us']},
         guar,
         {mark:'5+', when:'Month 5 on', title:'Your call', amt:aftAmt, sub:aftSub, get:aftGet}];
     } else {
       nodes=[start,
         {mark:'1', when:'Weeks 1 to 4', title:'We build your system', amt:'$0', zero:true, get:['Booking page, AI assistant, ad account','Ads live in weeks 2 to 4']},
-        {mark:'2', live:true, when:'Ad month 1', title:'Ads go live', amt:winAmt, sub:winSub, get:['Ads managed every week','Weekly working session with us']},
-        {mark:'3', live:true, when:'Ad month 2', title:'Ads keep running', amt:winAmt, sub:winSub, get:['Last weekly working session']},
+        {mark:'2', live:true, when:'Ad month 1', title:'Ads go live', amt:winAmt, sub:winSub, get:['We run your ads and check them every day','Weekly working session with us']},
+        {mark:'3', live:true, when:'Ad month 2', title:'Ads keep running', amt:winAmt, sub:winSub, get:['Still run for you, still in your package','Weekly working session with us']},
         guar,
         {mark:'4+', when:'After that', title:'Your call', amt:aftAmt, sub:aftSub, get:aftGet}];
     }
     $('tl').innerHTML=nodes.map(node).join('');
 
     /* payback */
-    var cost=afterFee+adMo, rows=[];
+    var cost=planFee+adMo, rows=[];
     $('case-wrap').style.display=isClient?'':'none';
     $('rate-q').innerHTML='<span>'+(isClient?'Your close rate':'How many recruit leads join you')+'</span>';
     $('pb-title').innerHTML=isClient?'What It Could <span class="a">Pay Back.</span>':'What a Recruit <span class="a">Could Cost.</span>';
@@ -531,7 +533,7 @@ window.SS = {
     }).join('');
 
     $('m-leads').textContent=S.paused?'Paused':leads+' leads/mo';
-    $('m-b').innerHTML=S.paused?'Engine only<br><b>'+money(C.ENGINE)+'/mo</b>':'First 2 ad months<br><b>'+money(winFee+adMo)+'/mo</b>';
+    $('m-b').innerHTML=S.paused?'Engine only<br><b>'+money(C.ENGINE)+'/mo</b>':'Your package<br><b>'+money(build)+' once</b>';
   }
 
   $('camps').addEventListener('click',function(e){ var b=e.target.closest('.chip'); if(!b) return; S.camp=b.getAttribute('data-id'); render(); });
@@ -539,7 +541,7 @@ window.SS = {
   $('slider').addEventListener('input',function(){ S.day=parseInt(this.value,10)||C.MIN_DAY; render(); });
   $('case').addEventListener('input',function(){ S.caseVal=parseInt(this.value,10)||1750; render(); });
   $('rates').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return; S.rate=+b.getAttribute('data-r'); render(); });
-  ['ads','content','videos'].forEach(function(t){ $('t-'+t).addEventListener('click',function(){ S[t]=!S[t]; render(); }); });
+  $('plans').addEventListener('click',function(e){ var b=e.target.closest('.opt'); if(!b) return; S.plan=b.getAttribute('data-p'); render(); });
   $('pause').addEventListener('click',function(){ S.paused=!S.paused; render(); });
 
   renderCamps(); render();
